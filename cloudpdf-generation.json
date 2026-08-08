@@ -1,12 +1,12 @@
 {
   "language": "ruby",
-  "canonicalVersion": "3.0.0-next.0",
-  "sdkVersion": "3.0.0.alpha.0",
+  "canonicalVersion": "3.0.0-next.1",
+  "sdkVersion": "3.0.0.alpha.1",
   "source": {
     "repository": "embedpdf/embed-pdf-viewer",
     "openapi": "cloudpdf/contract/openapi.json",
-    "openapiSha256": "8c336584c9ea351dce53e22d58e54539ba47ce8c31dae0a365d05ffff8356272",
-    "gitCommit": "c5976f4e10573f4dc0d26937222caeb948fce09e",
+    "openapiSha256": "6858ce7912e9063d8fb171ade95fc473db01c5971a3af241a612dda79cc05100",
+    "gitCommit": "232d5e0240d5673a73c9ea7c7ae9e7b937fdd5b3",
     "gitCommitIsDirty": false
   },
   "fern": {
