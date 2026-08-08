@@ -1,0 +1,17 @@
+{
+  "language": "ruby",
+  "canonicalVersion": "3.0.0-next.0",
+  "sdkVersion": "3.0.0.alpha.0",
+  "source": {
+    "repository": "embedpdf/embed-pdf-viewer",
+    "openapi": "cloudpdf/contract/openapi.json",
+    "openapiSha256": "8c336584c9ea351dce53e22d58e54539ba47ce8c31dae0a365d05ffff8356272",
+    "gitCommit": "c5976f4e10573f4dc0d26937222caeb948fce09e",
+    "gitCommitIsDirty": false
+  },
+  "fern": {
+    "cliVersion": "5.91.0",
+    "generatorName": "fernapi/fern-ruby-sdk",
+    "generatorVersion": "1.21.1"
+  }
+}

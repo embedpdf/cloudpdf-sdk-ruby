@@ -1,0 +1,15 @@
+# frozen_string_literal: true
+
+module Cloudpdf
+  module Types
+    class TenantsList200ResponseTenantsItem < Internal::Types::Model
+      field :id, -> { String }, optional: false, nullable: false
+
+      field :name, -> { String }, optional: false, nullable: false
+
+      field :auto_provisioned, -> { Internal::Types::Boolean }, optional: false, nullable: false, api_name: "autoProvisioned"
+
+      field :created_at, -> { Integer }, optional: false, nullable: false, api_name: "createdAt"
+    end
+  end
+end

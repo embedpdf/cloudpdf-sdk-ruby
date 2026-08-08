@@ -1,0 +1,10 @@
+{
+  "cliVersion": "5.91.0",
+  "generatorName": "fernapi/fern-ruby-sdk",
+  "generatorVersion": "1.21.1",
+  "originGitCommit": "c5976f4e10573f4dc0d26937222caeb948fce09e",
+  "originGitCommitIsDirty": false,
+  "invokedBy": "ci",
+  "requestedVersion": "3.0.0.alpha.0",
+  "ciProvider": "github"
+}
