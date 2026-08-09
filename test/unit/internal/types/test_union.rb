@@ -2,27 +2,27 @@
 
 require "test_helper"
 
-describe Cloudpdf::Internal::Types::Union do
-  class Rectangle < Cloudpdf::Internal::Types::Model
+describe CloudPDF::Internal::Types::Union do
+  class Rectangle < CloudPDF::Internal::Types::Model
     literal :type, "square"
 
     field :area, Float
   end
 
-  class Circle < Cloudpdf::Internal::Types::Model
+  class Circle < CloudPDF::Internal::Types::Model
     literal :type, "circle"
 
     field :area, Float
   end
 
-  class Pineapple < Cloudpdf::Internal::Types::Model
+  class Pineapple < CloudPDF::Internal::Types::Model
     literal :type, "pineapple"
 
     field :area, Float
   end
 
   module Shape
-    extend Cloudpdf::Internal::Types::Union
+    extend CloudPDF::Internal::Types::Union
 
     discriminant :type
 
@@ -31,7 +31,7 @@ describe Cloudpdf::Internal::Types::Union do
   end
 
   module StringOrInteger
-    extend Cloudpdf::Internal::Types::Union
+    extend CloudPDF::Internal::Types::Union
 
     member String
     member Integer

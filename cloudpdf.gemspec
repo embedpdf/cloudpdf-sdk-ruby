@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
-require_relative "lib/cloudpdf/version"
+require_relative "lib/CloudPDF/version"
 require_relative "custom.gemspec"
 
 # NOTE: A handful of these fields are required as part of the Ruby specification.
 #       You can change them here or overwrite them in the custom gemspec file.
 Gem::Specification.new do |spec|
   spec.name = "cloudpdf"
-  spec.authors = ["Cloudpdf"]
-  spec.version = Cloudpdf::VERSION
-  spec.summary = "Ruby client library for the Cloudpdf API"
-  spec.description = "The Cloudpdf Ruby library provides convenient access to the Cloudpdf API from Ruby."
+  spec.authors = ["CloudPDF"]
+  spec.version = CloudPDF::VERSION
+  spec.summary = "Ruby client library for the CloudPDF API"
+  spec.description = "The CloudPDF Ruby library provides convenient access to the CloudPDF API from Ruby."
   spec.required_ruby_version = ">= 3.3.0"
   spec.metadata["rubygems_mfa_required"] = "true"
 

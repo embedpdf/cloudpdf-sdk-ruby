@@ -2,26 +2,26 @@
 
 require "test_helper"
 
-describe Cloudpdf::Internal::Types::Utils do
-  Utils = Cloudpdf::Internal::Types::Utils
+describe CloudPDF::Internal::Types::Utils do
+  Utils = CloudPDF::Internal::Types::Utils
 
   module TestUtils
-    class M < Cloudpdf::Internal::Types::Model
+    class M < CloudPDF::Internal::Types::Model
       field :value, String
     end
 
-    class UnionMemberA < Cloudpdf::Internal::Types::Model
+    class UnionMemberA < CloudPDF::Internal::Types::Model
       literal :type, "A"
       field :only_on_a, String
     end
 
-    class UnionMemberB < Cloudpdf::Internal::Types::Model
+    class UnionMemberB < CloudPDF::Internal::Types::Model
       literal :type, "B"
       field :only_on_b, String
     end
 
     module U
-      extend Cloudpdf::Internal::Types::Union
+      extend CloudPDF::Internal::Types::Union
 
       discriminant :type
 
@@ -29,8 +29,8 @@ describe Cloudpdf::Internal::Types::Utils do
       member -> { UnionMemberB }, key: "B"
     end
 
-    SymbolStringHash = Cloudpdf::Internal::Types::Hash[Symbol, String]
-    SymbolModelHash = -> { Cloudpdf::Internal::Types::Hash[Symbol, TestUtils::M] }
+    SymbolStringHash = CloudPDF::Internal::Types::Hash[Symbol, String]
+    SymbolModelHash = -> { CloudPDF::Internal::Types::Hash[Symbol, TestUtils::M] }
   end
 
   describe ".coerce" do
@@ -58,7 +58,7 @@ describe Cloudpdf::Internal::Types::Utils do
       end
 
       it "raises an error if value cannot be coerced and strict" do
-        assert_raises Cloudpdf::Internal::Errors::TypeError do
+        assert_raises CloudPDF::Internal::Errors::TypeError do
           Utils.coerce(String, Object.new, strict: true)
         end
       end
@@ -77,7 +77,7 @@ describe Cloudpdf::Internal::Types::Utils do
       end
 
       it "raises an error if value cannot be coerced and strict" do
-        assert_raises Cloudpdf::Internal::Errors::TypeError do
+        assert_raises CloudPDF::Internal::Errors::TypeError do
           Utils.coerce(Symbol, Object.new, strict: true)
         end
       end
@@ -100,7 +100,7 @@ describe Cloudpdf::Internal::Types::Utils do
       end
 
       it "raises an error if value cannot be coerced and strict" do
-        assert_raises Cloudpdf::Internal::Errors::TypeError do
+        assert_raises CloudPDF::Internal::Errors::TypeError do
           Utils.coerce(Integer, Object.new, strict: true)
         end
       end
@@ -122,7 +122,7 @@ describe Cloudpdf::Internal::Types::Utils do
       end
 
       it "raises an error if value cannot be coerced and strict" do
-        assert_raises Cloudpdf::Internal::Errors::TypeError do
+        assert_raises CloudPDF::Internal::Errors::TypeError do
           Utils.coerce(Float, Object.new, strict: true)
         end
       end
@@ -150,7 +150,7 @@ describe Cloudpdf::Internal::Types::Utils do
 
     describe "Enum" do
       module ExampleEnum
-        extend Cloudpdf::Internal::Types::Enum
+        extend CloudPDF::Internal::Types::Enum
 
         FOO = :FOO
         BAR = :BAR
@@ -168,9 +168,9 @@ describe Cloudpdf::Internal::Types::Utils do
     end
 
     describe "Array" do
-      StringArray = Cloudpdf::Internal::Types::Array[String]
-      ModelArray = -> { Cloudpdf::Internal::Types::Array[TestUtils::M] }
-      UnionArray = -> { Cloudpdf::Internal::Types::Array[TestUtils::U] }
+      StringArray = CloudPDF::Internal::Types::Array[String]
+      ModelArray = -> { CloudPDF::Internal::Types::Array[TestUtils::M] }
+      UnionArray = -> { CloudPDF::Internal::Types::Array[TestUtils::U] }
 
       it "coerces an array of literals" do
         assert_equal %w[a b c], Utils.coerce(StringArray, %w[a b c])
