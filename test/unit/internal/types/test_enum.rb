@@ -2,10 +2,10 @@
 
 require "test_helper"
 
-describe Cloudpdf::Internal::Types::Enum do
+describe CloudPDF::Internal::Types::Enum do
   module EnumTest
     module ExampleEnum
-      extend Cloudpdf::Internal::Types::Enum
+      extend CloudPDF::Internal::Types::Enum
 
       FOO = :foo
       BAR = :bar
@@ -34,7 +34,7 @@ describe Cloudpdf::Internal::Types::Enum do
     end
 
     it "raises an error if value is not a member with strictness on" do
-      assert_raises Cloudpdf::Internal::Errors::TypeError do
+      assert_raises CloudPDF::Internal::Errors::TypeError do
         EnumTest::ExampleEnum.coerce(1, strict: true)
       end
     end

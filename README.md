@@ -1,8 +1,8 @@
-# Cloudpdf Ruby Library
+# CloudPDF Ruby SDK
 
 [![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=Cloudpdf%2FRuby)
 
-The Cloudpdf Ruby library provides convenient access to the Cloudpdf APIs from Ruby.
+The official Ruby SDK for the CloudPDF API.
 
 ## Table of Contents
 
@@ -28,7 +28,7 @@ Instantiate and use the client with the following:
 ```ruby
 require "cloudpdf"
 
-client = Cloudpdf::Client.new(token: "<token>")
+client = CloudPDF::Client.new(token: "<token>")
 
 client.tenants.create(id: "id")
 ```
@@ -41,7 +41,7 @@ This SDK allows you to configure different custom URLs for API requests. You can
 ```ruby
 require "cloudpdf"
 
-client = Cloudpdf::Client.new(
+client = CloudPDF::Client.new(
     base_url: "https://example.com"
 )
 ```
@@ -53,21 +53,21 @@ Failed API calls will raise errors that can be rescued from granularly.
 ```ruby
 require "cloudpdf"
 
-client = Cloudpdf::Client.new(
+client = CloudPDF::Client.new(
     base_url: "https://example.com"
 )
 
 begin
     result = client.tenants.create
-rescue Cloudpdf::Errors::TimeoutError
+rescue CloudPDF::Errors::TimeoutError
     puts "API didn't respond before our timeout elapsed"
-rescue Cloudpdf::Errors::ServiceUnavailableError
+rescue CloudPDF::Errors::ServiceUnavailableError
     puts "API returned status 503, is probably overloaded, try again later"
-rescue Cloudpdf::Errors::ServerError
+rescue CloudPDF::Errors::ServerError
     puts "API returned some other 5xx status, this is probably a bug"
-rescue Cloudpdf::Errors::ResponseError => e
+rescue CloudPDF::Errors::ResponseError => e
     puts "API returned an unexpected status other than 5xx: #{e.code} #{e.message}"
-rescue Cloudpdf::Errors::ApiError => e
+rescue CloudPDF::Errors::ApiError => e
     puts "Some other error occurred when calling the API: #{e.message}"
 end
 ```
@@ -95,7 +95,7 @@ Use the `max_retries` option to configure this behavior.
 ```ruby
 require "cloudpdf"
 
-client = Cloudpdf::Client.new(
+client = CloudPDF::Client.new(
     base_url: "https://example.com",
     max_retries: 3  # Configure max retries (default is 2)
 )

@@ -2,15 +2,15 @@
 
 require "test_helper"
 
-describe Cloudpdf::Internal::Types::Model do
+describe CloudPDF::Internal::Types::Model do
   module StringInteger
-    extend Cloudpdf::Internal::Types::Union
+    extend CloudPDF::Internal::Types::Union
 
     member String
     member Integer
   end
 
-  class ExampleModel < Cloudpdf::Internal::Types::Model
+  class ExampleModel < CloudPDF::Internal::Types::Model
     field :name, String
     field :rating, StringInteger, optional: true
     field :year, Integer, optional: true, nullable: true, api_name: "yearOfRelease"
@@ -24,11 +24,11 @@ describe Cloudpdf::Internal::Types::Model do
     field :type, String, default: "example"
   end
 
-  class ExampleChild < Cloudpdf::Internal::Types::Model
+  class ExampleChild < CloudPDF::Internal::Types::Model
     field :value, String
   end
 
-  class ExampleParent < Cloudpdf::Internal::Types::Model
+  class ExampleParent < CloudPDF::Internal::Types::Model
     field :child, ExampleChild
   end
 
@@ -113,7 +113,7 @@ describe Cloudpdf::Internal::Types::Model do
   end
 
   describe "#inspect" do
-    class SensitiveModel < Cloudpdf::Internal::Types::Model
+    class SensitiveModel < CloudPDF::Internal::Types::Model
       field :username, String
       field :password, String
       field :client_secret, String

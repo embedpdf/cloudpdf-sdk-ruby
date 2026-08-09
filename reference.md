@@ -1,6 +1,6 @@
 # Reference
 ## Deployment
-<details><summary><code>client.deployment.<a href="/lib/cloudpdf/deployment/client.rb">license_status</a>() -> Cloudpdf::Types::DeploymentLicenseStatusResponse</code></summary>
+<details><summary><code>client.deployment.<a href="/lib/CloudPDF/deployment/client.rb">license_status</a>() -> CloudPDF::Types::DeploymentLicenseStatusResponse</code></summary>
 <dl>
 <dd>
 
@@ -28,7 +28,7 @@ client.deployment.license_status
 <dl>
 <dd>
 
-**request_options:** `Cloudpdf::Deployment::RequestOptions` 
+**request_options:** `CloudPDF::Deployment::RequestOptions` 
     
 </dd>
 </dl>
@@ -41,7 +41,7 @@ client.deployment.license_status
 </details>
 
 ## Doc
-<details><summary><code>client.doc.<a href="/lib/cloudpdf/doc/client.rb">head</a>(doc_id:) -> Cloudpdf::Types::DocHead200Response</code></summary>
+<details><summary><code>client.doc.<a href="/lib/CloudPDF/doc/client.rb">head</a>(doc_id:) -> CloudPDF::Types::DocHead200Response</code></summary>
 <dl>
 <dd>
 
@@ -85,7 +85,7 @@ client.doc.head(doc_id: "docId")
 <dl>
 <dd>
 
-**request_options:** `Cloudpdf::Doc::RequestOptions` 
+**request_options:** `CloudPDF::Doc::RequestOptions` 
     
 </dd>
 </dl>
@@ -97,7 +97,7 @@ client.doc.head(doc_id: "docId")
 </dl>
 </details>
 
-<details><summary><code>client.doc.<a href="/lib/cloudpdf/doc/client.rb">download</a>(doc_id:, layer_name:) -> String</code></summary>
+<details><summary><code>client.doc.<a href="/lib/CloudPDF/doc/client.rb">download</a>(doc_id:, layer_name:) -> String</code></summary>
 <dl>
 <dd>
 
@@ -152,7 +152,7 @@ client.doc.download(
 <dl>
 <dd>
 
-**request_options:** `Cloudpdf::Doc::RequestOptions` 
+**request_options:** `CloudPDF::Doc::RequestOptions` 
     
 </dd>
 </dl>
@@ -164,7 +164,7 @@ client.doc.download(
 </dl>
 </details>
 
-<details><summary><code>client.doc.<a href="/lib/cloudpdf/doc/client.rb">manifest</a>(doc_id:, layer_name:) -> Cloudpdf::Types::DocManifest200Response</code></summary>
+<details><summary><code>client.doc.<a href="/lib/CloudPDF/doc/client.rb">manifest</a>(doc_id:, layer_name:) -> CloudPDF::Types::DocManifest200Response</code></summary>
 <dl>
 <dd>
 
@@ -219,7 +219,7 @@ client.doc.manifest(
 <dl>
 <dd>
 
-**request_options:** `Cloudpdf::Doc::RequestOptions` 
+**request_options:** `CloudPDF::Doc::RequestOptions` 
     
 </dd>
 </dl>
@@ -231,7 +231,7 @@ client.doc.manifest(
 </dl>
 </details>
 
-<details><summary><code>client.doc.<a href="/lib/cloudpdf/doc/client.rb">render</a>(doc_id:, layer_name:, pon:) -> String</code></summary>
+<details><summary><code>client.doc.<a href="/lib/CloudPDF/doc/client.rb">render</a>(doc_id:, layer_name:, pon:) -> String</code></summary>
 <dl>
 <dd>
 
@@ -309,7 +309,7 @@ client.doc.render(
 <dl>
 <dd>
 
-**request_options:** `Cloudpdf::Doc::RequestOptions` 
+**request_options:** `CloudPDF::Doc::RequestOptions` 
     
 </dd>
 </dl>
@@ -321,7 +321,7 @@ client.doc.render(
 </dl>
 </details>
 
-<details><summary><code>client.doc.<a href="/lib/cloudpdf/doc/client.rb">text</a>(doc_id:, layer_name:, pon:) -> Cloudpdf::Types::DocText200Response</code></summary>
+<details><summary><code>client.doc.<a href="/lib/CloudPDF/doc/client.rb">text</a>(doc_id:, layer_name:, pon:) -> CloudPDF::Types::DocText200Response</code></summary>
 <dl>
 <dd>
 
@@ -385,7 +385,7 @@ client.doc.text(
 <dl>
 <dd>
 
-**request_options:** `Cloudpdf::Doc::RequestOptions` 
+**request_options:** `CloudPDF::Doc::RequestOptions` 
     
 </dd>
 </dl>
@@ -398,7 +398,7 @@ client.doc.text(
 </details>
 
 ## Tenants
-<details><summary><code>client.tenants.<a href="/lib/cloudpdf/tenants/client.rb">list</a>() -> Cloudpdf::Types::TenantsList200Response</code></summary>
+<details><summary><code>client.tenants.<a href="/lib/CloudPDF/tenants/client.rb">list</a>() -> CloudPDF::Types::TenantsList200Response</code></summary>
 <dl>
 <dd>
 
@@ -442,7 +442,7 @@ client.tenants.list
 <dl>
 <dd>
 
-**request_options:** `Cloudpdf::Tenants::RequestOptions` 
+**request_options:** `CloudPDF::Tenants::RequestOptions` 
     
 </dd>
 </dl>
@@ -454,7 +454,7 @@ client.tenants.list
 </dl>
 </details>
 
-<details><summary><code>client.tenants.<a href="/lib/cloudpdf/tenants/client.rb">create</a>(request) -> Cloudpdf::Types::TenantsCreate200Response</code></summary>
+<details><summary><code>client.tenants.<a href="/lib/CloudPDF/tenants/client.rb">create</a>(request) -> CloudPDF::Types::TenantsCreate200Response</code></summary>
 <dl>
 <dd>
 
@@ -498,7 +498,7 @@ client.tenants.create(id: "id")
 <dl>
 <dd>
 
-**request_options:** `Cloudpdf::Tenants::RequestOptions` 
+**request_options:** `CloudPDF::Tenants::RequestOptions` 
     
 </dd>
 </dl>
@@ -510,7 +510,7 @@ client.tenants.create(id: "id")
 </dl>
 </details>
 
-<details><summary><code>client.tenants.<a href="/lib/cloudpdf/tenants/client.rb">get</a>(tenant_id:) -> Cloudpdf::Types::TenantsGet200Response</code></summary>
+<details><summary><code>client.tenants.<a href="/lib/CloudPDF/tenants/client.rb">get</a>(tenant_id:) -> CloudPDF::Types::TenantsGet200Response</code></summary>
 <dl>
 <dd>
 
@@ -546,7 +546,7 @@ client.tenants.get(tenant_id: "tenantId")
 <dl>
 <dd>
 
-**request_options:** `Cloudpdf::Tenants::RequestOptions` 
+**request_options:** `CloudPDF::Tenants::RequestOptions` 
     
 </dd>
 </dl>
@@ -558,7 +558,7 @@ client.tenants.get(tenant_id: "tenantId")
 </dl>
 </details>
 
-<details><summary><code>client.tenants.<a href="/lib/cloudpdf/tenants/client.rb">delete</a>(tenant_id:) -> </code></summary>
+<details><summary><code>client.tenants.<a href="/lib/CloudPDF/tenants/client.rb">delete</a>(tenant_id:) -> </code></summary>
 <dl>
 <dd>
 
@@ -608,7 +608,7 @@ client.tenants.delete(tenant_id: "tenantId")
 <dl>
 <dd>
 
-**request_options:** `Cloudpdf::Tenants::RequestOptions` 
+**request_options:** `CloudPDF::Tenants::RequestOptions` 
     
 </dd>
 </dl>
@@ -621,7 +621,7 @@ client.tenants.delete(tenant_id: "tenantId")
 </details>
 
 ## Documents
-<details><summary><code>client.documents.<a href="/lib/cloudpdf/documents/client.rb">list</a>(tenant_id:) -> Cloudpdf::Types::DocumentsList200Response</code></summary>
+<details><summary><code>client.documents.<a href="/lib/CloudPDF/documents/client.rb">list</a>(tenant_id:) -> CloudPDF::Types::DocumentsList200Response</code></summary>
 <dl>
 <dd>
 
@@ -673,7 +673,7 @@ client.documents.list(tenant_id: "tenantId")
 <dl>
 <dd>
 
-**state:** `Cloudpdf::Documents::Types::ListDocumentsRequestState` 
+**state:** `CloudPDF::Documents::Types::ListDocumentsRequestState` 
     
 </dd>
 </dl>
@@ -681,7 +681,7 @@ client.documents.list(tenant_id: "tenantId")
 <dl>
 <dd>
 
-**request_options:** `Cloudpdf::Documents::RequestOptions` 
+**request_options:** `CloudPDF::Documents::RequestOptions` 
     
 </dd>
 </dl>
@@ -693,7 +693,7 @@ client.documents.list(tenant_id: "tenantId")
 </dl>
 </details>
 
-<details><summary><code>client.documents.<a href="/lib/cloudpdf/documents/client.rb">get</a>(tenant_id:, id:) -> Cloudpdf::Types::DocumentsGet200Response</code></summary>
+<details><summary><code>client.documents.<a href="/lib/CloudPDF/documents/client.rb">get</a>(tenant_id:, id:) -> CloudPDF::Types::DocumentsGet200Response</code></summary>
 <dl>
 <dd>
 
@@ -740,7 +740,7 @@ client.documents.get(
 <dl>
 <dd>
 
-**request_options:** `Cloudpdf::Documents::RequestOptions` 
+**request_options:** `CloudPDF::Documents::RequestOptions` 
     
 </dd>
 </dl>
@@ -752,7 +752,7 @@ client.documents.get(
 </dl>
 </details>
 
-<details><summary><code>client.documents.<a href="/lib/cloudpdf/documents/client.rb">delete</a>(tenant_id:, id:) -> </code></summary>
+<details><summary><code>client.documents.<a href="/lib/CloudPDF/documents/client.rb">delete</a>(tenant_id:, id:) -> </code></summary>
 <dl>
 <dd>
 
@@ -799,7 +799,7 @@ client.documents.delete(
 <dl>
 <dd>
 
-**request_options:** `Cloudpdf::Documents::RequestOptions` 
+**request_options:** `CloudPDF::Documents::RequestOptions` 
     
 </dd>
 </dl>
@@ -811,7 +811,7 @@ client.documents.delete(
 </dl>
 </details>
 
-<details><summary><code>client.documents.<a href="/lib/cloudpdf/documents/client.rb">commit</a>(tenant_id:, id:, request) -> Cloudpdf::Types::DocumentsCommit200Response</code></summary>
+<details><summary><code>client.documents.<a href="/lib/CloudPDF/documents/client.rb">commit</a>(tenant_id:, id:, request) -> CloudPDF::Types::DocumentsCommit200Response</code></summary>
 <dl>
 <dd>
 
@@ -867,7 +867,7 @@ client.documents.commit(
 <dl>
 <dd>
 
-**request_options:** `Cloudpdf::Documents::RequestOptions` 
+**request_options:** `CloudPDF::Documents::RequestOptions` 
     
 </dd>
 </dl>
@@ -879,7 +879,7 @@ client.documents.commit(
 </dl>
 </details>
 
-<details><summary><code>client.documents.<a href="/lib/cloudpdf/documents/client.rb">download</a>(tenant_id:, id:) -> String</code></summary>
+<details><summary><code>client.documents.<a href="/lib/CloudPDF/documents/client.rb">download</a>(tenant_id:, id:) -> String</code></summary>
 <dl>
 <dd>
 
@@ -926,7 +926,7 @@ client.documents.download(
 <dl>
 <dd>
 
-**request_options:** `Cloudpdf::Documents::RequestOptions` 
+**request_options:** `CloudPDF::Documents::RequestOptions` 
     
 </dd>
 </dl>
@@ -938,7 +938,7 @@ client.documents.download(
 </dl>
 </details>
 
-<details><summary><code>client.documents.<a href="/lib/cloudpdf/documents/client.rb">thumbnail</a>(tenant_id:, id:) -> String</code></summary>
+<details><summary><code>client.documents.<a href="/lib/CloudPDF/documents/client.rb">thumbnail</a>(tenant_id:, id:) -> String</code></summary>
 <dl>
 <dd>
 
@@ -985,7 +985,7 @@ client.documents.thumbnail(
 <dl>
 <dd>
 
-**request_options:** `Cloudpdf::Documents::RequestOptions` 
+**request_options:** `CloudPDF::Documents::RequestOptions` 
     
 </dd>
 </dl>
@@ -997,7 +997,7 @@ client.documents.thumbnail(
 </dl>
 </details>
 
-<details><summary><code>client.documents.<a href="/lib/cloudpdf/documents/client.rb">init</a>(tenant_id:, request) -> Cloudpdf::Types::DocumentsInit200Response</code></summary>
+<details><summary><code>client.documents.<a href="/lib/CloudPDF/documents/client.rb">init</a>(tenant_id:, request) -> CloudPDF::Types::DocumentsInit200Response</code></summary>
 <dl>
 <dd>
 
@@ -1069,7 +1069,7 @@ client.documents.init(
 <dl>
 <dd>
 
-**dedup_mode:** `Cloudpdf::Documents::Types::DocumentsInitRequestDedupMode` 
+**dedup_mode:** `CloudPDF::Documents::Types::DocumentsInitRequestDedupMode` 
     
 </dd>
 </dl>
@@ -1093,7 +1093,7 @@ client.documents.init(
 <dl>
 <dd>
 
-**request_options:** `Cloudpdf::Documents::RequestOptions` 
+**request_options:** `CloudPDF::Documents::RequestOptions` 
     
 </dd>
 </dl>
@@ -1106,7 +1106,7 @@ client.documents.init(
 </details>
 
 ## Tokens
-<details><summary><code>client.tokens.<a href="/lib/cloudpdf/tokens/client.rb">issue</a>(tenant_id:, request) -> Cloudpdf::Types::TokensIssue200Response</code></summary>
+<details><summary><code>client.tokens.<a href="/lib/CloudPDF/tokens/client.rb">issue</a>(tenant_id:, request) -> CloudPDF::Types::TokensIssue200Response</code></summary>
 <dl>
 <dd>
 
@@ -1156,7 +1156,7 @@ client.tokens.issue(tenant_id: "tenantId")
 <dl>
 <dd>
 
-**request:** `Cloudpdf::Types::TokensIssueRequest` 
+**request:** `CloudPDF::Types::TokensIssueRequest` 
     
 </dd>
 </dl>
@@ -1164,7 +1164,7 @@ client.tokens.issue(tenant_id: "tenantId")
 <dl>
 <dd>
 
-**request_options:** `Cloudpdf::Tokens::RequestOptions` 
+**request_options:** `CloudPDF::Tokens::RequestOptions` 
     
 </dd>
 </dl>
@@ -1176,7 +1176,7 @@ client.tokens.issue(tenant_id: "tenantId")
 </dl>
 </details>
 
-<details><summary><code>client.tokens.<a href="/lib/cloudpdf/tokens/client.rb">revoke</a>(tenant_id:, jti:, request) -> </code></summary>
+<details><summary><code>client.tokens.<a href="/lib/CloudPDF/tokens/client.rb">revoke</a>(tenant_id:, jti:, request) -> </code></summary>
 <dl>
 <dd>
 
@@ -1253,7 +1253,7 @@ client.tokens.revoke(
 <dl>
 <dd>
 
-**request_options:** `Cloudpdf::Tokens::RequestOptions` 
+**request_options:** `CloudPDF::Tokens::RequestOptions` 
     
 </dd>
 </dl>
@@ -1266,7 +1266,7 @@ client.tokens.revoke(
 </details>
 
 ## Doc Annotations
-<details><summary><code>client.doc.annotations.<a href="/lib/cloudpdf/doc/annotations/client.rb">list</a>(doc_id:, layer_name:, pon:) -> Cloudpdf::Types::DocAnnotationsList200Response</code></summary>
+<details><summary><code>client.doc.annotations.<a href="/lib/CloudPDF/doc/annotations/client.rb">list</a>(doc_id:, layer_name:, pon:) -> CloudPDF::Types::DocAnnotationsList200Response</code></summary>
 <dl>
 <dd>
 
@@ -1330,7 +1330,7 @@ client.doc.annotations.list(
 <dl>
 <dd>
 
-**request_options:** `Cloudpdf::Doc::Annotations::RequestOptions` 
+**request_options:** `CloudPDF::Doc::Annotations::RequestOptions` 
     
 </dd>
 </dl>
@@ -1342,7 +1342,7 @@ client.doc.annotations.list(
 </dl>
 </details>
 
-<details><summary><code>client.doc.annotations.<a href="/lib/cloudpdf/doc/annotations/client.rb">create</a>(doc_id:, layer_name:, pon:, request) -> Cloudpdf::Types::DocAnnotationsCreate200Response</code></summary>
+<details><summary><code>client.doc.annotations.<a href="/lib/CloudPDF/doc/annotations/client.rb">create</a>(doc_id:, layer_name:, pon:, request) -> CloudPDF::Types::DocAnnotationsCreate200Response</code></summary>
 <dl>
 <dd>
 
@@ -1431,7 +1431,7 @@ client.doc.annotations.create(
 <dl>
 <dd>
 
-**request_options:** `Cloudpdf::Doc::Annotations::RequestOptions` 
+**request_options:** `CloudPDF::Doc::Annotations::RequestOptions` 
     
 </dd>
 </dl>
@@ -1443,7 +1443,7 @@ client.doc.annotations.create(
 </dl>
 </details>
 
-<details><summary><code>client.doc.annotations.<a href="/lib/cloudpdf/doc/annotations/client.rb">delete</a>(doc_id:, layer_name:, pon:, annot_key:) -> Cloudpdf::Types::DocAnnotationsDelete200Response</code></summary>
+<details><summary><code>client.doc.annotations.<a href="/lib/CloudPDF/doc/annotations/client.rb">delete</a>(doc_id:, layer_name:, pon:, annot_key:) -> CloudPDF::Types::DocAnnotationsDelete200Response</code></summary>
 <dl>
 <dd>
 
@@ -1516,7 +1516,7 @@ client.doc.annotations.delete(
 <dl>
 <dd>
 
-**request_options:** `Cloudpdf::Doc::Annotations::RequestOptions` 
+**request_options:** `CloudPDF::Doc::Annotations::RequestOptions` 
     
 </dd>
 </dl>
@@ -1528,7 +1528,7 @@ client.doc.annotations.delete(
 </dl>
 </details>
 
-<details><summary><code>client.doc.annotations.<a href="/lib/cloudpdf/doc/annotations/client.rb">update</a>(doc_id:, layer_name:, pon:, annot_key:, request) -> Cloudpdf::Types::DocAnnotationsUpdate200Response</code></summary>
+<details><summary><code>client.doc.annotations.<a href="/lib/CloudPDF/doc/annotations/client.rb">update</a>(doc_id:, layer_name:, pon:, annot_key:, request) -> CloudPDF::Types::DocAnnotationsUpdate200Response</code></summary>
 <dl>
 <dd>
 
@@ -1612,7 +1612,7 @@ client.doc.annotations.update(
 <dl>
 <dd>
 
-**request_options:** `Cloudpdf::Doc::Annotations::RequestOptions` 
+**request_options:** `CloudPDF::Doc::Annotations::RequestOptions` 
     
 </dd>
 </dl>
@@ -1625,7 +1625,7 @@ client.doc.annotations.update(
 </details>
 
 ## Doc Forms
-<details><summary><code>client.doc.forms.<a href="/lib/cloudpdf/doc/forms/client.rb">get</a>(doc_id:, layer_name:) -> Cloudpdf::Types::DocFormsGet200Response</code></summary>
+<details><summary><code>client.doc.forms.<a href="/lib/CloudPDF/doc/forms/client.rb">get</a>(doc_id:, layer_name:) -> CloudPDF::Types::DocFormsGet200Response</code></summary>
 <dl>
 <dd>
 
@@ -1680,7 +1680,7 @@ client.doc.forms.get(
 <dl>
 <dd>
 
-**request_options:** `Cloudpdf::Doc::Forms::RequestOptions` 
+**request_options:** `CloudPDF::Doc::Forms::RequestOptions` 
     
 </dd>
 </dl>
@@ -1692,7 +1692,7 @@ client.doc.forms.get(
 </dl>
 </details>
 
-<details><summary><code>client.doc.forms.<a href="/lib/cloudpdf/doc/forms/client.rb">export_data</a>(doc_id:, layer_name:) -> String</code></summary>
+<details><summary><code>client.doc.forms.<a href="/lib/CloudPDF/doc/forms/client.rb">export_data</a>(doc_id:, layer_name:) -> String</code></summary>
 <dl>
 <dd>
 
@@ -1739,7 +1739,7 @@ client.doc.forms.export_data(
 <dl>
 <dd>
 
-**format:** `Cloudpdf::Doc::Forms::Types::ExportDataFormsRequestFormat` 
+**format:** `CloudPDF::Doc::Forms::Types::ExportDataFormsRequestFormat` 
     
 </dd>
 </dl>
@@ -1755,7 +1755,7 @@ client.doc.forms.export_data(
 <dl>
 <dd>
 
-**request_options:** `Cloudpdf::Doc::Forms::RequestOptions` 
+**request_options:** `CloudPDF::Doc::Forms::RequestOptions` 
     
 </dd>
 </dl>
@@ -1767,7 +1767,7 @@ client.doc.forms.export_data(
 </dl>
 </details>
 
-<details><summary><code>client.doc.forms.<a href="/lib/cloudpdf/doc/forms/client.rb">import_data</a>(doc_id:, layer_name:, request) -> Cloudpdf::Types::DocFormsImportData200Response</code></summary>
+<details><summary><code>client.doc.forms.<a href="/lib/CloudPDF/doc/forms/client.rb">import_data</a>(doc_id:, layer_name:, request) -> CloudPDF::Types::DocFormsImportData200Response</code></summary>
 <dl>
 <dd>
 
@@ -1833,7 +1833,7 @@ client.doc.forms.import_data(
 <dl>
 <dd>
 
-**request_options:** `Cloudpdf::Doc::Forms::RequestOptions` 
+**request_options:** `CloudPDF::Doc::Forms::RequestOptions` 
     
 </dd>
 </dl>
@@ -1845,7 +1845,7 @@ client.doc.forms.import_data(
 </dl>
 </details>
 
-<details><summary><code>client.doc.forms.<a href="/lib/cloudpdf/doc/forms/client.rb">reset</a>(doc_id:, layer_name:, field_key:) -> Cloudpdf::Types::DocFormsReset200Response</code></summary>
+<details><summary><code>client.doc.forms.<a href="/lib/CloudPDF/doc/forms/client.rb">reset</a>(doc_id:, layer_name:, field_key:) -> CloudPDF::Types::DocFormsReset200Response</code></summary>
 <dl>
 <dd>
 
@@ -1909,7 +1909,7 @@ client.doc.forms.reset(
 <dl>
 <dd>
 
-**request_options:** `Cloudpdf::Doc::Forms::RequestOptions` 
+**request_options:** `CloudPDF::Doc::Forms::RequestOptions` 
     
 </dd>
 </dl>
@@ -1921,7 +1921,7 @@ client.doc.forms.reset(
 </dl>
 </details>
 
-<details><summary><code>client.doc.forms.<a href="/lib/cloudpdf/doc/forms/client.rb">set_value</a>(doc_id:, layer_name:, field_key:, request) -> Cloudpdf::Types::DocFormsSetValue200Response</code></summary>
+<details><summary><code>client.doc.forms.<a href="/lib/CloudPDF/doc/forms/client.rb">set_value</a>(doc_id:, layer_name:, field_key:, request) -> CloudPDF::Types::DocFormsSetValue200Response</code></summary>
 <dl>
 <dd>
 
@@ -1996,7 +1996,7 @@ client.doc.forms.set_value(
 <dl>
 <dd>
 
-**request_options:** `Cloudpdf::Doc::Forms::RequestOptions` 
+**request_options:** `CloudPDF::Doc::Forms::RequestOptions` 
     
 </dd>
 </dl>
@@ -2009,7 +2009,7 @@ client.doc.forms.set_value(
 </details>
 
 ## Doc Metadata
-<details><summary><code>client.doc.metadata.<a href="/lib/cloudpdf/doc/metadata/client.rb">get</a>(doc_id:, layer_name:) -> Cloudpdf::Types::DocMetadataGet200Response</code></summary>
+<details><summary><code>client.doc.metadata.<a href="/lib/CloudPDF/doc/metadata/client.rb">get</a>(doc_id:, layer_name:) -> CloudPDF::Types::DocMetadataGet200Response</code></summary>
 <dl>
 <dd>
 
@@ -2064,7 +2064,7 @@ client.doc.metadata.get(
 <dl>
 <dd>
 
-**request_options:** `Cloudpdf::Doc::Metadata::RequestOptions` 
+**request_options:** `CloudPDF::Doc::Metadata::RequestOptions` 
     
 </dd>
 </dl>
@@ -2077,7 +2077,7 @@ client.doc.metadata.get(
 </details>
 
 ## Doc Pages
-<details><summary><code>client.doc.pages.<a href="/lib/cloudpdf/doc/pages/client.rb">delete</a>(doc_id:, layer_name:, request) -> Cloudpdf::Types::DocPagesDelete200Response</code></summary>
+<details><summary><code>client.doc.pages.<a href="/lib/CloudPDF/doc/pages/client.rb">delete</a>(doc_id:, layer_name:, request) -> CloudPDF::Types::DocPagesDelete200Response</code></summary>
 <dl>
 <dd>
 
@@ -2143,7 +2143,7 @@ client.doc.pages.delete(
 <dl>
 <dd>
 
-**request_options:** `Cloudpdf::Doc::Pages::RequestOptions` 
+**request_options:** `CloudPDF::Doc::Pages::RequestOptions` 
     
 </dd>
 </dl>
@@ -2155,7 +2155,7 @@ client.doc.pages.delete(
 </dl>
 </details>
 
-<details><summary><code>client.doc.pages.<a href="/lib/cloudpdf/doc/pages/client.rb">flatten</a>(doc_id:, layer_name:, request) -> Cloudpdf::Types::DocPagesFlatten200Response</code></summary>
+<details><summary><code>client.doc.pages.<a href="/lib/CloudPDF/doc/pages/client.rb">flatten</a>(doc_id:, layer_name:, request) -> CloudPDF::Types::DocPagesFlatten200Response</code></summary>
 <dl>
 <dd>
 
@@ -2221,7 +2221,7 @@ client.doc.pages.flatten(
 <dl>
 <dd>
 
-**request_options:** `Cloudpdf::Doc::Pages::RequestOptions` 
+**request_options:** `CloudPDF::Doc::Pages::RequestOptions` 
     
 </dd>
 </dl>
@@ -2233,7 +2233,7 @@ client.doc.pages.flatten(
 </dl>
 </details>
 
-<details><summary><code>client.doc.pages.<a href="/lib/cloudpdf/doc/pages/client.rb">move</a>(doc_id:, layer_name:, request) -> Cloudpdf::Types::DocPagesMove200Response</code></summary>
+<details><summary><code>client.doc.pages.<a href="/lib/CloudPDF/doc/pages/client.rb">move</a>(doc_id:, layer_name:, request) -> CloudPDF::Types::DocPagesMove200Response</code></summary>
 <dl>
 <dd>
 
@@ -2299,7 +2299,7 @@ client.doc.pages.move(
 <dl>
 <dd>
 
-**request_options:** `Cloudpdf::Doc::Pages::RequestOptions` 
+**request_options:** `CloudPDF::Doc::Pages::RequestOptions` 
     
 </dd>
 </dl>
@@ -2311,7 +2311,7 @@ client.doc.pages.move(
 </dl>
 </details>
 
-<details><summary><code>client.doc.pages.<a href="/lib/cloudpdf/doc/pages/client.rb">rotate</a>(doc_id:, layer_name:, request) -> Cloudpdf::Types::DocPagesRotate200Response</code></summary>
+<details><summary><code>client.doc.pages.<a href="/lib/CloudPDF/doc/pages/client.rb">rotate</a>(doc_id:, layer_name:, request) -> CloudPDF::Types::DocPagesRotate200Response</code></summary>
 <dl>
 <dd>
 
@@ -2377,7 +2377,7 @@ client.doc.pages.rotate(
 <dl>
 <dd>
 
-**request_options:** `Cloudpdf::Doc::Pages::RequestOptions` 
+**request_options:** `CloudPDF::Doc::Pages::RequestOptions` 
     
 </dd>
 </dl>
@@ -2390,7 +2390,7 @@ client.doc.pages.rotate(
 </details>
 
 ## Doc Redactions
-<details><summary><code>client.doc.redactions.<a href="/lib/cloudpdf/doc/redactions/client.rb">apply</a>(doc_id:, layer_name:, request) -> Cloudpdf::Types::DocRedactionsApply200Response</code></summary>
+<details><summary><code>client.doc.redactions.<a href="/lib/CloudPDF/doc/redactions/client.rb">apply</a>(doc_id:, layer_name:, request) -> CloudPDF::Types::DocRedactionsApply200Response</code></summary>
 <dl>
 <dd>
 
@@ -2456,7 +2456,7 @@ client.doc.redactions.apply(
 <dl>
 <dd>
 
-**request_options:** `Cloudpdf::Doc::Redactions::RequestOptions` 
+**request_options:** `CloudPDF::Doc::Redactions::RequestOptions` 
     
 </dd>
 </dl>
