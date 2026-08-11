@@ -5,9 +5,9 @@
   "generatorConfig": {
     "moduleName": "CloudPDF"
   },
-  "originGitCommit": "a0adb9e77ef16feaef2358d71b247b4f5a98fd23",
+  "originGitCommit": "627dce09ca948cde662d6e23a3dc1a049b6440d7",
   "originGitCommitIsDirty": false,
   "invokedBy": "ci",
-  "requestedVersion": "3.0.0.alpha.1",
+  "requestedVersion": "3.0.0.alpha.2",
   "ciProvider": "github"
 }
