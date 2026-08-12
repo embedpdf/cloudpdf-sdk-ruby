@@ -156,6 +156,123 @@ module CloudPDF
         error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
         raise error_class.new(response.body, code: code)
       end
+
+      # @param request_options [Hash]
+      # @param params [Hash]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String] :tenant_id
+      #
+      # @example
+      #   client.tenants.resume(tenant_id: "tenantId")
+      #
+      # @return [untyped]
+      def resume(request_options: {}, **params)
+        params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
+        request = CloudPDF::Internal::JSON::Request.new(
+          base_url: request_options[:base_url],
+          method: "POST",
+          path: "v1/tenants/#{URI.encode_uri_component(params[:tenant_id].to_s)}/resume",
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise CloudPDF::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        return if code.between?(200, 299)
+
+        error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
+        raise error_class.new(response.body, code: code)
+      end
+
+      # Instantly reversible with resume. The API token is exempt, so a suspended tenant can still be inspected,
+      # exported, resumed, or deleted.
+      #
+      # @param request_options [Hash]
+      # @param params [CloudPDF::Tenants::Types::TenantsSuspendRequest]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String] :tenant_id
+      #
+      # @example
+      #   client.tenants.suspend(tenant_id: "tenantId")
+      #
+      # @return [untyped]
+      def suspend(request_options: {}, **params)
+        params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
+        request_data = CloudPDF::Tenants::Types::TenantsSuspendRequest.new(params).to_h
+        non_body_param_names = %w[tenantId]
+        body = request_data.except(*non_body_param_names)
+
+        request = CloudPDF::Internal::JSON::Request.new(
+          base_url: request_options[:base_url],
+          method: "POST",
+          path: "v1/tenants/#{URI.encode_uri_component(params[:tenant_id].to_s)}/suspend",
+          body: body,
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise CloudPDF::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        return if code.between?(200, 299)
+
+        error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
+        raise error_class.new(response.body, code: code)
+      end
+
+      # Facts only — no limits or billing state. Views count share exchanges plus authorized /v1/access grants,
+      # deduplicated across the two.
+      #
+      # @param request_options [Hash]
+      # @param params [Hash]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String] :tenant_id
+      # @option params [String, nil] :period
+      #
+      # @example
+      #   client.tenants.usage(tenant_id: "tenantId")
+      #
+      # @return [CloudPDF::Types::TenantsUsage200Response]
+      def usage(request_options: {}, **params)
+        params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
+        query_params = {}
+        query_params["period"] = params[:period] if params.key?(:period)
+
+        request = CloudPDF::Internal::JSON::Request.new(
+          base_url: request_options[:base_url],
+          method: "GET",
+          path: "v1/tenants/#{URI.encode_uri_component(params[:tenant_id].to_s)}/usage",
+          query: query_params,
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise CloudPDF::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          CloudPDF::Types::TenantsUsage200Response.load(response.body)
+        else
+          error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+      end
     end
   end
 end

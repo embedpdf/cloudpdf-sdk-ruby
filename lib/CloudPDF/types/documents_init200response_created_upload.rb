@@ -9,7 +9,7 @@ module CloudPDF
 
       member -> { CloudPDF::Types::DocumentsInit200ResponseCreatedUploadPresigned }, key: "PRESIGNED"
 
-      member -> { CloudPDF::Types::DocumentsInit200ResponseCreatedUploadDirect }, key: "DIRECT"
+      member -> { CloudPDF::Types::DocumentsInit200ResponseCreatedUploadProxy }, key: "PROXY"
     end
   end
 end
