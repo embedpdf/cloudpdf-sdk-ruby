@@ -19,6 +19,8 @@ module CloudPDF
         field :doc_id, -> { String }, optional: true, nullable: false, api_name: "docId"
 
         field :upload_ttl_sec, -> { Integer }, optional: true, nullable: false, api_name: "uploadTtlSec"
+
+        field :upload_preference, -> { CloudPDF::Documents::Types::DocumentsInitRequestUploadPreference }, optional: true, nullable: false, api_name: "uploadPreference"
       end
     end
   end

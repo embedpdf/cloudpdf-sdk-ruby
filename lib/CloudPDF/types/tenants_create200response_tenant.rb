@@ -9,6 +9,8 @@ module CloudPDF
 
       field :auto_provisioned, -> { Internal::Types::Boolean }, optional: false, nullable: false, api_name: "autoProvisioned"
 
+      field :status, -> { CloudPDF::Types::TenantsCreate200ResponseTenantStatus }, optional: true, nullable: false
+
       field :created_at, -> { Integer }, optional: false, nullable: false, api_name: "createdAt"
     end
   end

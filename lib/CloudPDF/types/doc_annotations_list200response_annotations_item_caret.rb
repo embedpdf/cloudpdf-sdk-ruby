@@ -48,6 +48,10 @@ module CloudPDF
       field :intent, -> { CloudPDF::Types::DocAnnotationsList200ResponseAnnotationsItemCaretIntent }, optional: false, nullable: true
 
       field :rect_differences, -> { CloudPDF::Types::DocAnnotationsList200ResponseAnnotationsItemCaretRectDifferences }, optional: false, nullable: true, api_name: "rectDifferences"
+
+      field :rotation, -> { Integer }, optional: true, nullable: false
+
+      field :unrotated_rect, -> { CloudPDF::Types::DocAnnotationsList200ResponseAnnotationsItemCaretUnrotatedRect }, optional: true, nullable: false, api_name: "unrotatedRect"
     end
   end
 end

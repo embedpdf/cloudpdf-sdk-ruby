@@ -10,6 +10,7 @@ module CloudPDF
       DOCS_DELETE = "docs.delete"
       TOKENS_ISSUE_DOC = "tokens.issue-doc"
       TOKENS_REVOKE = "tokens.revoke"
+      SHARES_MANAGE = "shares.manage"
     end
   end
 end
