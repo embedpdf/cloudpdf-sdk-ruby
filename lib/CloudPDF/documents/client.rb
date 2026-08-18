@@ -249,8 +249,11 @@ module CloudPDF
         raise error_class.new(response.body, code: code)
       end
 
+      # This bounded origin-mediated fallback must only be used after documents.init returns upload.kind=proxy. Auto
+      # mode prefers a presigned object-store PUT whenever available.
+      #
       # @param request_options [Hash]
-      # @param params [Hash]
+      # @param params [void]
       # @option request_options [String] :base_url
       # @option request_options [Hash{String => Object}] :additional_headers
       # @option request_options [Hash{String => Object}] :additional_query_parameters
@@ -258,14 +261,28 @@ module CloudPDF
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [String] :tenant_id
       # @option params [String] :id
+      # @option params [#read] :file
       #
-      # @return [CloudPDF::Types::DocumentsUploadDirect200Response]
-      def upload_direct(request_options: {}, **params)
+      # @example
+      #   client.documents.upload_proxy(
+      #     tenant_id: "tenantId",
+      #     id: "id",
+      #     file: File.open("document.pdf", "rb")
+      #   )
+      #
+      # @return [CloudPDF::Types::DocumentsUploadProxy200Response]
+      def upload_proxy(request_options: {}, **params)
         params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
-        request = CloudPDF::Internal::JSON::Request.new(
+        body = Internal::Multipart::FormData.new
+
+        raise ArgumentError, "file is required" unless params[:file]
+        body.add_file(name: "file", file: params[:file], content_type: "application/pdf")
+
+        request = CloudPDF::Internal::Multipart::Request.new(
           base_url: request_options[:base_url],
           method: "POST",
-          path: "v1/tenants/#{URI.encode_uri_component(params[:tenant_id].to_s)}/documents/#{URI.encode_uri_component(params[:id].to_s)}/upload-direct",
+          path: "v1/tenants/#{URI.encode_uri_component(params[:tenant_id].to_s)}/documents/#{URI.encode_uri_component(params[:id].to_s)}/upload-proxy",
+          body: body,
           request_options: request_options
         )
         begin
@@ -275,7 +292,7 @@ module CloudPDF
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          CloudPDF::Types::DocumentsUploadDirect200Response.load(response.body)
+          CloudPDF::Types::DocumentsUploadProxy200Response.load(response.body)
         else
           error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)

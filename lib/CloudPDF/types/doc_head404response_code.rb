@@ -11,6 +11,7 @@ module CloudPDF
       DOC_OPEN_FAILED = "DocOpenFailed"
       DOC_PASSWORD_REQUIRED = "DocPasswordRequired"
       DOC_PASSWORD_INCORRECT = "DocPasswordIncorrect"
+      SHARE_PASSWORD_REQUIRED = "SharePasswordRequired"
       ABORTED = "Aborted"
       NETWORK = "Network"
       UNAUTHENTICATED = "Unauthenticated"

@@ -2,7 +2,7 @@
 
 module CloudPDF
   module Types
-    class DocumentsInit200ResponseCreatedUploadDirect < Internal::Types::Model
+    class DocumentsInit200ResponseResumedUploadProxy < Internal::Types::Model
       field :url, -> { String }, optional: false, nullable: false
 
       field :key, -> { String }, optional: false, nullable: false

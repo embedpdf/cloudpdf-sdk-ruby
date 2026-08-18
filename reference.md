@@ -397,6 +397,496 @@ client.doc.text(
 </dl>
 </details>
 
+## Shares
+<details><summary><code>client.shares.<a href="/lib/CloudPDF/shares/client.rb">exchange</a>(request) -> CloudPDF::Types::SharesExchange200Response</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Unauthenticated, but requires a browser Origin header, checked against the grant allowlist. Unknown, revoked, and disabled tokens are indistinguishable (404). Passphrase-protected grants return 422 SharePasswordRequired until `password` is supplied. Mounted only when the deployment can sign (HS256 mode).
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.shares.exchange(share_token: "shareToken")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**share_token:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**password:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `CloudPDF::Shares::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shares.<a href="/lib/CloudPDF/shares/client.rb">list</a>(tenant_id:) -> CloudPDF::Types::SharesList200Response</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.shares.list(tenant_id: "tenantId")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**tenant_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**cursor:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**doc_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `CloudPDF::Shares::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shares.<a href="/lib/CloudPDF/shares/client.rb">create</a>(tenant_id:, request) -> CloudPDF::Types::SharesCreate200Response</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+The returned share id IS the public share token. Mounted only when the deployment can sign (HS256 mode) — exchange mints session JWTs, so grants exist only where minting does.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.shares.create(
+  tenant_id: "tenantId",
+  doc_id: "docId",
+  scope: ["scope"]
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**tenant_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**doc_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**layer_name:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**scope:** `Internal::Types::Array[String]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**origins:** `Internal::Types::Array[String]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**password:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**session_ttl_seconds:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**expires_at:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `CloudPDF::Shares::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shares.<a href="/lib/CloudPDF/shares/client.rb">get</a>(tenant_id:, share_id:) -> CloudPDF::Types::SharesGet200Response</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.shares.get(
+  tenant_id: "tenantId",
+  share_id: "shareId"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**tenant_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**share_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `CloudPDF::Shares::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shares.<a href="/lib/CloudPDF/shares/client.rb">delete</a>(tenant_id:, share_id:) -> </code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.shares.delete(
+  tenant_id: "tenantId",
+  share_id: "shareId"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**tenant_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**share_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `CloudPDF::Shares::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shares.<a href="/lib/CloudPDF/shares/client.rb">update</a>(tenant_id:, share_id:, request) -> CloudPDF::Types::SharesUpdate200Response</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.shares.update(
+  tenant_id: "tenantId",
+  share_id: "shareId"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**tenant_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**share_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**scope:** `Internal::Types::Array[String]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**origins:** `Internal::Types::Array[String]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**password:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**session_ttl_seconds:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**disabled:** `Internal::Types::Boolean` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**expires_at:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `CloudPDF::Shares::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Tenants
 <details><summary><code>client.tenants.<a href="/lib/CloudPDF/tenants/client.rb">list</a>() -> CloudPDF::Types::TenantsList200Response</code></summary>
 <dl>
@@ -601,6 +1091,194 @@ client.tenants.delete(tenant_id: "tenantId")
 <dd>
 
 **tenant_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `CloudPDF::Tenants::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tenants.<a href="/lib/CloudPDF/tenants/client.rb">resume</a>(tenant_id:) -> </code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.tenants.resume(tenant_id: "tenantId")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**tenant_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `CloudPDF::Tenants::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tenants.<a href="/lib/CloudPDF/tenants/client.rb">suspend</a>(tenant_id:, request) -> </code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Instantly reversible with resume. The API token is exempt, so a suspended tenant can still be inspected, exported, resumed, or deleted.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.tenants.suspend(tenant_id: "tenantId")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**tenant_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**reason:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `CloudPDF::Tenants::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tenants.<a href="/lib/CloudPDF/tenants/client.rb">usage</a>(tenant_id:) -> CloudPDF::Types::TenantsUsage200Response</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Facts only — no limits or billing state. Views count share exchanges plus authorized /v1/access grants, deduplicated across the two.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.tenants.usage(tenant_id: "tenantId")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**tenant_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**period:** `String` 
     
 </dd>
 </dl>
@@ -997,6 +1675,82 @@ client.documents.thumbnail(
 </dl>
 </details>
 
+<details><summary><code>client.documents.<a href="/lib/CloudPDF/documents/client.rb">upload_proxy</a>(tenant_id:, id:, request) -> CloudPDF::Types::DocumentsUploadProxy200Response</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+This bounded origin-mediated fallback must only be used after documents.init returns upload.kind=proxy. Auto mode prefers a presigned object-store PUT whenever available.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+File.open("document.pdf", "rb") do |file|
+  client.documents.upload_proxy(
+    tenant_id: "tenantId",
+    id: "id",
+    file: file
+  )
+end
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**tenant_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `CloudPDF::Documents::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.documents.<a href="/lib/CloudPDF/documents/client.rb">init</a>(tenant_id:, request) -> CloudPDF::Types::DocumentsInit200Response</code></summary>
 <dl>
 <dd>
@@ -1086,6 +1840,14 @@ client.documents.init(
 <dd>
 
 **upload_ttl_sec:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**upload_preference:** `CloudPDF::Documents::Types::DocumentsInitRequestUploadPreference` 
     
 </dd>
 </dl>
