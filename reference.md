@@ -1751,6 +1751,124 @@ end
 </dl>
 </details>
 
+<details><summary><code>client.documents.<a href="/lib/CloudPDF/documents/client.rb">import_from</a>(tenant_id:, request) -> CloudPDF::Types::DocumentsImportFrom200Response</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Default mode is synchronous and bounded: the response returns only after the transfer verified and committed (or failed). mode=async (connection sources only) answers 202 immediately and an in-process worker performs the transfer with leased, fenced retries; poll the document until ready/failed. The deployment import policy gates scheme, network range, and size; sources must declare a length. CloudPDF copies and owns the bytes — the source is never referenced in place. A 502 marks a retryable upstream failure: retry with the same idempotencyKey to resume the same document. URL sources are capabilities and never echoed back. Connection sources name operator-registered storage (bucket/prefix scope, allowed credential classes, and tenant bindings are deployment configuration); `revision` is provider-interpreted (S3 VersionId, GCS generation, Azure version id).
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.documents.import_from(tenant_id: "tenantId")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**tenant_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**source:** `CloudPDF::Documents::Types::DocumentsImportFromRequestSource` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**expected:** `CloudPDF::Documents::Types::DocumentsImportFromRequestExpected` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**metadata:** `Internal::Types::Hash[String, Object]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**idempotency_key:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**dedup_mode:** `CloudPDF::Documents::Types::DocumentsImportFromRequestDedupMode` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**doc_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**mode:** `CloudPDF::Documents::Types::DocumentsImportFromRequestMode` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `CloudPDF::Documents::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.documents.<a href="/lib/CloudPDF/documents/client.rb">init</a>(tenant_id:, request) -> CloudPDF::Types::DocumentsInit200Response</code></summary>
 <dl>
 <dd>
