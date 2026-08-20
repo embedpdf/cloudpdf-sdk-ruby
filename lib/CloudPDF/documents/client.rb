@@ -299,6 +299,55 @@ module CloudPDF
         end
       end
 
+      # Default mode is synchronous and bounded: the response returns only after the transfer verified and committed (or
+      # failed). mode=async (connection sources only) answers 202 immediately and an in-process worker performs the
+      # transfer with leased, fenced retries; poll the document until ready/failed. The deployment import policy gates
+      # scheme, network range, and size; sources must declare a length. CloudPDF copies and owns the bytes — the source
+      # is never referenced in place. A 502 marks a retryable upstream failure: retry with the same idempotencyKey to
+      # resume the same document. URL sources are capabilities and never echoed back. Connection sources name
+      # operator-registered storage (bucket/prefix scope, allowed credential classes, and tenant bindings are deployment
+      # configuration); `revision` is provider-interpreted (S3 VersionId, GCS generation, Azure version id).
+      #
+      # @param request_options [Hash]
+      # @param params [CloudPDF::Documents::Types::DocumentsImportFromRequest]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String] :tenant_id
+      #
+      # @example
+      #   client.documents.import_from(tenant_id: "tenantId")
+      #
+      # @return [CloudPDF::Types::DocumentsImportFrom200Response]
+      def import_from(request_options: {}, **params)
+        params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
+        request_data = CloudPDF::Documents::Types::DocumentsImportFromRequest.new(params).to_h
+        non_body_param_names = %w[tenantId]
+        body = request_data.except(*non_body_param_names)
+
+        request = CloudPDF::Internal::JSON::Request.new(
+          base_url: request_options[:base_url],
+          method: "POST",
+          path: "v1/tenants/#{URI.encode_uri_component(params[:tenant_id].to_s)}/documents/import",
+          body: body,
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise CloudPDF::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          CloudPDF::Types::DocumentsImportFrom200Response.load(response.body)
+        else
+          error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+      end
+
       # @param request_options [Hash]
       # @param params [CloudPDF::Documents::Types::DocumentsInitRequest]
       # @option request_options [String] :base_url
