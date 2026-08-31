@@ -13,6 +13,8 @@ module CloudPDF
 
       field :attachments_version, -> { Integer }, optional: true, nullable: false, api_name: "attachmentsVersion"
 
+      field :annotations_version, -> { Integer }, optional: true, nullable: false, api_name: "annotationsVersion"
+
       field :audit_head, -> { Integer }, optional: false, nullable: false, api_name: "auditHead"
 
       field :base_sha, -> { String }, optional: false, nullable: false, api_name: "baseSha"
