@@ -19,6 +19,8 @@ module CloudPDF
 
       field :contents, -> { String }, optional: false, nullable: true
 
+      field :subject, -> { String }, optional: false, nullable: true
+
       field :author, -> { String }, optional: false, nullable: true
 
       field :created, -> { String }, optional: false, nullable: true
@@ -46,6 +48,10 @@ module CloudPDF
       field :opacity, -> { Integer }, optional: false, nullable: false
 
       field :icon, -> { CloudPDF::Types::DocAnnotationsList200ResponseAnnotationsItemTextIcon }, optional: false, nullable: false
+
+      field :state, -> { String }, optional: false, nullable: true
+
+      field :state_model, -> { String }, optional: false, nullable: true, api_name: "stateModel"
     end
   end
 end

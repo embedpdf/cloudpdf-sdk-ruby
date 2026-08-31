@@ -2146,6 +2146,87 @@ client.tokens.revoke(
 </details>
 
 ## Doc Annotations
+<details><summary><code>client.doc.annotations.<a href="/lib/CloudPDF/doc/annotations/client.rb">list_all</a>(doc_id:, layer_name:) -> CloudPDF::Types::DocAnnotationsListAll200Response</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns one entry per page plus the audit-log cursor for reconciling subsequent document events. Page order is unspecified; join by `pageState.pageObjectNumber` when display order matters.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.doc.annotations.list_all(
+  doc_id: "docId",
+  layer_name: "layerName"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**doc_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**layer_name:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**document_password:** `String` — Base64-encoded password for an encrypted document. Valid only with the API token (403 anywhere else). An encrypted document answers 422 DocPasswordRequired when the header is absent. Viewer doc JWTs use the SDK password-session flow instead.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `CloudPDF::Doc::Annotations::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.doc.annotations.<a href="/lib/CloudPDF/doc/annotations/client.rb">list</a>(doc_id:, layer_name:, pon:) -> CloudPDF::Types::DocAnnotationsList200Response</code></summary>
 <dl>
 <dd>

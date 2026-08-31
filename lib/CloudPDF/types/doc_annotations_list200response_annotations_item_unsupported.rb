@@ -19,6 +19,8 @@ module CloudPDF
 
       field :contents, -> { String }, optional: false, nullable: true
 
+      field :subject, -> { String }, optional: false, nullable: true
+
       field :author, -> { String }, optional: false, nullable: true
 
       field :created, -> { String }, optional: false, nullable: true
