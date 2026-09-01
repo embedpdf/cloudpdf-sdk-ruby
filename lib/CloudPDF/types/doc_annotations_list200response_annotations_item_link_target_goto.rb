@@ -3,7 +3,7 @@
 module CloudPDF
   module Types
     class DocAnnotationsList200ResponseAnnotationsItemLinkTargetGoto < Internal::Types::Model
-      field :destination, -> { CloudPDF::Types::DocAnnotationsList200ResponseAnnotationsItemLinkTargetGotoDestination }, optional: false, nullable: false
+      field :destination, -> { CloudPDF::Types::PdfDestination }, optional: false, nullable: false
     end
   end
 end

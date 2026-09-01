@@ -41,7 +41,7 @@ module CloudPDF
 
       field :updated_by, -> { String }, optional: true, nullable: false, api_name: "updatedBy"
 
-      field :actions, -> { CloudPDF::Types::DocAnnotationsList200ResponseAnnotationsItemUnsupportedActions }, optional: true, nullable: false
+      field :actions, -> { CloudPDF::Types::PdfAnnotationActions }, optional: true, nullable: false
 
       field :raw_subtype_code, -> { Integer }, optional: false, nullable: false, api_name: "rawSubtypeCode"
 
