@@ -21,7 +21,7 @@ module CloudPDF
 
       field :default_value_entry, -> { CloudPDF::Types::DocFormsGet200ResponseFieldsItemPushbuttonDefaultValueEntry }, optional: false, nullable: false, api_name: "defaultValueEntry"
 
-      field :actions, -> { CloudPDF::Types::DocFormsGet200ResponseFieldsItemPushbuttonActions }, optional: true, nullable: false
+      field :actions, -> { CloudPDF::Types::PdfFieldActions }, optional: true, nullable: false
 
       field :widgets, -> { Internal::Types::Array[CloudPDF::Types::DocFormsGet200ResponseFieldsItemPushbuttonWidgetsItem] }, optional: false, nullable: false
     end

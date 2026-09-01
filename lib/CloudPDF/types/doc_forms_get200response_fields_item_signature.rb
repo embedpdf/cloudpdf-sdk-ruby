@@ -21,7 +21,7 @@ module CloudPDF
 
       field :default_value_entry, -> { CloudPDF::Types::DocFormsGet200ResponseFieldsItemSignatureDefaultValueEntry }, optional: false, nullable: false, api_name: "defaultValueEntry"
 
-      field :actions, -> { CloudPDF::Types::DocFormsGet200ResponseFieldsItemSignatureActions }, optional: true, nullable: false
+      field :actions, -> { CloudPDF::Types::PdfFieldActions }, optional: true, nullable: false
 
       field :widgets, -> { Internal::Types::Array[CloudPDF::Types::DocFormsGet200ResponseFieldsItemSignatureWidgetsItem] }, optional: false, nullable: false
     end

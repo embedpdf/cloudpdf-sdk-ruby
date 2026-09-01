@@ -41,7 +41,7 @@ module CloudPDF
 
       field :updated_by, -> { String }, optional: true, nullable: false, api_name: "updatedBy"
 
-      field :actions, -> { CloudPDF::Types::DocAnnotationsList200ResponseAnnotationsItemLinkActions }, optional: true, nullable: false
+      field :actions, -> { CloudPDF::Types::PdfAnnotationActions }, optional: true, nullable: false
 
       field :target, -> { CloudPDF::Types::DocAnnotationsList200ResponseAnnotationsItemLinkTarget }, optional: false, nullable: true
     end
