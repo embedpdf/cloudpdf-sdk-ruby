@@ -262,6 +262,112 @@ module CloudPDF
             raise error_class.new(response.body, code: code)
           end
         end
+
+        # @param request_options [Hash]
+        # @param params [CloudPDF::Types::DocAnnotationsExportAppearanceRequest]
+        # @option request_options [String] :base_url
+        # @option request_options [Hash{String => Object}] :additional_headers
+        # @option request_options [Hash{String => Object}] :additional_query_parameters
+        # @option request_options [Hash{String => Object}] :additional_body_parameters
+        # @option request_options [Integer] :timeout_in_seconds
+        # @option params [String] :doc_id
+        # @option params [String] :layer_name
+        # @option params [Integer] :pon
+        # @option params [String, nil] :document_password
+        #
+        # @example
+        #   client.doc.annotations.export_appearance(
+        #     doc_id: "docId",
+        #     layer_name: "layerName",
+        #     pon: 1,
+        #     request: {
+        #       string: {
+        #         key: "value"
+        #       }
+        #     }
+        #   )
+        #
+        # @return [untyped]
+        def export_appearance(request_options: {}, **params)
+          params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
+          path_param_names = %i[doc_id layer_name pon]
+          body_params = params.except(*path_param_names)
+
+          headers = {}
+          headers["X-Document-Password"] = params[:document_password] if params[:document_password]
+
+          request = CloudPDF::Internal::JSON::Request.new(
+            base_url: request_options[:base_url],
+            method: "POST",
+            path: "v1/docs/#{URI.encode_uri_component(params[:doc_id].to_s)}/layers/#{URI.encode_uri_component(params[:layer_name].to_s)}/annotations/pages/#{URI.encode_uri_component(params[:pon].to_s)}/items/appearance",
+            headers: headers,
+            body: body_params,
+            request_options: request_options
+          )
+          begin
+            response = @client.send(request)
+          rescue Net::HTTPRequestTimeout
+            raise CloudPDF::Errors::TimeoutError
+          end
+          code = response.code.to_i
+          return if code.between?(200, 299)
+
+          error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+
+        # @param request_options [Hash]
+        # @param params [CloudPDF::Types::DocAnnotationsFlattenRequest]
+        # @option request_options [String] :base_url
+        # @option request_options [Hash{String => Object}] :additional_headers
+        # @option request_options [Hash{String => Object}] :additional_query_parameters
+        # @option request_options [Hash{String => Object}] :additional_body_parameters
+        # @option request_options [Integer] :timeout_in_seconds
+        # @option params [String] :doc_id
+        # @option params [String] :layer_name
+        # @option params [Integer] :pon
+        # @option params [String, nil] :document_password
+        #
+        # @example
+        #   client.doc.annotations.flatten(
+        #     doc_id: "docId",
+        #     layer_name: "layerName",
+        #     pon: 1,
+        #     request: {
+        #       key: "value"
+        #     }
+        #   )
+        #
+        # @return [CloudPDF::Types::DocAnnotationsFlatten200Response]
+        def flatten(request_options: {}, **params)
+          params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
+          path_param_names = %i[doc_id layer_name pon]
+          body_params = params.except(*path_param_names)
+
+          headers = {}
+          headers["X-Document-Password"] = params[:document_password] if params[:document_password]
+
+          request = CloudPDF::Internal::JSON::Request.new(
+            base_url: request_options[:base_url],
+            method: "POST",
+            path: "v1/docs/#{URI.encode_uri_component(params[:doc_id].to_s)}/layers/#{URI.encode_uri_component(params[:layer_name].to_s)}/annotations/pages/#{URI.encode_uri_component(params[:pon].to_s)}/items/flatten",
+            headers: headers,
+            body: body_params,
+            request_options: request_options
+          )
+          begin
+            response = @client.send(request)
+          rescue Net::HTTPRequestTimeout
+            raise CloudPDF::Errors::TimeoutError
+          end
+          code = response.code.to_i
+          if code.between?(200, 299)
+            CloudPDF::Types::DocAnnotationsFlatten200Response.load(response.body)
+          else
+            error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
+            raise error_class.new(response.body, code: code)
+          end
+        end
       end
     end
   end
