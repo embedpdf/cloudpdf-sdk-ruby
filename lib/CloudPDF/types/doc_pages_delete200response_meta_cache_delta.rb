@@ -9,6 +9,10 @@ module CloudPDF
 
       field :annotations_version, -> { Integer }, optional: true, nullable: false, api_name: "annotationsVersion"
 
+      field :layer_version, -> { Integer }, optional: true, nullable: false, api_name: "layerVersion"
+
+      field :working, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
       field :pages, -> { Internal::Types::Array[CloudPDF::Types::DocPagesDelete200ResponseMetaCacheDeltaPagesItem] }, optional: false, nullable: false
     end
   end

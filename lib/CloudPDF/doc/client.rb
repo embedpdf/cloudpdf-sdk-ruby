@@ -253,6 +253,16 @@ module CloudPDF
       def redactions
         @redactions ||= CloudPDF::Doc::Redactions::Client.new(client: @client)
       end
+
+      # @return [CloudPDF::Signatures::Client]
+      def signatures
+        @signatures ||= CloudPDF::Doc::Signatures::Client.new(client: @client)
+      end
+
+      # @return [CloudPDF::Versions::Client]
+      def versions
+        @versions ||= CloudPDF::Doc::Versions::Client.new(client: @client)
+      end
     end
   end
 end
