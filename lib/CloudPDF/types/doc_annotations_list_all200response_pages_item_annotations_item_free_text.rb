@@ -45,11 +45,13 @@ module CloudPDF
 
       field :intent, -> { CloudPDF::Types::DocAnnotationsListAll200ResponsePagesItemAnnotationsItemFreeTextIntent }, optional: false, nullable: false
 
-      field :font_family, -> { CloudPDF::Types::DocAnnotationsListAll200ResponsePagesItemAnnotationsItemFreeTextFontFamily }, optional: false, nullable: false, api_name: "fontFamily"
+      field :font_family, -> { String }, optional: false, nullable: false, api_name: "fontFamily"
 
       field :font_size, -> { Integer }, optional: false, nullable: false, api_name: "fontSize"
 
       field :text_align, -> { CloudPDF::Types::DocAnnotationsListAll200ResponsePagesItemAnnotationsItemFreeTextTextAlign }, optional: false, nullable: false, api_name: "textAlign"
+
+      field :rich_text, -> { CloudPDF::Types::DocAnnotationsListAll200ResponsePagesItemAnnotationsItemFreeTextRichText }, optional: false, nullable: false, api_name: "richText"
 
       field :color, -> { CloudPDF::Types::DocAnnotationsListAll200ResponsePagesItemAnnotationsItemFreeTextColor }, optional: false, nullable: false
 

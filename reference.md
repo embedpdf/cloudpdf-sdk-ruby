@@ -4028,3 +4028,1049 @@ client.doc.redactions.apply(
 </dl>
 </details>
 
+## Doc Signatures
+<details><summary><code>client.doc.signatures.<a href="/lib/CloudPDF/doc/signatures/client.rb">list</a>(doc_id:, layer_name:) -> CloudPDF::Types::DocSignaturesList200Response</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Describes the bytes the layer is over: the base version's signatures plus the layer's own edits as the last revision. Signed bytes (contents, digests, revision prefixes) are served per base version under /versions.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.doc.signatures.list(
+  doc_id: "docId",
+  layer_name: "layerName"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**doc_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**layer_name:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**document_password:** `String` — Base64-encoded password for an encrypted document. Valid only with the API token (403 anywhere else). An encrypted document answers 422 DocPasswordRequired when the header is absent. Viewer doc JWTs use the SDK password-session flow instead.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `CloudPDF::Doc::Signatures::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.doc.signatures.<a href="/lib/CloudPDF/doc/signatures/client.rb">abort</a>(doc_id:, layer_name:, signing_id:) -> CloudPDF::Types::DocSignaturesAbort200Response</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.doc.signatures.abort(
+  doc_id: "docId",
+  layer_name: "layerName",
+  signing_id: "signingId"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**doc_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**layer_name:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**signing_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**document_password:** `String` — Base64-encoded password for an encrypted document. Valid only with the API token (403 anywhere else). An encrypted document answers 422 DocPasswordRequired when the header is absent. Viewer doc JWTs use the SDK password-session flow instead.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `CloudPDF::Doc::Signatures::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.doc.signatures.<a href="/lib/CloudPDF/doc/signatures/client.rb">complete</a>(doc_id:, layer_name:, signing_id:, request) -> CloudPDF::Types::DocSignaturesComplete200Response</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+`cms` is the detached CMS over the prepared digest, base64. `expectedVersion` must be what prepare returned. Idempotent by signing id: the same CMS again answers `already-completed`. Every layer of the document then sits over the new version; refetch the manifest after a completion.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.doc.signatures.complete(
+  doc_id: "docId",
+  layer_name: "layerName",
+  signing_id: "signingId",
+  cms: "cms",
+  expected_version: {
+    base_sha256: "baseSha256",
+    edits_version: 1
+  }
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**doc_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**layer_name:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**signing_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**document_password:** `String` — Base64-encoded password for an encrypted document. Valid only with the API token (403 anywhere else). An encrypted document answers 422 DocPasswordRequired when the header is absent. Viewer doc JWTs use the SDK password-session flow instead.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**cms:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**expected_version:** `CloudPDF::Doc::Signatures::Types::DocSignaturesCompleteRequestExpectedVersion` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `CloudPDF::Doc::Signatures::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.doc.signatures.<a href="/lib/CloudPDF/doc/signatures/client.rb">analysis</a>(doc_id:, layer_name:) -> CloudPDF::Types::DocSignaturesAnalysis200Response</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Exactly one of `since.signature=<index>` or `since.revision=<index>`; the layer's pending edits are the end. `level=fill|annotate|lta|none` evaluates exploratorily and never becomes a verdict. For history between two base revisions use the version analysis.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.doc.signatures.analysis(
+  doc_id: "docId",
+  layer_name: "layerName"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**doc_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**layer_name:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**since_signature:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**since_revision:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**level:** `CloudPDF::Doc::Signatures::Types::AnalysisSignaturesRequestLevel` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**document_password:** `String` — Base64-encoded password for an encrypted document. Valid only with the API token (403 anywhere else). An encrypted document answers 422 DocPasswordRequired when the header is absent. Viewer doc JWTs use the SDK password-session flow instead.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `CloudPDF::Doc::Signatures::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.doc.signatures.<a href="/lib/CloudPDF/doc/signatures/client.rb">prepare</a>(doc_id:, layer_name:, request) -> CloudPDF::Types::DocSignaturesPrepare200Response</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+The multipart envelope: a JSON `body` part (field, subFilter, digest, contentsSize, signer, certify, lock, appearance) and an optional `resource:<key>` PDF part the body's `appearance.resource` names. A certification (`certify.permission`) additionally requires `doc.sign.certify`. The layer is read-only until the signing completes, is aborted, or expires (15 minutes). A layer behind the document head cannot sign (StaleBase).
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.doc.signatures.prepare(
+  doc_id: "docId",
+  layer_name: "layerName"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**doc_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**layer_name:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**document_password:** `String` — Base64-encoded password for an encrypted document. Valid only with the API token (403 anywhere else). An encrypted document answers 422 DocPasswordRequired when the header is absent. Viewer doc JWTs use the SDK password-session flow instead.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `CloudPDF::Doc::Signatures::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Doc Versions
+<details><summary><code>client.doc.versions.<a href="/lib/CloudPDF/doc/versions/client.rb">list</a>(doc_id:) -> CloudPDF::Types::DocVersionsList200Response</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Every completed signature publishes a new version. Never cached: the list grows.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.doc.versions.list(doc_id: "docId")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**doc_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**document_password:** `String` — Base64-encoded password for an encrypted document. Valid only with the API token (403 anywhere else). An encrypted document answers 422 DocPasswordRequired when the header is absent. Viewer doc JWTs use the SDK password-session flow instead.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `CloudPDF::Doc::Versions::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.doc.versions.<a href="/lib/CloudPDF/doc/versions/client.rb">analysis</a>(doc_id:, sha:) -> CloudPDF::Types::DocVersionsAnalysis200Response</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Exactly one of `since.signature` / `since.revision`; `until=<revision>` defaults to the last. The same answer for every layer and every caller.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.doc.versions.analysis(
+  doc_id: "docId",
+  sha: "sha"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**doc_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sha:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**since_signature:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**since_revision:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**level:** `CloudPDF::Doc::Versions::Types::AnalysisVersionsRequestLevel` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**until_:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**policy:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**document_password:** `String` — Base64-encoded password for an encrypted document. Valid only with the API token (403 anywhere else). An encrypted document answers 422 DocPasswordRequired when the header is absent. Viewer doc JWTs use the SDK password-session flow instead.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `CloudPDF::Doc::Versions::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.doc.versions.<a href="/lib/CloudPDF/doc/versions/client.rb">download</a>(doc_id:, sha:) -> String</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.doc.versions.download(
+  doc_id: "docId",
+  sha: "sha"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**doc_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sha:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**document_password:** `String` — Base64-encoded password for an encrypted document. Valid only with the API token (403 anywhere else). An encrypted document answers 422 DocPasswordRequired when the header is absent. Viewer doc JWTs use the SDK password-session flow instead.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `CloudPDF::Doc::Versions::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.doc.versions.<a href="/lib/CloudPDF/doc/versions/client.rb">revision</a>(doc_id:, sha:, index:) -> String</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.doc.versions.revision(
+  doc_id: "docId",
+  sha: "sha",
+  index: 1
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**doc_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sha:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**index:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**document_password:** `String` — Base64-encoded password for an encrypted document. Valid only with the API token (403 anywhere else). An encrypted document answers 422 DocPasswordRequired when the header is absent. Viewer doc JWTs use the SDK password-session flow instead.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `CloudPDF::Doc::Versions::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.doc.versions.<a href="/lib/CloudPDF/doc/versions/client.rb">signatures</a>(doc_id:, sha:) -> CloudPDF::Types::DocVersionsSignatures200Response</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.doc.versions.signatures(
+  doc_id: "docId",
+  sha: "sha"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**doc_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sha:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**document_password:** `String` — Base64-encoded password for an encrypted document. Valid only with the API token (403 anywhere else). An encrypted document answers 422 DocPasswordRequired when the header is absent. Viewer doc JWTs use the SDK password-session flow instead.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `CloudPDF::Doc::Versions::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.doc.versions.<a href="/lib/CloudPDF/doc/versions/client.rb">signature_contents</a>(doc_id:, sha:, field_key:) -> String</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+`fieldKey` is the field's fully qualified name, token-text encoded (the same encoding attachment keys use).
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.doc.versions.signature_contents(
+  doc_id: "docId",
+  sha: "sha",
+  field_key: "fieldKey"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**doc_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sha:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**field_key:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**document_password:** `String` — Base64-encoded password for an encrypted document. Valid only with the API token (403 anywhere else). An encrypted document answers 422 DocPasswordRequired when the header is absent. Viewer doc JWTs use the SDK password-session flow instead.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `CloudPDF::Doc::Versions::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.doc.versions.<a href="/lib/CloudPDF/doc/versions/client.rb">signature_digest</a>(doc_id:, sha:, field_key:, algorithm:) -> String</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+What a CMS verifier compares its message digest to.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.doc.versions.signature_digest(
+  doc_id: "docId",
+  sha: "sha",
+  field_key: "fieldKey",
+  algorithm: "sha1"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**doc_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sha:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**field_key:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**algorithm:** `CloudPDF::Doc::Versions::Types::SignatureDigestVersionsRequestAlgorithm` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**document_password:** `String` — Base64-encoded password for an encrypted document. Valid only with the API token (403 anywhere else). An encrypted document answers 422 DocPasswordRequired when the header is absent. Viewer doc JWTs use the SDK password-session flow instead.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `CloudPDF::Doc::Versions::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+

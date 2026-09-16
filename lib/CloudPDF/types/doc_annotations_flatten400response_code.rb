@@ -24,6 +24,12 @@ module CloudPDF
       LAYER_VERSION_CONFLICT = "LayerVersionConflict"
       NOT_IMPLEMENTED = "NotImplemented"
       MALFORMED_PDF = "MalformedPdf"
+      SIGNING_PENDING = "SigningPending"
+      SIGNING_EXPIRED = "SigningExpired"
+      SIGNING_VERSION_MISMATCH = "SigningVersionMismatch"
+      SIGNATURE_REFUSED = "SignatureRefused"
+      PROTECTED_DOCUMENT = "ProtectedDocument"
+      STALE_BASE = "StaleBase"
     end
   end
 end

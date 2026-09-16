@@ -19,6 +19,12 @@ module CloudPDF
 
       field :base_sha, -> { String }, optional: false, nullable: false, api_name: "baseSha"
 
+      field :layer_version, -> { Integer }, optional: true, nullable: false, api_name: "layerVersion"
+
+      field :working, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
+      field :base_byte_length, -> { Integer }, optional: true, nullable: false, api_name: "baseByteLength"
+
       field :scopes, -> { CloudPDF::Types::DocManifest200ResponseScopes }, optional: true, nullable: false
 
       field :pages, -> { Internal::Types::Array[CloudPDF::Types::DocManifest200ResponsePagesItem] }, optional: false, nullable: false
