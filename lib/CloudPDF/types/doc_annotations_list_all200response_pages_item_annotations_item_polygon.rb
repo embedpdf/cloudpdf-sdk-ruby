@@ -3,6 +3,12 @@
 module CloudPDF
   module Types
     class DocAnnotationsListAll200ResponsePagesItemAnnotationsItemPolygon < Internal::Types::Model
+      field :intent, -> { CloudPDF::Types::DocAnnotationsListAll200ResponsePagesItemAnnotationsItemPolygonIntent }, optional: true, nullable: false
+
+      field :measure, -> { CloudPDF::Types::DocAnnotationsListAll200ResponsePagesItemAnnotationsItemPolygonMeasure }, optional: true, nullable: false
+
+      field :caption, -> { CloudPDF::Types::DocAnnotationsListAll200ResponsePagesItemAnnotationsItemPolygonCaption }, optional: true, nullable: false
+
       field :ref, -> { CloudPDF::Types::DocAnnotationsListAll200ResponsePagesItemAnnotationsItemPolygonRef }, optional: false, nullable: false
 
       field :page_object_number, -> { Integer }, optional: false, nullable: false, api_name: "pageObjectNumber"

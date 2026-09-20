@@ -3,6 +3,14 @@
 module CloudPDF
   module Types
     class DocAnnotationsList200ResponseAnnotationsItemLine < Internal::Types::Model
+      field :intent, -> { CloudPDF::Types::DocAnnotationsList200ResponseAnnotationsItemLineIntent }, optional: true, nullable: false
+
+      field :measure, -> { CloudPDF::Types::DocAnnotationsList200ResponseAnnotationsItemLineMeasure }, optional: true, nullable: false
+
+      field :caption, -> { CloudPDF::Types::DocAnnotationsList200ResponseAnnotationsItemLineCaption }, optional: true, nullable: false
+
+      field :leader, -> { CloudPDF::Types::DocAnnotationsList200ResponseAnnotationsItemLineLeader }, optional: true, nullable: false
+
       field :ref, -> { CloudPDF::Types::DocAnnotationsList200ResponseAnnotationsItemLineRef }, optional: false, nullable: false
 
       field :page_object_number, -> { Integer }, optional: false, nullable: false, api_name: "pageObjectNumber"

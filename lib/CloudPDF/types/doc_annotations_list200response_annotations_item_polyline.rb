@@ -3,6 +3,12 @@
 module CloudPDF
   module Types
     class DocAnnotationsList200ResponseAnnotationsItemPolyline < Internal::Types::Model
+      field :intent, -> { CloudPDF::Types::DocAnnotationsList200ResponseAnnotationsItemPolylineIntent }, optional: true, nullable: false
+
+      field :measure, -> { CloudPDF::Types::DocAnnotationsList200ResponseAnnotationsItemPolylineMeasure }, optional: true, nullable: false
+
+      field :caption, -> { CloudPDF::Types::DocAnnotationsList200ResponseAnnotationsItemPolylineCaption }, optional: true, nullable: false
+
       field :ref, -> { CloudPDF::Types::DocAnnotationsList200ResponseAnnotationsItemPolylineRef }, optional: false, nullable: false
 
       field :page_object_number, -> { Integer }, optional: false, nullable: false, api_name: "pageObjectNumber"

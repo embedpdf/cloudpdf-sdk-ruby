@@ -3214,6 +3214,166 @@ client.doc.metadata.get(
 </details>
 
 ## Doc Pages
+<details><summary><code>client.doc.pages.<a href="/lib/CloudPDF/doc/pages/client.rb">set_scale</a>(doc_id:, layer_name:, pon:, request) -> CloudPDF::Types::DocPagesSetScale200Response</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.doc.pages.set_scale(
+  doc_id: "docId",
+  layer_name: "layerName",
+  pon: 1
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**doc_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**layer_name:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pon:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**document_password:** `String` — Base64-encoded password for an encrypted document. Valid only with the API token (403 anywhere else). An encrypted document answers 422 DocPasswordRequired when the header is absent. Viewer doc JWTs use the SDK password-session flow instead.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**measure:** `CloudPDF::Doc::Pages::Types::DocPagesSetScaleRequestMeasure` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `CloudPDF::Doc::Pages::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.doc.pages.<a href="/lib/CloudPDF/doc/pages/client.rb">viewports</a>(doc_id:, layer_name:, pon:) -> Internal::Types::Array[CloudPDF::Types::DocPagesViewports200ResponseItem]</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.doc.pages.viewports(
+  doc_id: "docId",
+  layer_name: "layerName",
+  pon: 1
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**doc_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**layer_name:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pon:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**document_password:** `String` — Base64-encoded password for an encrypted document. Valid only with the API token (403 anywhere else). An encrypted document answers 422 DocPasswordRequired when the header is absent. Viewer doc JWTs use the SDK password-session flow instead.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `CloudPDF::Doc::Pages::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.doc.pages.<a href="/lib/CloudPDF/doc/pages/client.rb">delete</a>(doc_id:, layer_name:, request) -> CloudPDF::Types::DocPagesDelete200Response</code></summary>
 <dl>
 <dd>
