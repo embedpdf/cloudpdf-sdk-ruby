@@ -2,8 +2,22 @@
 
 module CloudPDF
   module Types
-    class DocumentsImportFrom400Response < Internal::Types::Model
-      field :error, -> { CloudPDF::Types::DocumentsImportFrom400ResponseError }, optional: false, nullable: false
+    module DocumentsImportFrom400Response
+      # DocumentsImportFrom400Response is an alias for AdminErrorPayload
+
+      # @option str [String]
+      #
+      # @return [untyped]
+      def self.load(str)
+        ::JSON.parse(str)
+      end
+
+      # @option value [untyped]
+      #
+      # @return [String]
+      def self.dump(value)
+        ::JSON.generate(value)
+      end
     end
   end
 end

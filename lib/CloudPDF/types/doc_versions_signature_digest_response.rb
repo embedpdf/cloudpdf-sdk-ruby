@@ -2,14 +2,22 @@
 
 module CloudPDF
   module Types
-    class DocVersionsSignatureDigestResponse < Internal::Types::Model
-      field :name, -> { CloudPDF::Types::DocVersionsSignatureDigestResponseName }, optional: false, nullable: false
+    module DocVersionsSignatureDigestResponse
+      # DocVersionsSignatureDigestResponse is an alias for EngineErrorPayload
 
-      field :code, -> { CloudPDF::Types::DocVersionsSignatureDigestResponseCode }, optional: false, nullable: false
+      # @option str [String]
+      #
+      # @return [untyped]
+      def self.load(str)
+        ::JSON.parse(str)
+      end
 
-      field :message, -> { String }, optional: false, nullable: false
-
-      field :details, -> { Internal::Types::Hash[String, Object] }, optional: true, nullable: false
+      # @option value [untyped]
+      #
+      # @return [String]
+      def self.dump(value)
+        ::JSON.generate(value)
+      end
     end
   end
 end

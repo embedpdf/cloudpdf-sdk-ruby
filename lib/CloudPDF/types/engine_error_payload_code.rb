@@ -19,8 +19,6 @@ module CloudPDF
       NOT_FOUND = "NotFound"
       WIRE_FORMAT = "WireFormat"
       RUNTIME_UNAVAILABLE = "RuntimeUnavailable"
-      INVALID_REFERENCE = "InvalidReference"
-      WEAK_ANNOTATION_SESSION_CONFLICT = "WeakAnnotationSessionConflict"
       LAYER_VERSION_CONFLICT = "LayerVersionConflict"
       NOT_IMPLEMENTED = "NotImplemented"
       MALFORMED_PDF = "MalformedPdf"
@@ -30,6 +28,12 @@ module CloudPDF
       SIGNATURE_REFUSED = "SignatureRefused"
       PROTECTED_DOCUMENT = "ProtectedDocument"
       STALE_BASE = "StaleBase"
+      PAYLOAD_TOO_LARGE = "PayloadTooLarge"
+      OBJECT_NUMBER_UNAVAILABLE = "ObjectNumberUnavailable"
+      LAYER_FULL = "LayerFull"
+      CHANGE_CONFLICT = "ChangeConflict"
+      UNDO_UNAVAILABLE = "UndoUnavailable"
+      IDEMPOTENCY_KEY_REUSED = "IdempotencyKeyReused"
     end
   end
 end

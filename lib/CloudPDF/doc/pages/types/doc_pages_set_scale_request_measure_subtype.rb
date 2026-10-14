@@ -7,7 +7,7 @@ module CloudPDF
         module DocPagesSetScaleRequestMeasureSubtype
           extend CloudPDF::Internal::Types::Enum
 
-          RL = "RL"
+          RECTILINEAR = "rectilinear"
         end
       end
     end

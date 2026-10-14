@@ -11,7 +11,7 @@ module CloudPDF
 
       field :contact_info, -> { String }, optional: false, nullable: true, api_name: "contactInfo"
 
-      field :claimed_time, -> { String }, optional: false, nullable: true, api_name: "claimedTime"
+      field :signed_at, -> { String }, optional: false, nullable: true, api_name: "signedAt"
     end
   end
 end

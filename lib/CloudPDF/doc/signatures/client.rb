@@ -51,7 +51,7 @@ module CloudPDF
           end
           code = response.code.to_i
           if code.between?(200, 299)
-            CloudPDF::Types::DocSignaturesList200Response.load(response.body)
+            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocSignaturesList200Response.load(response.body))
           else
             error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
             raise error_class.new(response.body, code: code)
@@ -71,14 +71,14 @@ module CloudPDF
         # @option params [String, nil] :document_password
         #
         # @example
-        #   client.doc.signatures.abort(
+        #   client.doc.signatures.cancel(
         #     doc_id: "docId",
         #     layer_name: "layerName",
         #     signing_id: "signingId"
         #   )
         #
-        # @return [CloudPDF::Types::DocSignaturesAbort200Response]
-        def abort(request_options: {}, **params)
+        # @return [CloudPDF::Types::DocSignaturesCancel200Response]
+        def cancel(request_options: {}, **params)
           params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
           headers = {}
           headers["X-Document-Password"] = params[:document_password] if params[:document_password]
@@ -97,7 +97,7 @@ module CloudPDF
           end
           code = response.code.to_i
           if code.between?(200, 299)
-            CloudPDF::Types::DocSignaturesAbort200Response.load(response.body)
+            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocSignaturesCancel200Response.load(response.body))
           else
             error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
             raise error_class.new(response.body, code: code)
@@ -157,7 +157,7 @@ module CloudPDF
           end
           code = response.code.to_i
           if code.between?(200, 299)
-            CloudPDF::Types::DocSignaturesComplete200Response.load(response.body)
+            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocSignaturesComplete200Response.load(response.body))
           else
             error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
             raise error_class.new(response.body, code: code)
@@ -214,17 +214,18 @@ module CloudPDF
           end
           code = response.code.to_i
           if code.between?(200, 299)
-            CloudPDF::Types::DocSignaturesAnalysis200Response.load(response.body)
+            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocSignaturesAnalysis200Response.load(response.body))
           else
             error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
             raise error_class.new(response.body, code: code)
           end
         end
 
-        # The multipart envelope: a JSON `body` part (field, subFilter, digest, contentsSize, signer, certify, lock,
-        # appearance) and an optional `resource:<key>` PDF part the body's `appearance.resource` names. A certification
-        # (`certify.permission`) additionally requires `doc.sign.certify`. The layer is read-only until the signing
-        # completes, is aborted, or expires (15 minutes). A layer behind the document head cannot sign (StaleBase).
+        # Multipart: a JSON `body` part (field, subFilter, digest, contentsSize, signer, certify, lock), naming the
+        # appearance PDF it may carry as `resources: { appearance: '<key>' }`, and that PDF as the part
+        # `resource:<key>`. A certification (`certify.permission`) additionally requires `doc.sign.certify`. The layer
+        # is read-only until the signing completes, is cancelled, or expires (15 minutes). A layer behind the document
+        # head cannot sign (StaleBase).
         #
         # @param request_options [Hash]
         # @param params [void]
@@ -248,7 +249,12 @@ module CloudPDF
           params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
           body = Internal::Multipart::FormData.new
 
-          body.add_part(params[:file].to_form_data_part(name: "file")) if params[:file]
+          if params[:file]
+            body.add_file(
+              name: "file",
+              file: params[:file]
+            )
+          end
 
           request = CloudPDF::Internal::Multipart::Request.new(
             base_url: request_options[:base_url],
@@ -264,7 +270,7 @@ module CloudPDF
           end
           code = response.code.to_i
           if code.between?(200, 299)
-            CloudPDF::Types::DocSignaturesPrepare200Response.load(response.body)
+            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocSignaturesPrepare200Response.load(response.body))
           else
             error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
             raise error_class.new(response.body, code: code)

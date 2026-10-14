@@ -13,7 +13,7 @@ module CloudPDF
 
       field :protection, -> { CloudPDF::Types::DocSignaturesComplete200ResponseProtection }, optional: false, nullable: false
 
-      field :meta, -> { CloudPDF::Types::DocSignaturesComplete200ResponseMeta }, optional: false, nullable: false
+      field :meta, -> { CloudPDF::Types::MutationMeta }, optional: false, nullable: false
     end
   end
 end

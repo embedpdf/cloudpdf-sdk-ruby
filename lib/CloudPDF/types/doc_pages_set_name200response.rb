@@ -3,7 +3,9 @@
 module CloudPDF
   module Types
     class DocPagesSetName200Response < Internal::Types::Model
-      field :meta, -> { CloudPDF::Types::DocPagesSetName200ResponseMeta }, optional: false, nullable: false
+      field :layout, -> { CloudPDF::Types::DocPagesSetName200ResponseLayout }, optional: false, nullable: false
+
+      field :meta, -> { CloudPDF::Types::MutationMeta }, optional: false, nullable: false
     end
   end
 end

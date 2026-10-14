@@ -2,8 +2,22 @@
 
 module CloudPDF
   module Types
-    class TenantsDeleteResponse < Internal::Types::Model
-      field :error, -> { CloudPDF::Types::TenantsDeleteResponseError }, optional: false, nullable: false
+    module TenantsDeleteResponse
+      # TenantsDeleteResponse is an alias for AdminErrorPayload
+
+      # @option str [String]
+      #
+      # @return [untyped]
+      def self.load(str)
+        ::JSON.parse(str)
+      end
+
+      # @option value [untyped]
+      #
+      # @return [String]
+      def self.dump(value)
+        ::JSON.generate(value)
+      end
     end
   end
 end

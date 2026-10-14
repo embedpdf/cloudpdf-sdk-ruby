@@ -11,13 +11,7 @@ module CloudPDF
 
       field :scope, -> { Internal::Types::Array[String] }, optional: false, nullable: false
 
-      field :user_id, -> { String }, optional: true, nullable: false, api_name: "userId"
-
-      field :display_name, -> { String }, optional: true, nullable: false, api_name: "displayName"
-
-      field :group_id, -> { String }, optional: true, nullable: false, api_name: "groupId"
-
-      field :groups, -> { Internal::Types::Array[String] }, optional: true, nullable: false
+      field :identity, -> { CloudPDF::Types::TokensIssueRequestDocIdentity }, optional: true, nullable: false
 
       field :origins, -> { Internal::Types::Array[String] }, optional: true, nullable: false
 

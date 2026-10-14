@@ -2,14 +2,22 @@
 
 module CloudPDF
   module Types
-    class DocMetadataGet404Response < Internal::Types::Model
-      field :name, -> { CloudPDF::Types::DocMetadataGet404ResponseName }, optional: false, nullable: false
+    module DocMetadataGet404Response
+      # DocMetadataGet404Response is an alias for EngineErrorPayload
 
-      field :code, -> { CloudPDF::Types::DocMetadataGet404ResponseCode }, optional: false, nullable: false
+      # @option str [String]
+      #
+      # @return [untyped]
+      def self.load(str)
+        ::JSON.parse(str)
+      end
 
-      field :message, -> { String }, optional: false, nullable: false
-
-      field :details, -> { Internal::Types::Hash[String, Object] }, optional: true, nullable: false
+      # @option value [untyped]
+      #
+      # @return [String]
+      def self.dump(value)
+        ::JSON.generate(value)
+      end
     end
   end
 end

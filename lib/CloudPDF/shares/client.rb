@@ -42,7 +42,7 @@ module CloudPDF
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          CloudPDF::Types::SharesExchange200Response.load(response.body)
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::SharesExchange200Response.load(response.body))
         else
           error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -86,14 +86,14 @@ module CloudPDF
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          CloudPDF::Types::SharesList200Response.load(response.body)
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::SharesList200Response.load(response.body))
         else
           error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
         end
       end
 
-      # The returned share id IS the public share token. Mounted only when the deployment can sign (HS256 mode) —
+      # The returned share id is the public share token. Mounted only when the deployment can sign (HS256 mode) —
       # exchange mints session JWTs, so grants exist only where minting does.
       #
       # @param request_options [Hash]
@@ -133,7 +133,7 @@ module CloudPDF
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          CloudPDF::Types::SharesCreate200Response.load(response.body)
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::SharesCreate200Response.load(response.body))
         else
           error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -172,7 +172,7 @@ module CloudPDF
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          CloudPDF::Types::SharesGet200Response.load(response.body)
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::SharesGet200Response.load(response.body))
         else
           error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -253,7 +253,7 @@ module CloudPDF
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          CloudPDF::Types::SharesUpdate200Response.load(response.body)
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::SharesUpdate200Response.load(response.body))
         else
           error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)

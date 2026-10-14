@@ -3,7 +3,7 @@
 module CloudPDF
   module Documents
     module Types
-      # Where CloudPDF pulls the bytes from. The two shapes differ in WHO supplies the authority to read, not in which
+      # Where CloudPDF pulls the bytes from. The two shapes differ in who supplies the authority to read, not in which
       # storage vendor holds the file.
       class DocumentsImportFromRequestSource < Internal::Types::Model
         extend CloudPDF::Internal::Types::Union

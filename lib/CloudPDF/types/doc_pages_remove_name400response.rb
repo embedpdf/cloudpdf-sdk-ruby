@@ -2,14 +2,22 @@
 
 module CloudPDF
   module Types
-    class DocPagesRemoveName400Response < Internal::Types::Model
-      field :name, -> { CloudPDF::Types::DocPagesRemoveName400ResponseName }, optional: false, nullable: false
+    module DocPagesRemoveName400Response
+      # DocPagesRemoveName400Response is an alias for EngineErrorPayload
 
-      field :code, -> { CloudPDF::Types::DocPagesRemoveName400ResponseCode }, optional: false, nullable: false
+      # @option str [String]
+      #
+      # @return [untyped]
+      def self.load(str)
+        ::JSON.parse(str)
+      end
 
-      field :message, -> { String }, optional: false, nullable: false
-
-      field :details, -> { Internal::Types::Hash[String, Object] }, optional: true, nullable: false
+      # @option value [untyped]
+      #
+      # @return [String]
+      def self.dump(value)
+        ::JSON.generate(value)
+      end
     end
   end
 end

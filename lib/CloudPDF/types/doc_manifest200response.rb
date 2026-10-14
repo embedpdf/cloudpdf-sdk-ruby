@@ -15,6 +15,8 @@ module CloudPDF
 
       field :annotations_version, -> { Integer }, optional: true, nullable: false, api_name: "annotationsVersion"
 
+      field :forms_version, -> { Integer }, optional: true, nullable: false, api_name: "formsVersion"
+
       field :audit_head, -> { Integer }, optional: false, nullable: false, api_name: "auditHead"
 
       field :base_sha, -> { String }, optional: false, nullable: false, api_name: "baseSha"
@@ -26,6 +28,8 @@ module CloudPDF
       field :base_byte_length, -> { Integer }, optional: true, nullable: false, api_name: "baseByteLength"
 
       field :scopes, -> { CloudPDF::Types::DocManifest200ResponseScopes }, optional: true, nullable: false
+
+      field :protection, -> { CloudPDF::Types::DocManifest200ResponseProtection }, optional: false, nullable: true
 
       field :pages, -> { Internal::Types::Array[CloudPDF::Types::DocManifest200ResponsePagesItem] }, optional: false, nullable: false
     end

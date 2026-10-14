@@ -7,6 +7,8 @@ module CloudPDF
 
       field :annotations, -> { CloudPDF::Types::DocManifest200ResponseScopesAnnotations }, optional: false, nullable: false
 
+      field :forms, -> { CloudPDF::Types::DocManifest200ResponseScopesForms }, optional: false, nullable: false
+
       field :layout, -> { CloudPDF::Types::DocManifest200ResponseScopesLayout }, optional: false, nullable: false
 
       field :attachments, -> { CloudPDF::Types::DocManifest200ResponseScopesAttachments }, optional: false, nullable: false

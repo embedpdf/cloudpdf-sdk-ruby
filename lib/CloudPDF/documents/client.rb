@@ -47,7 +47,7 @@ module CloudPDF
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          CloudPDF::Types::DocumentsList200Response.load(response.body)
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::DocumentsList200Response.load(response.body))
         else
           error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -86,7 +86,7 @@ module CloudPDF
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          CloudPDF::Types::DocumentsGet200Response.load(response.body)
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::DocumentsGet200Response.load(response.body))
         else
           error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -168,7 +168,7 @@ module CloudPDF
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          CloudPDF::Types::DocumentsCommit200Response.load(response.body)
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::DocumentsCommit200Response.load(response.body))
         else
           error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -276,6 +276,7 @@ module CloudPDF
         body = Internal::Multipart::FormData.new
 
         raise ArgumentError, "file is required" unless params[:file]
+
         body.add_file(name: "file", file: params[:file], content_type: "application/pdf")
 
         request = CloudPDF::Internal::Multipart::Request.new(
@@ -292,7 +293,7 @@ module CloudPDF
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          CloudPDF::Types::DocumentsUploadProxy200Response.load(response.body)
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::DocumentsUploadProxy200Response.load(response.body))
         else
           error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -341,7 +342,7 @@ module CloudPDF
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          CloudPDF::Types::DocumentsImportFrom200Response.load(response.body)
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::DocumentsImportFrom200Response.load(response.body))
         else
           error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -385,7 +386,7 @@ module CloudPDF
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          CloudPDF::Types::DocumentsInit200Response.load(response.body)
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::DocumentsInit200Response.load(response.body))
         else
           error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)

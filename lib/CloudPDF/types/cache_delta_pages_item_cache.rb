@@ -1,0 +1,13 @@
+# frozen_string_literal: true
+
+module CloudPDF
+  module Types
+    class CacheDeltaPagesItemCache < Internal::Types::Model
+      field :content_version, -> { Integer }, optional: false, nullable: false, api_name: "contentVersion"
+
+      field :annotation_version, -> { Integer }, optional: false, nullable: false, api_name: "annotationVersion"
+
+      field :widget_version, -> { Integer }, optional: false, nullable: false, api_name: "widgetVersion"
+    end
+  end
+end

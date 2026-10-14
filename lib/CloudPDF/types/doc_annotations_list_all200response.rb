@@ -2,10 +2,22 @@
 
 module CloudPDF
   module Types
-    class DocAnnotationsListAll200Response < Internal::Types::Model
-      field :pages, -> { Internal::Types::Array[CloudPDF::Types::DocAnnotationsListAll200ResponsePagesItem] }, optional: false, nullable: false
+    module DocAnnotationsListAll200Response
+      # DocAnnotationsListAll200Response is an alias for AnnotationList
 
-      field :audit_head, -> { Integer }, optional: true, nullable: false, api_name: "auditHead"
+      # @option str [String]
+      #
+      # @return [untyped]
+      def self.load(str)
+        ::JSON.parse(str)
+      end
+
+      # @option value [untyped]
+      #
+      # @return [String]
+      def self.dump(value)
+        ::JSON.generate(value)
+      end
     end
   end
 end

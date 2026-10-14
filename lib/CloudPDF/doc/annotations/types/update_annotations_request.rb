@@ -9,11 +9,13 @@ module CloudPDF
 
           field :layer_name, -> { String }, optional: false, nullable: false, api_name: "layerName"
 
-          field :pon, -> { Integer }, optional: false, nullable: false
+          field :page_key, -> { String }, optional: false, nullable: false, api_name: "pageKey"
 
           field :annot_key, -> { String }, optional: false, nullable: false, api_name: "annotKey"
 
           field :document_password, -> { String }, optional: true, nullable: false, api_name: "X-Document-Password"
+
+          field :idempotency_key, -> { String }, optional: true, nullable: false, api_name: "Idempotency-Key"
 
           field :body, -> { Internal::Types::Hash[String, Object] }, optional: false, nullable: false
         end

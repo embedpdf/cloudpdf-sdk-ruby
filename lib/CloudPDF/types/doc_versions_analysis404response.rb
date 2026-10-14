@@ -2,14 +2,22 @@
 
 module CloudPDF
   module Types
-    class DocVersionsAnalysis404Response < Internal::Types::Model
-      field :name, -> { CloudPDF::Types::DocVersionsAnalysis404ResponseName }, optional: false, nullable: false
+    module DocVersionsAnalysis404Response
+      # DocVersionsAnalysis404Response is an alias for EngineErrorPayload
 
-      field :code, -> { CloudPDF::Types::DocVersionsAnalysis404ResponseCode }, optional: false, nullable: false
+      # @option str [String]
+      #
+      # @return [untyped]
+      def self.load(str)
+        ::JSON.parse(str)
+      end
 
-      field :message, -> { String }, optional: false, nullable: false
-
-      field :details, -> { Internal::Types::Hash[String, Object] }, optional: true, nullable: false
+      # @option value [untyped]
+      #
+      # @return [String]
+      def self.dump(value)
+        ::JSON.generate(value)
+      end
     end
   end
 end
