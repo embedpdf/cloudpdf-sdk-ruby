@@ -45,7 +45,7 @@ module CloudPDF
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          CloudPDF::Types::TokensIssue200Response.load(response.body)
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::TokensIssue200Response.load(response.body))
         else
           error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)

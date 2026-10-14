@@ -43,7 +43,71 @@ module CloudPDF
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          CloudPDF::Types::DocHead200Response.load(response.body)
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::DocHead200Response.load(response.body))
+        else
+          error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+      end
+
+      # Each change stands on its own and names itself by `opId`: a refused change rolls back alone, and the answer
+      # lists every change in order, applied with its result or refused with its error. Asked again under its `opId`, a
+      # change gets the same answer, refusals included; a different change under an answered `opId` is refused
+      # (IdempotencyKeyReused). `{ opId, undoOf }` undoes an earlier change of the caller, here or in an earlier
+      # request; an undo leaves alone what was changed since, and the undo of an undo redoes. A redaction, a flatten, a
+      # form repair or a completed signature ends undo for the changes before it (UndoUnavailable). Each op is checked
+      # against its own capability: annotation ops need `doc.annotate.modify`, form values `doc.forms.fill`, form
+      # structure `doc.forms.modify`, metadata `doc.metadata.modify`. Bytes (a stamp's drawing, an attached file, a
+      # signature's artwork) travel as multipart: a JSON `body` part, each op naming its files by role as `resources: {
+      # <role>: '<key>' }`, and each file as the part `resource:<key>`. At most 64 changes per request and 512 ops per
+      # change.
+      #
+      # @param request_options [Hash]
+      # @param params [CloudPDF::Doc::Types::DocChangesRequest]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String] :doc_id
+      # @option params [String] :layer_name
+      # @option params [String, nil] :document_password
+      #
+      # @example
+      #   client.doc.changes(
+      #     doc_id: "docId",
+      #     layer_name: "layerName",
+      #     changes: [{
+      #       op_id: "opId"
+      #     }]
+      #   )
+      #
+      # @return [CloudPDF::Types::DocChanges200Response]
+      def changes(request_options: {}, **params)
+        params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
+        request_data = CloudPDF::Doc::Types::DocChangesRequest.new(params).to_h
+        non_body_param_names = %w[docId layerName X-Document-Password]
+        body = request_data.except(*non_body_param_names)
+
+        headers = {}
+        headers["X-Document-Password"] = params[:document_password] if params[:document_password]
+
+        request = CloudPDF::Internal::JSON::Request.new(
+          base_url: request_options[:base_url],
+          method: "POST",
+          path: "v1/docs/#{URI.encode_uri_component(params[:doc_id].to_s)}/layers/#{URI.encode_uri_component(params[:layer_name].to_s)}/changes",
+          headers: headers,
+          body: body,
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise CloudPDF::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::DocChanges200Response.load(response.body))
         else
           error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -129,7 +193,7 @@ module CloudPDF
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          CloudPDF::Types::DocManifest200Response.load(response.body)
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::DocManifest200Response.load(response.body))
         else
           error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -148,14 +212,14 @@ module CloudPDF
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [String] :doc_id
       # @option params [String] :layer_name
-      # @option params [Integer] :pon
+      # @option params [String] :page_key
       # @option params [String, nil] :document_password
       #
       # @example
       #   client.doc.render(
       #     doc_id: "docId",
       #     layer_name: "layerName",
-      #     pon: 1
+      #     page_key: "pageKey"
       #   )
       #
       # @return [untyped]
@@ -167,7 +231,7 @@ module CloudPDF
         request = CloudPDF::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "GET",
-          path: "v1/docs/#{URI.encode_uri_component(params[:doc_id].to_s)}/layers/#{URI.encode_uri_component(params[:layer_name].to_s)}/render/pages/#{URI.encode_uri_component(params[:pon].to_s)}/data",
+          path: "v1/docs/#{URI.encode_uri_component(params[:doc_id].to_s)}/layers/#{URI.encode_uri_component(params[:layer_name].to_s)}/render/pages/#{URI.encode_uri_component(params[:page_key].to_s)}/data",
           headers: headers,
           request_options: request_options
         )
@@ -192,14 +256,14 @@ module CloudPDF
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [String] :doc_id
       # @option params [String] :layer_name
-      # @option params [Integer] :pon
+      # @option params [String] :page_key
       # @option params [String, nil] :document_password
       #
       # @example
       #   client.doc.text(
       #     doc_id: "docId",
       #     layer_name: "layerName",
-      #     pon: 1
+      #     page_key: "pageKey"
       #   )
       #
       # @return [CloudPDF::Types::DocText200Response]
@@ -211,7 +275,7 @@ module CloudPDF
         request = CloudPDF::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "GET",
-          path: "v1/docs/#{URI.encode_uri_component(params[:doc_id].to_s)}/layers/#{URI.encode_uri_component(params[:layer_name].to_s)}/text/pages/#{URI.encode_uri_component(params[:pon].to_s)}/data",
+          path: "v1/docs/#{URI.encode_uri_component(params[:doc_id].to_s)}/layers/#{URI.encode_uri_component(params[:layer_name].to_s)}/text/pages/#{URI.encode_uri_component(params[:page_key].to_s)}/data",
           headers: headers,
           request_options: request_options
         )
@@ -222,7 +286,7 @@ module CloudPDF
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          CloudPDF::Types::DocText200Response.load(response.body)
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::DocText200Response.load(response.body))
         else
           error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)

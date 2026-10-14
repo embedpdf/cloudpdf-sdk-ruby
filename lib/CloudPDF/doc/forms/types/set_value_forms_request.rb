@@ -13,6 +13,8 @@ module CloudPDF
 
           field :document_password, -> { String }, optional: true, nullable: false, api_name: "X-Document-Password"
 
+          field :idempotency_key, -> { String }, optional: true, nullable: false, api_name: "Idempotency-Key"
+
           field :body, -> { Internal::Types::Hash[String, Object] }, optional: false, nullable: false
         end
       end

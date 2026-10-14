@@ -5,11 +5,11 @@ module CloudPDF
     class DocSignaturesComplete200ResponseSignature < Internal::Types::Model
       field :index, -> { Integer }, optional: false, nullable: false
 
-      field :field, -> { CloudPDF::Types::DocSignaturesComplete200ResponseSignatureField }, optional: false, nullable: false
+      field :field, -> { CloudPDF::Types::FormFieldRef }, optional: false, nullable: false
 
       field :field_name, -> { String }, optional: false, nullable: false, api_name: "fieldName"
 
-      field :widget, -> { CloudPDF::Types::DocSignaturesComplete200ResponseSignatureWidget }, optional: false, nullable: true
+      field :widget, -> { CloudPDF::Types::FormWidget }, optional: false, nullable: true
 
       field :signed, -> { Internal::Types::Boolean }, optional: false, nullable: false
 

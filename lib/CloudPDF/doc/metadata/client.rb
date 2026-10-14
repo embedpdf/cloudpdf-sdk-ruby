@@ -28,7 +28,7 @@ module CloudPDF
         #     layer_name: "layerName"
         #   )
         #
-        # @return [CloudPDF::Types::DocMetadataGet200Response]
+        # @return [CloudPDF::Types::DocumentMetadata]
         def get(request_options: {}, **params)
           params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
           headers = {}
@@ -48,11 +48,16 @@ module CloudPDF
           end
           code = response.code.to_i
           if code.between?(200, 299)
-            CloudPDF::Types::DocMetadataGet200Response.load(response.body)
+            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocMetadataGet200Response.load(response.body))
           else
             error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
             raise error_class.new(response.body, code: code)
           end
+        end
+
+        # @return [CloudPDF::Custom::Client]
+        def custom
+          @custom ||= CloudPDF::Doc::Metadata::Custom::Client.new(client: @client)
         end
       end
     end

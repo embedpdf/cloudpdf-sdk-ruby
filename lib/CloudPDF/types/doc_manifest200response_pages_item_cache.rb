@@ -6,6 +6,8 @@ module CloudPDF
       field :content_version, -> { Integer }, optional: false, nullable: false, api_name: "contentVersion"
 
       field :annotation_version, -> { Integer }, optional: false, nullable: false, api_name: "annotationVersion"
+
+      field :widget_version, -> { Integer }, optional: false, nullable: false, api_name: "widgetVersion"
     end
   end
 end

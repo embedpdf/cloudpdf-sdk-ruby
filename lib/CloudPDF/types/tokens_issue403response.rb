@@ -2,8 +2,22 @@
 
 module CloudPDF
   module Types
-    class TokensIssue403Response < Internal::Types::Model
-      field :error, -> { CloudPDF::Types::TokensIssue403ResponseError }, optional: false, nullable: false
+    module TokensIssue403Response
+      # TokensIssue403Response is an alias for AdminErrorPayload
+
+      # @option str [String]
+      #
+      # @return [untyped]
+      def self.load(str)
+        ::JSON.parse(str)
+      end
+
+      # @option value [untyped]
+      #
+      # @return [String]
+      def self.dump(value)
+        ::JSON.generate(value)
+      end
     end
   end
 end

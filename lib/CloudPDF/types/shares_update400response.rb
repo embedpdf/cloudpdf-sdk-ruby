@@ -2,8 +2,22 @@
 
 module CloudPDF
   module Types
-    class SharesUpdate400Response < Internal::Types::Model
-      field :error, -> { CloudPDF::Types::SharesUpdate400ResponseError }, optional: false, nullable: false
+    module SharesUpdate400Response
+      # SharesUpdate400Response is an alias for AdminErrorPayload
+
+      # @option str [String]
+      #
+      # @return [untyped]
+      def self.load(str)
+        ::JSON.parse(str)
+      end
+
+      # @option value [untyped]
+      #
+      # @return [String]
+      def self.dump(value)
+        ::JSON.generate(value)
+      end
     end
   end
 end

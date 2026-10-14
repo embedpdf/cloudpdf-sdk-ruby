@@ -2,22 +2,8 @@
 
 module CloudPDF
   module Types
-    module DocPagesViewports200Response
-      # DocPagesViewports200Response is an alias for Array
-
-      # @option str [String]
-      #
-      # @return [untyped]
-      def self.load(str)
-        ::JSON.parse(str)
-      end
-
-      # @option value [untyped]
-      #
-      # @return [String]
-      def self.dump(value)
-        ::JSON.generate(value)
-      end
+    class DocPagesViewports200Response < Internal::Types::Model
+      field :viewports, -> { Internal::Types::Array[CloudPDF::Types::DocPagesViewports200ResponseViewportsItem] }, optional: false, nullable: false
     end
   end
 end

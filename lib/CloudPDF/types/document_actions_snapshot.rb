@@ -7,7 +7,7 @@ module CloudPDF
 
       field :open_action, -> { CloudPDF::Types::PdfActionTree }, optional: false, nullable: true, api_name: "openAction"
 
-      field :open_destination, -> { CloudPDF::Types::PdfDestination }, optional: true, nullable: false, api_name: "openDestination"
+      field :open_destination, -> { CloudPDF::Types::PageDestination }, optional: true, nullable: false, api_name: "openDestination"
 
       field :will_close, -> { CloudPDF::Types::PdfActionTree }, optional: true, nullable: false, api_name: "willClose"
 

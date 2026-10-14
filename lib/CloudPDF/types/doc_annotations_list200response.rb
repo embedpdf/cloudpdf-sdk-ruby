@@ -2,10 +2,22 @@
 
 module CloudPDF
   module Types
-    class DocAnnotationsList200Response < Internal::Types::Model
-      field :page_state, -> { CloudPDF::Types::DocAnnotationsList200ResponsePageState }, optional: false, nullable: false, api_name: "pageState"
+    module DocAnnotationsList200Response
+      # DocAnnotationsList200Response is an alias for AnnotationList
 
-      field :annotations, -> { Internal::Types::Array[CloudPDF::Types::DocAnnotationsList200ResponseAnnotationsItem] }, optional: false, nullable: false
+      # @option str [String]
+      #
+      # @return [untyped]
+      def self.load(str)
+        ::JSON.parse(str)
+      end
+
+      # @option value [untyped]
+      #
+      # @return [String]
+      def self.dump(value)
+        ::JSON.generate(value)
+      end
     end
   end
 end

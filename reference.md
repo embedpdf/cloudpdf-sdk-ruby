@@ -97,6 +97,98 @@ client.doc.head(doc_id: "docId")
 </dl>
 </details>
 
+<details><summary><code>client.doc.<a href="/lib/CloudPDF/doc/client.rb">changes</a>(doc_id:, layer_name:, request) -> CloudPDF::Types::DocChanges200Response</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Each change stands on its own and names itself by `opId`: a refused change rolls back alone, and the answer lists every change in order, applied with its result or refused with its error. Asked again under its `opId`, a change gets the same answer, refusals included; a different change under an answered `opId` is refused (IdempotencyKeyReused). `{ opId, undoOf }` undoes an earlier change of the caller, here or in an earlier request; an undo leaves alone what was changed since, and the undo of an undo redoes. A redaction, a flatten, a form repair or a completed signature ends undo for the changes before it (UndoUnavailable). Each op is checked against its own capability: annotation ops need `doc.annotate.modify`, form values `doc.forms.fill`, form structure `doc.forms.modify`, metadata `doc.metadata.modify`. Bytes (a stamp's drawing, an attached file, a signature's artwork) travel as multipart: a JSON `body` part, each op naming its files by role as `resources: { <role>: '<key>' }`, and each file as the part `resource:<key>`. At most 64 changes per request and 512 ops per change.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.doc.changes(
+  doc_id: "docId",
+  layer_name: "layerName",
+  changes: [{
+    op_id: "opId"
+  }]
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**doc_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**layer_name:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**document_password:** `String` — Base64-encoded password for an encrypted document. Valid only with the API token (403 anywhere else). An encrypted document answers 422 DocPasswordRequired when the header is absent. Viewer doc JWTs use the SDK password-session flow instead.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**changes:** `Internal::Types::Array[CloudPDF::Doc::Types::DocChangesRequestChangesItem]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `CloudPDF::Doc::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.doc.<a href="/lib/CloudPDF/doc/client.rb">download</a>(doc_id:, layer_name:) -> String</code></summary>
 <dl>
 <dd>
@@ -231,7 +323,7 @@ client.doc.manifest(
 </dl>
 </details>
 
-<details><summary><code>client.doc.<a href="/lib/CloudPDF/doc/client.rb">render</a>(doc_id:, layer_name:, pon:) -> String</code></summary>
+<details><summary><code>client.doc.<a href="/lib/CloudPDF/doc/client.rb">render</a>(doc_id:, layer_name:, page_key:) -> String</code></summary>
 <dl>
 <dd>
 
@@ -261,7 +353,7 @@ Render parameters (viewport, format) pass as flat dotted query keys, e.g. `?view
 client.doc.render(
   doc_id: "docId",
   layer_name: "layerName",
-  pon: 1
+  page_key: "pageKey"
 )
 ```
 </dd>
@@ -293,7 +385,7 @@ client.doc.render(
 <dl>
 <dd>
 
-**pon:** `Integer` 
+**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotKey` and `fieldKey`.
     
 </dd>
 </dl>
@@ -321,7 +413,7 @@ client.doc.render(
 </dl>
 </details>
 
-<details><summary><code>client.doc.<a href="/lib/CloudPDF/doc/client.rb">text</a>(doc_id:, layer_name:, pon:) -> CloudPDF::Types::DocText200Response</code></summary>
+<details><summary><code>client.doc.<a href="/lib/CloudPDF/doc/client.rb">text</a>(doc_id:, layer_name:, page_key:) -> CloudPDF::Types::DocText200Response</code></summary>
 <dl>
 <dd>
 
@@ -337,7 +429,7 @@ client.doc.render(
 client.doc.text(
   doc_id: "docId",
   layer_name: "layerName",
-  pon: 1
+  page_key: "pageKey"
 )
 ```
 </dd>
@@ -369,7 +461,7 @@ client.doc.text(
 <dl>
 <dd>
 
-**pon:** `Integer` 
+**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotKey` and `fieldKey`.
     
 </dd>
 </dl>
@@ -552,7 +644,7 @@ client.shares.list(tenant_id: "tenantId")
 <dl>
 <dd>
 
-The returned share id IS the public share token. Mounted only when the deployment can sign (HS256 mode) — exchange mints session JWTs, so grants exist only where minting does.
+The returned share id is the public share token. Mounted only when the deployment can sign (HS256 mode) — exchange mints session JWTs, so grants exist only where minting does.
 </dd>
 </dl>
 </dd>
@@ -1801,7 +1893,7 @@ client.documents.import_from(tenant_id: "tenantId")
 <dl>
 <dd>
 
-**source:** `CloudPDF::Documents::Types::DocumentsImportFromRequestSource` — Where CloudPDF pulls the bytes from. The two shapes differ in WHO supplies the authority to read, not in which storage vendor holds the file.
+**source:** `CloudPDF::Documents::Types::DocumentsImportFromRequestSource` — Where CloudPDF pulls the bytes from. The two shapes differ in who supplies the authority to read, not in which storage vendor holds the file.
     
 </dd>
 </dl>
@@ -2146,7 +2238,7 @@ client.tokens.revoke(
 </details>
 
 ## Doc Annotations
-<details><summary><code>client.doc.annotations.<a href="/lib/CloudPDF/doc/annotations/client.rb">list_all</a>(doc_id:, layer_name:) -> CloudPDF::Types::DocAnnotationsListAll200Response</code></summary>
+<details><summary><code>client.doc.annotations.<a href="/lib/CloudPDF/doc/annotations/client.rb">list_all</a>(doc_id:, layer_name:) -> CloudPDF::Types::AnnotationList</code></summary>
 <dl>
 <dd>
 
@@ -2158,7 +2250,7 @@ client.tokens.revoke(
 <dl>
 <dd>
 
-Returns one entry per page plus the audit-log cursor for reconciling subsequent document events. Page order is unspecified; join by `pageState.pageObjectNumber` when display order matters.
+Returns one entry per page plus the audit-log cursor for reconciling subsequent document events. Page order is unspecified; join by `page` (a `PageRef`) when display order matters.
 </dd>
 </dl>
 </dd>
@@ -2227,7 +2319,7 @@ client.doc.annotations.list_all(
 </dl>
 </details>
 
-<details><summary><code>client.doc.annotations.<a href="/lib/CloudPDF/doc/annotations/client.rb">list</a>(doc_id:, layer_name:, pon:) -> CloudPDF::Types::DocAnnotationsList200Response</code></summary>
+<details><summary><code>client.doc.annotations.<a href="/lib/CloudPDF/doc/annotations/client.rb">list</a>(doc_id:, layer_name:, page_key:) -> CloudPDF::Types::AnnotationList</code></summary>
 <dl>
 <dd>
 
@@ -2243,7 +2335,7 @@ client.doc.annotations.list_all(
 client.doc.annotations.list(
   doc_id: "docId",
   layer_name: "layerName",
-  pon: 1
+  page_key: "pageKey"
 )
 ```
 </dd>
@@ -2275,7 +2367,7 @@ client.doc.annotations.list(
 <dl>
 <dd>
 
-**pon:** `Integer` 
+**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotKey` and `fieldKey`.
     
 </dd>
 </dl>
@@ -2303,7 +2395,7 @@ client.doc.annotations.list(
 </dl>
 </details>
 
-<details><summary><code>client.doc.annotations.<a href="/lib/CloudPDF/doc/annotations/client.rb">create</a>(doc_id:, layer_name:, pon:, request) -> CloudPDF::Types::DocAnnotationsCreate200Response</code></summary>
+<details><summary><code>client.doc.annotations.<a href="/lib/CloudPDF/doc/annotations/client.rb">create</a>(doc_id:, layer_name:, page_key:, request) -> CloudPDF::Types::DocAnnotationsCreate200Response</code></summary>
 <dl>
 <dd>
 
@@ -2333,7 +2425,7 @@ Doc JWTs may instead carry collab scopes (annotations:create:self, …) that ref
 client.doc.annotations.create(
   doc_id: "docId",
   layer_name: "layerName",
-  pon: 1,
+  page_key: "pageKey",
   request: {
     key: "value"
   }
@@ -2368,7 +2460,7 @@ client.doc.annotations.create(
 <dl>
 <dd>
 
-**pon:** `Integer` 
+**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotKey` and `fieldKey`.
     
 </dd>
 </dl>
@@ -2377,6 +2469,14 @@ client.doc.annotations.create(
 <dd>
 
 **document_password:** `String` — Base64-encoded password for an encrypted document. Valid only with the API token (403 anywhere else). An encrypted document answers 422 DocPasswordRequired when the header is absent. Viewer doc JWTs use the SDK password-session flow instead.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**idempotency_key:** `String` — Names the change: 1 to 255 printable ASCII characters. A retry under the same key on the same layer answers with what the first request committed, and changes nothing.
     
 </dd>
 </dl>
@@ -2404,7 +2504,7 @@ client.doc.annotations.create(
 </dl>
 </details>
 
-<details><summary><code>client.doc.annotations.<a href="/lib/CloudPDF/doc/annotations/client.rb">delete</a>(doc_id:, layer_name:, pon:, annot_key:) -> CloudPDF::Types::DocAnnotationsDelete200Response</code></summary>
+<details><summary><code>client.doc.annotations.<a href="/lib/CloudPDF/doc/annotations/client.rb">delete</a>(doc_id:, layer_name:, page_key:, annot_key:) -> CloudPDF::Types::DocAnnotationsDelete200Response</code></summary>
 <dl>
 <dd>
 
@@ -2420,7 +2520,7 @@ client.doc.annotations.create(
 client.doc.annotations.delete(
   doc_id: "docId",
   layer_name: "layerName",
-  pon: 1,
+  page_key: "pageKey",
   annot_key: "annotKey"
 )
 ```
@@ -2453,7 +2553,7 @@ client.doc.annotations.delete(
 <dl>
 <dd>
 
-**pon:** `Integer` 
+**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotKey` and `fieldKey`.
     
 </dd>
 </dl>
@@ -2461,7 +2561,7 @@ client.doc.annotations.delete(
 <dl>
 <dd>
 
-**annot_key:** `String` 
+**annot_key:** `String` — The annotation's address on the page: `obj:N`, its indirect object number, or `base:N` for an annotation the uploaded file stored inline (without an object number of its own), the position it was born at in the page's /Annots. The name the annotation's `ref` carries for life.
     
 </dd>
 </dl>
@@ -2470,6 +2570,14 @@ client.doc.annotations.delete(
 <dd>
 
 **document_password:** `String` — Base64-encoded password for an encrypted document. Valid only with the API token (403 anywhere else). An encrypted document answers 422 DocPasswordRequired when the header is absent. Viewer doc JWTs use the SDK password-session flow instead.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**idempotency_key:** `String` — Names the change: 1 to 255 printable ASCII characters. A retry under the same key on the same layer answers with what the first request committed, and changes nothing.
     
 </dd>
 </dl>
@@ -2489,7 +2597,7 @@ client.doc.annotations.delete(
 </dl>
 </details>
 
-<details><summary><code>client.doc.annotations.<a href="/lib/CloudPDF/doc/annotations/client.rb">update</a>(doc_id:, layer_name:, pon:, annot_key:, request) -> CloudPDF::Types::DocAnnotationsUpdate200Response</code></summary>
+<details><summary><code>client.doc.annotations.<a href="/lib/CloudPDF/doc/annotations/client.rb">update</a>(doc_id:, layer_name:, page_key:, annot_key:, request) -> CloudPDF::Types::DocAnnotationsUpdate200Response</code></summary>
 <dl>
 <dd>
 
@@ -2505,7 +2613,7 @@ client.doc.annotations.delete(
 client.doc.annotations.update(
   doc_id: "docId",
   layer_name: "layerName",
-  pon: 1,
+  page_key: "pageKey",
   annot_key: "annotKey",
   request: {
     key: "value"
@@ -2541,7 +2649,7 @@ client.doc.annotations.update(
 <dl>
 <dd>
 
-**pon:** `Integer` 
+**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotKey` and `fieldKey`.
     
 </dd>
 </dl>
@@ -2549,7 +2657,7 @@ client.doc.annotations.update(
 <dl>
 <dd>
 
-**annot_key:** `String` 
+**annot_key:** `String` — The annotation's address on the page: `obj:N`, its indirect object number, or `base:N` for an annotation the uploaded file stored inline (without an object number of its own), the position it was born at in the page's /Annots. The name the annotation's `ref` carries for life.
     
 </dd>
 </dl>
@@ -2558,6 +2666,14 @@ client.doc.annotations.update(
 <dd>
 
 **document_password:** `String` — Base64-encoded password for an encrypted document. Valid only with the API token (403 anywhere else). An encrypted document answers 422 DocPasswordRequired when the header is absent. Viewer doc JWTs use the SDK password-session flow instead.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**idempotency_key:** `String` — Names the change: 1 to 255 printable ASCII characters. A retry under the same key on the same layer answers with what the first request committed, and changes nothing.
     
 </dd>
 </dl>
@@ -2585,7 +2701,92 @@ client.doc.annotations.update(
 </dl>
 </details>
 
-<details><summary><code>client.doc.annotations.<a href="/lib/CloudPDF/doc/annotations/client.rb">export_appearance</a>(doc_id:, layer_name:, pon:, request) -> String</code></summary>
+<details><summary><code>client.doc.annotations.<a href="/lib/CloudPDF/doc/annotations/client.rb">read_appearance</a>(doc_id:, layer_name:, page_key:, annot_key:) -> String</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.doc.annotations.read_appearance(
+  doc_id: "docId",
+  layer_name: "layerName",
+  page_key: "pageKey",
+  annot_key: "annotKey"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**doc_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**layer_name:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotKey` and `fieldKey`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**annot_key:** `String` — The annotation's address on the page: `obj:N`, its indirect object number, or `base:N` for an annotation the uploaded file stored inline (without an object number of its own), the position it was born at in the page's /Annots. The name the annotation's `ref` carries for life.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**document_password:** `String` — Base64-encoded password for an encrypted document. Valid only with the API token (403 anywhere else). An encrypted document answers 422 DocPasswordRequired when the header is absent. Viewer doc JWTs use the SDK password-session flow instead.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `CloudPDF::Doc::Annotations::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.doc.annotations.<a href="/lib/CloudPDF/doc/annotations/client.rb">export_appearance</a>(doc_id:, layer_name:, page_key:, request) -> String</code></summary>
 <dl>
 <dd>
 
@@ -2601,7 +2802,7 @@ client.doc.annotations.update(
 client.doc.annotations.export_appearance(
   doc_id: "docId",
   layer_name: "layerName",
-  pon: 1,
+  page_key: "pageKey",
   request: {
     string: {
       key: "value"
@@ -2638,7 +2839,7 @@ client.doc.annotations.export_appearance(
 <dl>
 <dd>
 
-**pon:** `Integer` 
+**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotKey` and `fieldKey`.
     
 </dd>
 </dl>
@@ -2674,7 +2875,7 @@ client.doc.annotations.export_appearance(
 </dl>
 </details>
 
-<details><summary><code>client.doc.annotations.<a href="/lib/CloudPDF/doc/annotations/client.rb">flatten</a>(doc_id:, layer_name:, pon:, request) -> CloudPDF::Types::DocAnnotationsFlatten200Response</code></summary>
+<details><summary><code>client.doc.annotations.<a href="/lib/CloudPDF/doc/annotations/client.rb">flatten</a>(doc_id:, layer_name:, page_key:, request) -> CloudPDF::Types::DocAnnotationsFlatten200Response</code></summary>
 <dl>
 <dd>
 
@@ -2690,7 +2891,7 @@ client.doc.annotations.export_appearance(
 client.doc.annotations.flatten(
   doc_id: "docId",
   layer_name: "layerName",
-  pon: 1,
+  page_key: "pageKey",
   request: {
     key: "value"
   }
@@ -2725,7 +2926,7 @@ client.doc.annotations.flatten(
 <dl>
 <dd>
 
-**pon:** `Integer` 
+**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotKey` and `fieldKey`.
     
 </dd>
 </dl>
@@ -2741,7 +2942,117 @@ client.doc.annotations.flatten(
 <dl>
 <dd>
 
+**idempotency_key:** `String` — Names the change: 1 to 255 printable ASCII characters. A retry under the same key on the same layer answers with what the first request committed, and changes nothing.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **request:** `Internal::Types::Hash[String, Object]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `CloudPDF::Doc::Annotations::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.doc.annotations.<a href="/lib/CloudPDF/doc/annotations/client.rb">reorder</a>(doc_id:, layer_name:, page_key:, request) -> CloudPDF::Types::DocAnnotationsReorder200Response</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.doc.annotations.reorder(
+  doc_id: "docId",
+  layer_name: "layerName",
+  page_key: "pageKey",
+  refs: [],
+  position: "start"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**doc_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**layer_name:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotKey` and `fieldKey`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**document_password:** `String` — Base64-encoded password for an encrypted document. Valid only with the API token (403 anywhere else). An encrypted document answers 422 DocPasswordRequired when the header is absent. Viewer doc JWTs use the SDK password-session flow instead.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**idempotency_key:** `String` — Names the change: 1 to 255 printable ASCII characters. A retry under the same key on the same layer answers with what the first request committed, and changes nothing.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**refs:** `Internal::Types::Array[CloudPDF::Types::AnnotationRef]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**position:** `CloudPDF::Types::AnnotationPosition` 
     
 </dd>
 </dl>
@@ -2762,7 +3073,7 @@ client.doc.annotations.flatten(
 </details>
 
 ## Doc Forms
-<details><summary><code>client.doc.forms.<a href="/lib/CloudPDF/doc/forms/client.rb">get</a>(doc_id:, layer_name:) -> CloudPDF::Types::DocFormsGet200Response</code></summary>
+<details><summary><code>client.doc.forms.<a href="/lib/CloudPDF/doc/forms/client.rb">list</a>(doc_id:, layer_name:) -> CloudPDF::Types::DocFormsList200Response</code></summary>
 <dl>
 <dd>
 
@@ -2775,7 +3086,7 @@ client.doc.annotations.flatten(
 <dd>
 
 ```ruby
-client.doc.forms.get(
+client.doc.forms.list(
   doc_id: "docId",
   layer_name: "layerName"
 )
@@ -2829,7 +3140,7 @@ client.doc.forms.get(
 </dl>
 </details>
 
-<details><summary><code>client.doc.forms.<a href="/lib/CloudPDF/doc/forms/client.rb">export_data</a>(doc_id:, layer_name:) -> String</code></summary>
+<details><summary><code>client.doc.forms.<a href="/lib/CloudPDF/doc/forms/client.rb">reorder_calculations</a>(doc_id:, layer_name:, request) -> CloudPDF::Types::DocFormsReorderCalculations200Response</code></summary>
 <dl>
 <dd>
 
@@ -2842,87 +3153,11 @@ client.doc.forms.get(
 <dd>
 
 ```ruby
-client.doc.forms.export_data(
-  doc_id: "docId",
-  layer_name: "layerName"
-)
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**doc_id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**layer_name:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**format:** `CloudPDF::Doc::Forms::Types::ExportDataFormsRequestFormat` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**document_password:** `String` — Base64-encoded password for an encrypted document. Valid only with the API token (403 anywhere else). An encrypted document answers 422 DocPasswordRequired when the header is absent. Viewer doc JWTs use the SDK password-session flow instead.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request_options:** `CloudPDF::Doc::Forms::RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.doc.forms.<a href="/lib/CloudPDF/doc/forms/client.rb">import_data</a>(doc_id:, layer_name:, request) -> CloudPDF::Types::DocFormsImportData200Response</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```ruby
-client.doc.forms.import_data(
+client.doc.forms.reorder_calculations(
   doc_id: "docId",
   layer_name: "layerName",
-  request: {
-    key: "value"
-  }
+  fields: [],
+  position: "start"
 )
 ```
 </dd>
@@ -2962,7 +3197,7 @@ client.doc.forms.import_data(
 <dl>
 <dd>
 
-**request:** `Internal::Types::Hash[String, Object]` 
+**idempotency_key:** `String` — Names the change: 1 to 255 printable ASCII characters. A retry under the same key on the same layer answers with what the first request committed, and changes nothing.
     
 </dd>
 </dl>
@@ -2970,51 +3205,7 @@ client.doc.forms.import_data(
 <dl>
 <dd>
 
-**request_options:** `CloudPDF::Doc::Forms::RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.doc.forms.<a href="/lib/CloudPDF/doc/forms/client.rb">reset</a>(doc_id:, layer_name:, field_key:) -> CloudPDF::Types::DocFormsReset200Response</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```ruby
-client.doc.forms.reset(
-  doc_id: "docId",
-  layer_name: "layerName",
-  field_key: "fieldKey"
-)
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**doc_id:** `String` 
+**fields:** `Internal::Types::Array[CloudPDF::Types::FormFieldRef]` 
     
 </dd>
 </dl>
@@ -3022,23 +3213,7 @@ client.doc.forms.reset(
 <dl>
 <dd>
 
-**layer_name:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**field_key:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**document_password:** `String` — Base64-encoded password for an encrypted document. Valid only with the API token (403 anywhere else). An encrypted document answers 422 DocPasswordRequired when the header is absent. Viewer doc JWTs use the SDK password-session flow instead.
+**position:** `CloudPDF::Types::FieldPosition` 
     
 </dd>
 </dl>
@@ -3125,6 +3300,14 @@ client.doc.forms.set_value(
 <dl>
 <dd>
 
+**idempotency_key:** `String` — Names the change: 1 to 255 printable ASCII characters. A retry under the same key on the same layer answers with what the first request committed, and changes nothing.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **request:** `Internal::Types::Hash[String, Object]` 
     
 </dd>
@@ -3145,8 +3328,388 @@ client.doc.forms.set_value(
 </dl>
 </details>
 
+<details><summary><code>client.doc.forms.<a href="/lib/CloudPDF/doc/forms/client.rb">reset</a>(doc_id:, layer_name:, request) -> CloudPDF::Types::DocFormsReset200Response</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.doc.forms.reset(
+  doc_id: "docId",
+  layer_name: "layerName"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**doc_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**layer_name:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**document_password:** `String` — Base64-encoded password for an encrypted document. Valid only with the API token (403 anywhere else). An encrypted document answers 422 DocPasswordRequired when the header is absent. Viewer doc JWTs use the SDK password-session flow instead.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**idempotency_key:** `String` — Names the change: 1 to 255 printable ASCII characters. A retry under the same key on the same layer answers with what the first request committed, and changes nothing.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**refs:** `Internal::Types::Array[CloudPDF::Types::FormFieldRef]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `CloudPDF::Doc::Forms::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.doc.forms.<a href="/lib/CloudPDF/doc/forms/client.rb">delete_widget</a>(doc_id:, layer_name:, page_key:, annot_key:) -> CloudPDF::Types::DocFormsDeleteWidget200Response</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.doc.forms.delete_widget(
+  doc_id: "docId",
+  layer_name: "layerName",
+  page_key: "pageKey",
+  annot_key: "annotKey"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**doc_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**layer_name:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotKey` and `fieldKey`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**annot_key:** `String` — The annotation's address on the page: `obj:N`, its indirect object number, or `base:N` for an annotation the uploaded file stored inline (without an object number of its own), the position it was born at in the page's /Annots. The name the annotation's `ref` carries for life.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**document_password:** `String` — Base64-encoded password for an encrypted document. Valid only with the API token (403 anywhere else). An encrypted document answers 422 DocPasswordRequired when the header is absent. Viewer doc JWTs use the SDK password-session flow instead.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**idempotency_key:** `String` — Names the change: 1 to 255 printable ASCII characters. A retry under the same key on the same layer answers with what the first request committed, and changes nothing.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `CloudPDF::Doc::Forms::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.doc.forms.<a href="/lib/CloudPDF/doc/forms/client.rb">update_widget</a>(doc_id:, layer_name:, page_key:, annot_key:, request) -> CloudPDF::Types::DocFormsUpdateWidget200Response</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.doc.forms.update_widget(
+  doc_id: "docId",
+  layer_name: "layerName",
+  page_key: "pageKey",
+  annot_key: "annotKey",
+  patch: {}
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**doc_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**layer_name:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotKey` and `fieldKey`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**annot_key:** `String` — The annotation's address on the page: `obj:N`, its indirect object number, or `base:N` for an annotation the uploaded file stored inline (without an object number of its own), the position it was born at in the page's /Annots. The name the annotation's `ref` carries for life.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**document_password:** `String` — Base64-encoded password for an encrypted document. Valid only with the API token (403 anywhere else). An encrypted document answers 422 DocPasswordRequired when the header is absent. Viewer doc JWTs use the SDK password-session flow instead.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**idempotency_key:** `String` — Names the change: 1 to 255 printable ASCII characters. A retry under the same key on the same layer answers with what the first request committed, and changes nothing.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**patch:** `CloudPDF::Types::WidgetPatch` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `CloudPDF::Doc::Forms::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.doc.forms.<a href="/lib/CloudPDF/doc/forms/client.rb">reorder_widgets</a>(doc_id:, layer_name:, page_key:, request) -> CloudPDF::Types::DocFormsReorderWidgets200Response</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.doc.forms.reorder_widgets(
+  doc_id: "docId",
+  layer_name: "layerName",
+  page_key: "pageKey",
+  widgets: [],
+  position: "start"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**doc_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**layer_name:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotKey` and `fieldKey`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**document_password:** `String` — Base64-encoded password for an encrypted document. Valid only with the API token (403 anywhere else). An encrypted document answers 422 DocPasswordRequired when the header is absent. Viewer doc JWTs use the SDK password-session flow instead.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**idempotency_key:** `String` — Names the change: 1 to 255 printable ASCII characters. A retry under the same key on the same layer answers with what the first request committed, and changes nothing.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**widgets:** `Internal::Types::Array[CloudPDF::Types::AnnotationRef]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**position:** `CloudPDF::Types::AnnotationPosition` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `CloudPDF::Doc::Forms::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Doc Metadata
-<details><summary><code>client.doc.metadata.<a href="/lib/CloudPDF/doc/metadata/client.rb">get</a>(doc_id:, layer_name:) -> CloudPDF::Types::DocMetadataGet200Response</code></summary>
+<details><summary><code>client.doc.metadata.<a href="/lib/CloudPDF/doc/metadata/client.rb">get</a>(doc_id:, layer_name:) -> CloudPDF::Types::DocumentMetadata</code></summary>
 <dl>
 <dd>
 
@@ -3214,7 +3777,7 @@ client.doc.metadata.get(
 </details>
 
 ## Doc Pages
-<details><summary><code>client.doc.pages.<a href="/lib/CloudPDF/doc/pages/client.rb">set_scale</a>(doc_id:, layer_name:, pon:, request) -> CloudPDF::Types::DocPagesSetScale200Response</code></summary>
+<details><summary><code>client.doc.pages.<a href="/lib/CloudPDF/doc/pages/client.rb">set_scale</a>(doc_id:, layer_name:, page_key:, request) -> CloudPDF::Types::DocPagesSetScale200Response</code></summary>
 <dl>
 <dd>
 
@@ -3230,7 +3793,7 @@ client.doc.metadata.get(
 client.doc.pages.set_scale(
   doc_id: "docId",
   layer_name: "layerName",
-  pon: 1
+  page_key: "pageKey"
 )
 ```
 </dd>
@@ -3262,7 +3825,7 @@ client.doc.pages.set_scale(
 <dl>
 <dd>
 
-**pon:** `Integer` 
+**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotKey` and `fieldKey`.
     
 </dd>
 </dl>
@@ -3271,6 +3834,14 @@ client.doc.pages.set_scale(
 <dd>
 
 **document_password:** `String` — Base64-encoded password for an encrypted document. Valid only with the API token (403 anywhere else). An encrypted document answers 422 DocPasswordRequired when the header is absent. Viewer doc JWTs use the SDK password-session flow instead.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**idempotency_key:** `String` — Names the change: 1 to 255 printable ASCII characters. A retry under the same key on the same layer answers with what the first request committed, and changes nothing.
     
 </dd>
 </dl>
@@ -3298,7 +3869,7 @@ client.doc.pages.set_scale(
 </dl>
 </details>
 
-<details><summary><code>client.doc.pages.<a href="/lib/CloudPDF/doc/pages/client.rb">viewports</a>(doc_id:, layer_name:, pon:) -> Internal::Types::Array[CloudPDF::Types::DocPagesViewports200ResponseItem]</code></summary>
+<details><summary><code>client.doc.pages.<a href="/lib/CloudPDF/doc/pages/client.rb">viewports</a>(doc_id:, layer_name:, page_key:) -> CloudPDF::Types::DocPagesViewports200Response</code></summary>
 <dl>
 <dd>
 
@@ -3314,7 +3885,7 @@ client.doc.pages.set_scale(
 client.doc.pages.viewports(
   doc_id: "docId",
   layer_name: "layerName",
-  pon: 1
+  page_key: "pageKey"
 )
 ```
 </dd>
@@ -3346,7 +3917,7 @@ client.doc.pages.viewports(
 <dl>
 <dd>
 
-**pon:** `Integer` 
+**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotKey` and `fieldKey`.
     
 </dd>
 </dl>
@@ -3432,6 +4003,14 @@ client.doc.pages.delete(
 <dl>
 <dd>
 
+**idempotency_key:** `String` — Names the change: 1 to 255 printable ASCII characters. A retry under the same key on the same layer answers with what the first request committed, and changes nothing.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **request:** `Internal::Types::Hash[String, Object]` 
     
 </dd>
@@ -3464,7 +4043,7 @@ client.doc.pages.delete(
 <dl>
 <dd>
 
-A read, not a mutation: the source document is untouched and no event is published. Body is `{"pageObjectNumbers": number[]}`; the response body is the new PDF.
+A read, not a mutation: the source document is untouched and no event is published. Body is `{"pages": PageRef[]}`; the response body is the new PDF.
 </dd>
 </dl>
 </dd>
@@ -3604,6 +4183,14 @@ client.doc.pages.flatten(
 <dl>
 <dd>
 
+**idempotency_key:** `String` — Names the change: 1 to 255 printable ASCII characters. A retry under the same key on the same layer answers with what the first request committed, and changes nothing.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **request:** `Internal::Types::Hash[String, Object]` 
     
 </dd>
@@ -3636,7 +4223,7 @@ client.doc.pages.flatten(
 <dl>
 <dd>
 
-Multipart mutation envelope: a `body` field holding `{"destIndex"?: number}` (omitted → append) plus a `resource:source` file part carrying the standalone PDF whose pages are copied in. The inserted copies get fresh page object numbers, returned in insertion order.
+Multipart: a JSON `body` part `{"position"?: PagePosition, "resources": {"source": "<key>"}}` (position omitted → the end), and the standalone PDF whose pages are copied in as the part `resource:<key>`. The inserted copies get fresh page object numbers, returned in insertion order.
 </dd>
 </dl>
 </dd>
@@ -3693,6 +4280,14 @@ client.doc.pages.insert(
 <dl>
 <dd>
 
+**idempotency_key:** `String` — Names the change: 1 to 255 printable ASCII characters. A retry under the same key on the same layer answers with what the first request committed, and changes nothing.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **request_options:** `CloudPDF::Doc::Pages::RequestOptions` 
     
 </dd>
@@ -3717,7 +4312,7 @@ client.doc.pages.insert(
 <dl>
 <dd>
 
-Body is `{"size": {"width", "height"}, "count"?, "destIndex"?}` — size in PDF points, count in [1, 100], destIndex omitted → append.
+Body is `{"size": {"width", "height"}, "count"?, "position"?}` — size in PDF points, count in [1, 100], `position` a `PagePosition` (omitted → the end).
 </dd>
 </dl>
 </dd>
@@ -3777,77 +4372,7 @@ client.doc.pages.insert_blank(
 <dl>
 <dd>
 
-**request:** `Internal::Types::Hash[String, Object]` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request_options:** `CloudPDF::Doc::Pages::RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.doc.pages.<a href="/lib/CloudPDF/doc/pages/client.rb">move</a>(doc_id:, layer_name:, request) -> CloudPDF::Types::DocPagesMove200Response</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```ruby
-client.doc.pages.move(
-  doc_id: "docId",
-  layer_name: "layerName",
-  request: {
-    key: "value"
-  }
-)
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**doc_id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**layer_name:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**document_password:** `String` — Base64-encoded password for an encrypted document. Valid only with the API token (403 anywhere else). An encrypted document answers 422 DocPasswordRequired when the header is absent. Viewer doc JWTs use the SDK password-session flow instead.
+**idempotency_key:** `String` — Names the change: 1 to 255 printable ASCII characters. A retry under the same key on the same layer answers with what the first request committed, and changes nothing.
     
 </dd>
 </dl>
@@ -3933,6 +4458,14 @@ client.doc.pages.set_name(
 <dl>
 <dd>
 
+**idempotency_key:** `String` — Names the change: 1 to 255 printable ASCII characters. A retry under the same key on the same layer answers with what the first request committed, and changes nothing.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **request:** `Internal::Types::Hash[String, Object]` 
     
 </dd>
@@ -4011,7 +4544,111 @@ client.doc.pages.remove_name(
 <dl>
 <dd>
 
+**idempotency_key:** `String` — Names the change: 1 to 255 printable ASCII characters. A retry under the same key on the same layer answers with what the first request committed, and changes nothing.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **request:** `Internal::Types::Hash[String, Object]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `CloudPDF::Doc::Pages::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.doc.pages.<a href="/lib/CloudPDF/doc/pages/client.rb">reorder</a>(doc_id:, layer_name:, request) -> CloudPDF::Types::DocPagesReorder200Response</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.doc.pages.reorder(
+  doc_id: "docId",
+  layer_name: "layerName",
+  pages: [{
+    kind: "objectNumber",
+    object_number: 1
+  }],
+  position: "start"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**doc_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**layer_name:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**document_password:** `String` — Base64-encoded password for an encrypted document. Valid only with the API token (403 anywhere else). An encrypted document answers 422 DocPasswordRequired when the header is absent. Viewer doc JWTs use the SDK password-session flow instead.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**idempotency_key:** `String` — Names the change: 1 to 255 printable ASCII characters. A retry under the same key on the same layer answers with what the first request committed, and changes nothing.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pages:** `Internal::Types::Array[CloudPDF::Types::PageRef]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**position:** `CloudPDF::Types::PagePosition` 
     
 </dd>
 </dl>
@@ -4089,6 +4726,14 @@ client.doc.pages.rotate(
 <dl>
 <dd>
 
+**idempotency_key:** `String` — Names the change: 1 to 255 printable ASCII characters. A retry under the same key on the same layer answers with what the first request committed, and changes nothing.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **request:** `Internal::Types::Hash[String, Object]` 
     
 </dd>
@@ -4125,10 +4770,7 @@ client.doc.pages.rotate(
 ```ruby
 client.doc.redactions.apply(
   doc_id: "docId",
-  layer_name: "layerName",
-  request: {
-    key: "value"
-  }
+  layer_name: "layerName"
 )
 ```
 </dd>
@@ -4168,7 +4810,23 @@ client.doc.redactions.apply(
 <dl>
 <dd>
 
-**request:** `Internal::Types::Hash[String, Object]` 
+**idempotency_key:** `String` — Names the change: 1 to 255 printable ASCII characters. A retry under the same key on the same layer answers with what the first request committed, and changes nothing.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pages:** `Internal::Types::Array[CloudPDF::Types::PageRef]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**annotations:** `Internal::Types::Array[CloudPDF::Types::AnnotationRef]` 
     
 </dd>
 </dl>
@@ -4270,7 +4928,7 @@ client.doc.signatures.list(
 </dl>
 </details>
 
-<details><summary><code>client.doc.signatures.<a href="/lib/CloudPDF/doc/signatures/client.rb">abort</a>(doc_id:, layer_name:, signing_id:) -> CloudPDF::Types::DocSignaturesAbort200Response</code></summary>
+<details><summary><code>client.doc.signatures.<a href="/lib/CloudPDF/doc/signatures/client.rb">cancel</a>(doc_id:, layer_name:, signing_id:) -> CloudPDF::Types::DocSignaturesCancel200Response</code></summary>
 <dl>
 <dd>
 
@@ -4283,7 +4941,7 @@ client.doc.signatures.list(
 <dd>
 
 ```ruby
-client.doc.signatures.abort(
+client.doc.signatures.cancel(
   doc_id: "docId",
   layer_name: "layerName",
   signing_id: "signingId"
@@ -4574,7 +5232,7 @@ client.doc.signatures.analysis(
 <dl>
 <dd>
 
-The multipart envelope: a JSON `body` part (field, subFilter, digest, contentsSize, signer, certify, lock, appearance) and an optional `resource:<key>` PDF part the body's `appearance.resource` names. A certification (`certify.permission`) additionally requires `doc.sign.certify`. The layer is read-only until the signing completes, is aborted, or expires (15 minutes). A layer behind the document head cannot sign (StaleBase).
+Multipart: a JSON `body` part (field, subFilter, digest, contentsSize, signer, certify, lock), naming the appearance PDF it may carry as `resources: { appearance: '<key>' }`, and that PDF as the part `resource:<key>`. A certification (`certify.permission`) additionally requires `doc.sign.certify`. The layer is read-only until the signing completes, is cancelled, or expires (15 minutes). A layer behind the document head cannot sign (StaleBase).
 </dd>
 </dl>
 </dd>
@@ -5223,6 +5881,74 @@ client.doc.versions.signature_digest(
 <dd>
 
 **request_options:** `CloudPDF::Doc::Versions::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Doc Metadata Custom
+<details><summary><code>client.doc.metadata.custom.<a href="/lib/CloudPDF/doc/metadata/custom/client.rb">get</a>(doc_id:, layer_name:) -> Internal::Types::Hash[String, String]</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.doc.metadata.custom.get(
+  doc_id: "docId",
+  layer_name: "layerName"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**doc_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**layer_name:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**document_password:** `String` — Base64-encoded password for an encrypted document. Valid only with the API token (403 anywhere else). An encrypted document answers 422 DocPasswordRequired when the header is absent. Viewer doc JWTs use the SDK password-session flow instead.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `CloudPDF::Doc::Metadata::Custom::RequestOptions` 
     
 </dd>
 </dl>
