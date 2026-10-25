@@ -315,6 +315,54 @@ module CloudPDF
           raise error_class.new(response.body, code: code)
         end
 
+        # A file that decodes past the server's limit is refused (PayloadTooLarge).
+        #
+        # @param request_options [Hash]
+        # @param params [Hash]
+        # @option request_options [String] :base_url
+        # @option request_options [Hash{String => Object}] :additional_headers
+        # @option request_options [Hash{String => Object}] :additional_query_parameters
+        # @option request_options [Hash{String => Object}] :additional_body_parameters
+        # @option request_options [Integer] :timeout_in_seconds
+        # @option params [String] :doc_id
+        # @option params [String] :layer_name
+        # @option params [String] :page_key
+        # @option params [String] :annot_key
+        # @option params [String, nil] :document_password
+        #
+        # @example
+        #   client.doc.annotations.read_file(
+        #     doc_id: "docId",
+        #     layer_name: "layerName",
+        #     page_key: "pageKey",
+        #     annot_key: "annotKey"
+        #   )
+        #
+        # @return [untyped]
+        def read_file(request_options: {}, **params)
+          params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
+          headers = {}
+          headers["X-Document-Password"] = params[:document_password] if params[:document_password]
+
+          request = CloudPDF::Internal::JSON::Request.new(
+            base_url: request_options[:base_url],
+            method: "GET",
+            path: "v1/docs/#{URI.encode_uri_component(params[:doc_id].to_s)}/layers/#{URI.encode_uri_component(params[:layer_name].to_s)}/annotations/pages/#{URI.encode_uri_component(params[:page_key].to_s)}/items/#{URI.encode_uri_component(params[:annot_key].to_s)}/resources/file",
+            headers: headers,
+            request_options: request_options
+          )
+          begin
+            response = @client.send(request)
+          rescue Net::HTTPRequestTimeout
+            raise CloudPDF::Errors::TimeoutError
+          end
+          code = response.code.to_i
+          return if code.between?(200, 299)
+
+          error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+
         # @param request_options [Hash]
         # @param params [CloudPDF::Types::DocAnnotationsExportAppearanceRequest]
         # @option request_options [String] :base_url

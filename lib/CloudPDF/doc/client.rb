@@ -57,10 +57,11 @@ module CloudPDF
       # request; an undo leaves alone what was changed since, and the undo of an undo redoes. A redaction, a flatten, a
       # form repair or a completed signature ends undo for the changes before it (UndoUnavailable). Each op is checked
       # against its own capability: annotation ops need `doc.annotate.modify`, form values `doc.forms.fill`, form
-      # structure `doc.forms.modify`, metadata `doc.metadata.modify`. Bytes (a stamp's drawing, an attached file, a
-      # signature's artwork) travel as multipart: a JSON `body` part, each op naming its files by role as `resources: {
-      # <role>: '<key>' }`, and each file as the part `resource:<key>`. At most 64 changes per request and 512 ops per
-      # change.
+      # structure `doc.forms.modify`, metadata `doc.metadata.modify`, outline `doc.outline.modify`, pages
+      # `doc.pages.assemble`, embedded files `doc.attachments.modify`. Bytes (a stamp's drawing, an attached file, a
+      # signature's artwork, a PDF whose pages come in) travel as multipart: a JSON `body` part, each op naming its
+      # files by role as `resources: { <role>: '<key>' }`, and each file as the part `resource:<key>`. At most 64
+      # changes per request and 512 ops per change.
       #
       # @param request_options [Hash]
       # @param params [CloudPDF::Doc::Types::DocChangesRequest]
@@ -298,6 +299,11 @@ module CloudPDF
         @annotations ||= CloudPDF::Doc::Annotations::Client.new(client: @client)
       end
 
+      # @return [CloudPDF::Attachments::Client]
+      def attachments
+        @attachments ||= CloudPDF::Doc::Attachments::Client.new(client: @client)
+      end
+
       # @return [CloudPDF::Forms::Client]
       def forms
         @forms ||= CloudPDF::Doc::Forms::Client.new(client: @client)
@@ -306,6 +312,11 @@ module CloudPDF
       # @return [CloudPDF::Metadata::Client]
       def metadata
         @metadata ||= CloudPDF::Doc::Metadata::Client.new(client: @client)
+      end
+
+      # @return [CloudPDF::Outline::Client]
+      def outline
+        @outline ||= CloudPDF::Doc::Outline::Client.new(client: @client)
       end
 
       # @return [CloudPDF::Pages::Client]

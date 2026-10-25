@@ -69,7 +69,7 @@ module CloudPDF
 
       field :icon, -> { CloudPDF::Types::AnnotationFileAttachmentIcon }, optional: false, nullable: false
 
-      field :file, -> { CloudPDF::Types::AnnotationFileAttachmentFile }, optional: false, nullable: true
+      field :file, -> { CloudPDF::Types::AttachmentFileInfo }, optional: false, nullable: true
     end
   end
 end

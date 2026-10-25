@@ -17,6 +17,8 @@ module CloudPDF
 
       field :attachments_version, -> { Integer }, optional: true, nullable: false, api_name: "attachmentsVersion"
 
+      field :outline_version, -> { Integer }, optional: true, nullable: false, api_name: "outlineVersion"
+
       field :layer_version, -> { Integer }, optional: true, nullable: false, api_name: "layerVersion"
 
       field :working, -> { Internal::Types::Boolean }, optional: true, nullable: false

@@ -54,6 +54,34 @@ module CloudPDF
       member -> { CloudPDF::Types::ChangeItemMetadataUpdate }, key: "METADATA_UPDATE"
 
       member -> { CloudPDF::Types::ChangeItemMetadataUpdateCustom }, key: "METADATA_UPDATE_CUSTOM"
+
+      member -> { CloudPDF::Types::ChangeItemOutlineCreate }, key: "OUTLINE_CREATE"
+
+      member -> { CloudPDF::Types::ChangeItemOutlineUpdate }, key: "OUTLINE_UPDATE"
+
+      member -> { CloudPDF::Types::ChangeItemOutlineMove }, key: "OUTLINE_MOVE"
+
+      member -> { CloudPDF::Types::ChangeItemOutlineDelete }, key: "OUTLINE_DELETE"
+
+      member -> { CloudPDF::Types::ChangeItemOutlineRestore }, key: "OUTLINE_RESTORE"
+
+      member -> { CloudPDF::Types::ChangeItemPagesRotate }, key: "PAGES_ROTATE"
+
+      member -> { CloudPDF::Types::ChangeItemPagesReorder }, key: "PAGES_REORDER"
+
+      member -> { CloudPDF::Types::ChangeItemPagesDelete }, key: "PAGES_DELETE"
+
+      member -> { CloudPDF::Types::ChangeItemPagesInsertBlank }, key: "PAGES_INSERT_BLANK"
+
+      member -> { CloudPDF::Types::ChangeItemPagesInsert }, key: "PAGES_INSERT"
+
+      member -> { CloudPDF::Types::ChangeItemPagesRestore }, key: "PAGES_RESTORE"
+
+      member -> { CloudPDF::Types::ChangeItemAttachmentsCreate }, key: "ATTACHMENTS_CREATE"
+
+      member -> { CloudPDF::Types::ChangeItemAttachmentsDelete }, key: "ATTACHMENTS_DELETE"
+
+      member -> { CloudPDF::Types::ChangeItemAttachmentsRestore }, key: "ATTACHMENTS_RESTORE"
     end
   end
 end

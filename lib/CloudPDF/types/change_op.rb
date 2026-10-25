@@ -46,6 +46,28 @@ module CloudPDF
       member -> { CloudPDF::Types::ChangeOpMetadataUpdate }, key: "METADATA_UPDATE"
 
       member -> { CloudPDF::Types::ChangeOpMetadataUpdateCustom }, key: "METADATA_UPDATE_CUSTOM"
+
+      member -> { CloudPDF::Types::ChangeOpOutlineCreate }, key: "OUTLINE_CREATE"
+
+      member -> { CloudPDF::Types::ChangeOpOutlineUpdate }, key: "OUTLINE_UPDATE"
+
+      member -> { CloudPDF::Types::ChangeOpOutlineMove }, key: "OUTLINE_MOVE"
+
+      member -> { CloudPDF::Types::ChangeOpOutlineDelete }, key: "OUTLINE_DELETE"
+
+      member -> { CloudPDF::Types::ChangeOpPagesRotate }, key: "PAGES_ROTATE"
+
+      member -> { CloudPDF::Types::ChangeOpPagesReorder }, key: "PAGES_REORDER"
+
+      member -> { CloudPDF::Types::ChangeOpPagesDelete }, key: "PAGES_DELETE"
+
+      member -> { CloudPDF::Types::ChangeOpPagesInsertBlank }, key: "PAGES_INSERT_BLANK"
+
+      member -> { CloudPDF::Types::ChangeOpPagesInsert }, key: "PAGES_INSERT"
+
+      member -> { CloudPDF::Types::ChangeOpAttachmentsCreate }, key: "ATTACHMENTS_CREATE"
+
+      member -> { CloudPDF::Types::ChangeOpAttachmentsDelete }, key: "ATTACHMENTS_DELETE"
     end
   end
 end
