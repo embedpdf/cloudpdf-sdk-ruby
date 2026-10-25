@@ -16,6 +16,8 @@ module CloudPDF
       field :metadata, -> { CloudPDF::Types::DocManifest200ResponseScopesMetadata }, optional: false, nullable: false
 
       field :actions, -> { CloudPDF::Types::DocManifest200ResponseScopesActions }, optional: false, nullable: false
+
+      field :outline, -> { CloudPDF::Types::DocManifest200ResponseScopesOutline }, optional: false, nullable: false
     end
   end
 end

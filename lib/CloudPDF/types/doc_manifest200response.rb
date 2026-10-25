@@ -17,6 +17,8 @@ module CloudPDF
 
       field :forms_version, -> { Integer }, optional: true, nullable: false, api_name: "formsVersion"
 
+      field :outline_version, -> { Integer }, optional: true, nullable: false, api_name: "outlineVersion"
+
       field :audit_head, -> { Integer }, optional: false, nullable: false, api_name: "auditHead"
 
       field :base_sha, -> { String }, optional: false, nullable: false, api_name: "baseSha"
