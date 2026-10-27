@@ -9,7 +9,15 @@ module CloudPDF
 
       field :doc_id, -> { String }, optional: false, nullable: false, api_name: "docId"
 
-      field :layer_name, -> { String }, optional: false, nullable: false, api_name: "layerName"
+      field :layer_mode, -> { CloudPDF::Types::SharesGet200ResponseShareLayerMode }, optional: false, nullable: false, api_name: "layerMode"
+
+      field :layer_name, -> { String }, optional: false, nullable: true, api_name: "layerName"
+
+      field :keep_visitor_layers, -> { Internal::Types::Boolean }, optional: false, nullable: false, api_name: "keepVisitorLayers"
+
+      field :visitor_idle_seconds, -> { Integer }, optional: false, nullable: true, api_name: "visitorIdleSeconds"
+
+      field :visitor_identity, -> { CloudPDF::Types::SharesGet200ResponseShareVisitorIdentity }, optional: false, nullable: true, api_name: "visitorIdentity"
 
       field :scope, -> { Internal::Types::Array[String] }, optional: false, nullable: false
 
@@ -20,6 +28,8 @@ module CloudPDF
       field :session_ttl_seconds, -> { Integer }, optional: false, nullable: false, api_name: "sessionTtlSeconds"
 
       field :disabled, -> { Internal::Types::Boolean }, optional: false, nullable: false
+
+      field :archived_at, -> { Integer }, optional: false, nullable: true, api_name: "archivedAt"
 
       field :expires_at, -> { Integer }, optional: false, nullable: true, api_name: "expiresAt"
 

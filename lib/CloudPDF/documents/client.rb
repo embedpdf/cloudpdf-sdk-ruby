@@ -392,6 +392,11 @@ module CloudPDF
           raise error_class.new(response.body, code: code)
         end
       end
+
+      # @return [CloudPDF::Layers::Client]
+      def layers
+        @layers ||= CloudPDF::Documents::Layers::Client.new(client: @client)
+      end
     end
   end
 end

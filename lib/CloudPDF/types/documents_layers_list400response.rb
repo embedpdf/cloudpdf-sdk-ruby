@@ -2,8 +2,8 @@
 
 module CloudPDF
   module Types
-    module SharesDeleteResponse
-      # SharesDeleteResponse is an alias for AdminErrorPayload
+    module DocumentsLayersList400Response
+      # DocumentsLayersList400Response is an alias for AdminErrorPayload
 
       # @option str [String]
       #

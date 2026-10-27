@@ -34,6 +34,8 @@ module CloudPDF
       CHANGE_CONFLICT = "ChangeConflict"
       UNDO_UNAVAILABLE = "UndoUnavailable"
       IDEMPOTENCY_KEY_REUSED = "IdempotencyKeyReused"
+      LAYER_DELETED = "LayerDeleted"
+      VISITOR_IDENTITY_REQUIRED = "VisitorIdentityRequired"
     end
   end
 end

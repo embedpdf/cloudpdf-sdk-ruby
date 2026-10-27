@@ -9,6 +9,10 @@ module CloudPDF
 
       field :layer_name, -> { String }, optional: false, nullable: false, api_name: "layerName"
 
+      field :layer_mode, -> { CloudPDF::Types::SharesExchange200ResponseLayerMode }, optional: false, nullable: false, api_name: "layerMode"
+
+      field :visitor, -> { CloudPDF::Types::SharesExchange200ResponseVisitor }, optional: false, nullable: false
+
       field :expires_at, -> { Integer }, optional: false, nullable: false, api_name: "expiresAt"
     end
   end

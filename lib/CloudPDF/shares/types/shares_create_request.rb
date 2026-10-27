@@ -8,7 +8,15 @@ module CloudPDF
 
         field :doc_id, -> { String }, optional: false, nullable: false, api_name: "docId"
 
+        field :layer_mode, -> { CloudPDF::Shares::Types::SharesCreateRequestLayerMode }, optional: true, nullable: false, api_name: "layerMode"
+
         field :layer_name, -> { String }, optional: true, nullable: false, api_name: "layerName"
+
+        field :keep_visitor_layers, -> { Internal::Types::Boolean }, optional: true, nullable: false, api_name: "keepVisitorLayers"
+
+        field :visitor_idle_seconds, -> { Integer }, optional: true, nullable: false, api_name: "visitorIdleSeconds"
+
+        field :visitor_identity, -> { CloudPDF::Shares::Types::SharesCreateRequestVisitorIdentity }, optional: true, nullable: false, api_name: "visitorIdentity"
 
         field :scope, -> { Internal::Types::Array[String] }, optional: false, nullable: false
 

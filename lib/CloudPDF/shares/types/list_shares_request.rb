@@ -11,6 +11,8 @@ module CloudPDF
         field :cursor, -> { String }, optional: true, nullable: false
 
         field :doc_id, -> { String }, optional: true, nullable: false, api_name: "docId"
+
+        field :archived, -> { Internal::Types::Boolean }, optional: true, nullable: false
       end
     end
   end
