@@ -6,6 +6,8 @@ module CloudPDF
       field :code, -> { String }, optional: false, nullable: false
 
       field :message, -> { String }, optional: false, nullable: false
+
+      field :details, -> { Internal::Types::Hash[String, Object] }, optional: true, nullable: false
     end
   end
 end
