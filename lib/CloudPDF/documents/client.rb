@@ -21,6 +21,10 @@ module CloudPDF
       # @option params [Integer, nil] :limit
       # @option params [String, nil] :cursor
       # @option params [CloudPDF::Documents::Types::ListDocumentsRequestState, nil] :state
+      # @option params [String, nil] :q
+      # @option params [String, nil] :folder_id
+      # @option params [CloudPDF::Documents::Types::ListDocumentsRequestSort, nil] :sort
+      # @option params [CloudPDF::Documents::Types::ListDocumentsRequestOrder, nil] :order
       #
       # @example
       #   client.documents.list(tenant_id: "tenantId")
@@ -32,6 +36,10 @@ module CloudPDF
         query_params["limit"] = params[:limit] if params.key?(:limit)
         query_params["cursor"] = params[:cursor] if params.key?(:cursor)
         query_params["state"] = params[:state] if params.key?(:state)
+        query_params["q"] = params[:q] if params.key?(:q)
+        query_params["folderId"] = params[:folder_id] if params.key?(:folder_id)
+        query_params["sort"] = params[:sort] if params.key?(:sort)
+        query_params["order"] = params[:order] if params.key?(:order)
 
         request = CloudPDF::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
@@ -128,6 +136,53 @@ module CloudPDF
 
         error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
         raise error_class.new(response.body, code: code)
+      end
+
+      # A document that is being deleted answers 404.
+      #
+      # @param request_options [Hash]
+      # @param params [CloudPDF::Documents::Types::DocumentsUpdateRequest]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String] :tenant_id
+      # @option params [String] :id
+      #
+      # @example
+      #   client.documents.update(
+      #     tenant_id: "tenantId",
+      #     id: "id",
+      #     name: "name"
+      #   )
+      #
+      # @return [CloudPDF::Types::DocumentsUpdate200Response]
+      def update(request_options: {}, **params)
+        params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
+        request_data = CloudPDF::Documents::Types::DocumentsUpdateRequest.new(params).to_h
+        non_body_param_names = %w[tenantId id]
+        body = request_data.except(*non_body_param_names)
+
+        request = CloudPDF::Internal::JSON::Request.new(
+          base_url: request_options[:base_url],
+          method: "PATCH",
+          path: "v1/tenants/#{URI.encode_uri_component(params[:tenant_id].to_s)}/documents/#{URI.encode_uri_component(params[:id].to_s)}",
+          body: body,
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise CloudPDF::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::DocumentsUpdate200Response.load(response.body))
+        else
+          error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
       end
 
       # @param request_options [Hash]

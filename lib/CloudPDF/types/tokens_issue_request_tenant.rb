@@ -5,7 +5,7 @@ module CloudPDF
     class TokensIssueRequestTenant < Internal::Types::Model
       field :sub, -> { String }, optional: false, nullable: false
 
-      field :scope, -> { Internal::Types::Array[CloudPDF::Types::TokensIssueRequestTenantScopeItem] }, optional: false, nullable: false
+      field :scope, -> { Internal::Types::Array[String] }, optional: false, nullable: false
 
       field :expires_in, -> { Integer }, optional: false, nullable: false, api_name: "expiresIn"
     end

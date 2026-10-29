@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
 module CloudPDF
-  VERSION = "3.0.0.alpha.17"
+  VERSION = "3.0.0.alpha.18"
 end

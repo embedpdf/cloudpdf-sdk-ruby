@@ -27,7 +27,6 @@ module CloudPDF
       SIGNING_VERSION_MISMATCH = "SigningVersionMismatch"
       SIGNATURE_REFUSED = "SignatureRefused"
       PROTECTED_DOCUMENT = "ProtectedDocument"
-      STALE_BASE = "StaleBase"
       PAYLOAD_TOO_LARGE = "PayloadTooLarge"
       OBJECT_NUMBER_UNAVAILABLE = "ObjectNumberUnavailable"
       LAYER_FULL = "LayerFull"

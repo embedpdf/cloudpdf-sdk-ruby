@@ -11,7 +11,7 @@ module CloudPDF
 
       field :scope, -> { Internal::Types::Array[String] }, optional: false, nullable: false
 
-      field :identity, -> { CloudPDF::Types::TokensIssueRequestDocIdentity }, optional: true, nullable: false
+      field :identity, -> { CloudPDF::Types::Identity }, optional: true, nullable: false
 
       field :origins, -> { Internal::Types::Array[String] }, optional: true, nullable: false
 
