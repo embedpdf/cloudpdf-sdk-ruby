@@ -18,6 +18,8 @@ module CloudPDF
 
         field :visitor_identity, -> { CloudPDF::Shares::Types::SharesUpdateRequestVisitorIdentity }, optional: true, nullable: false, api_name: "visitorIdentity"
 
+        field :identity, -> { CloudPDF::Types::Identity }, optional: true, nullable: false
+
         field :scope, -> { Internal::Types::Array[String] }, optional: true, nullable: false
 
         field :origins, -> { Internal::Types::Array[String] }, optional: true, nullable: false

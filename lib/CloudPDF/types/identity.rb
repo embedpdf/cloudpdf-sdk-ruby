@@ -2,7 +2,7 @@
 
 module CloudPDF
   module Types
-    class TokensIssueRequestDocIdentity < Internal::Types::Model
+    class Identity < Internal::Types::Model
       field :user_id, -> { String }, optional: true, nullable: false, api_name: "userId"
 
       field :display_name, -> { String }, optional: true, nullable: false, api_name: "displayName"

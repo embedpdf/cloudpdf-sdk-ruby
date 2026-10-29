@@ -10,6 +10,10 @@ module CloudPDF
 
         field :content_sha256, -> { String }, optional: false, nullable: false, api_name: "contentSha256"
 
+        field :name, -> { String }, optional: true, nullable: false
+
+        field :folder_id, -> { String }, optional: true, nullable: false, api_name: "folderId"
+
         field :metadata, -> { Internal::Types::Hash[String, Object] }, optional: true, nullable: false
 
         field :idempotency_key, -> { String }, optional: true, nullable: false, api_name: "idempotencyKey"

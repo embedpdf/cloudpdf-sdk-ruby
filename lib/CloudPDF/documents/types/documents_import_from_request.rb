@@ -10,6 +10,10 @@ module CloudPDF
 
         field :expected, -> { CloudPDF::Documents::Types::DocumentsImportFromRequestExpected }, optional: true, nullable: false
 
+        field :name, -> { String }, optional: true, nullable: false
+
+        field :folder_id, -> { String }, optional: true, nullable: false, api_name: "folderId"
+
         field :metadata, -> { Internal::Types::Hash[String, Object] }, optional: true, nullable: false
 
         field :idempotency_key, -> { String }, optional: true, nullable: false, api_name: "idempotencyKey"

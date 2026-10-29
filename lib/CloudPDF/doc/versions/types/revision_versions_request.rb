@@ -7,6 +7,8 @@ module CloudPDF
         class RevisionVersionsRequest < Internal::Types::Model
           field :doc_id, -> { String }, optional: false, nullable: false, api_name: "docId"
 
+          field :layer_name, -> { String }, optional: false, nullable: false, api_name: "layerName"
+
           field :sha, -> { String }, optional: false, nullable: false
 
           field :index, -> { Integer }, optional: false, nullable: false

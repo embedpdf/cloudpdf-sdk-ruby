@@ -11,7 +11,8 @@ module CloudPDF
           @client = client
         end
 
-        # Every completed signature publishes a new version. Never cached: the list grows.
+        # Every completed signature makes a new version of its layer; another layer's versions are never listed. Never
+        # cached: the list grows.
         #
         # @param request_options [Hash]
         # @param params [Hash]
@@ -21,10 +22,14 @@ module CloudPDF
         # @option request_options [Hash{String => Object}] :additional_body_parameters
         # @option request_options [Integer] :timeout_in_seconds
         # @option params [String] :doc_id
+        # @option params [String] :layer_name
         # @option params [String, nil] :document_password
         #
         # @example
-        #   client.doc.versions.list(doc_id: "docId")
+        #   client.doc.versions.list(
+        #     doc_id: "docId",
+        #     layer_name: "layerName"
+        #   )
         #
         # @return [CloudPDF::Types::DocVersionsList200Response]
         def list(request_options: {}, **params)
@@ -35,7 +40,7 @@ module CloudPDF
           request = CloudPDF::Internal::JSON::Request.new(
             base_url: request_options[:base_url],
             method: "GET",
-            path: "v1/docs/#{URI.encode_uri_component(params[:doc_id].to_s)}/versions",
+            path: "v1/docs/#{URI.encode_uri_component(params[:doc_id].to_s)}/layers/#{URI.encode_uri_component(params[:layer_name].to_s)}/versions",
             headers: headers,
             request_options: request_options
           )
@@ -54,7 +59,7 @@ module CloudPDF
         end
 
         # Exactly one of `since.signature` / `since.revision`; `until=<revision>` defaults to the last. The same answer
-        # for every layer and every caller.
+        # for every caller.
         #
         # @param request_options [Hash]
         # @param params [Hash]
@@ -64,6 +69,7 @@ module CloudPDF
         # @option request_options [Hash{String => Object}] :additional_body_parameters
         # @option request_options [Integer] :timeout_in_seconds
         # @option params [String] :doc_id
+        # @option params [String] :layer_name
         # @option params [String] :sha
         # @option params [Integer, nil] :since_signature
         # @option params [Integer, nil] :since_revision
@@ -75,6 +81,7 @@ module CloudPDF
         # @example
         #   client.doc.versions.analysis(
         #     doc_id: "docId",
+        #     layer_name: "layerName",
         #     sha: "sha"
         #   )
         #
@@ -94,7 +101,7 @@ module CloudPDF
           request = CloudPDF::Internal::JSON::Request.new(
             base_url: request_options[:base_url],
             method: "GET",
-            path: "v1/docs/#{URI.encode_uri_component(params[:doc_id].to_s)}/versions/analysis/#{URI.encode_uri_component(params[:sha].to_s)}",
+            path: "v1/docs/#{URI.encode_uri_component(params[:doc_id].to_s)}/layers/#{URI.encode_uri_component(params[:layer_name].to_s)}/versions/analysis/#{URI.encode_uri_component(params[:sha].to_s)}",
             headers: headers,
             query: query_params,
             request_options: request_options
@@ -121,12 +128,14 @@ module CloudPDF
         # @option request_options [Hash{String => Object}] :additional_body_parameters
         # @option request_options [Integer] :timeout_in_seconds
         # @option params [String] :doc_id
+        # @option params [String] :layer_name
         # @option params [String] :sha
         # @option params [String, nil] :document_password
         #
         # @example
         #   client.doc.versions.download(
         #     doc_id: "docId",
+        #     layer_name: "layerName",
         #     sha: "sha"
         #   )
         #
@@ -139,7 +148,7 @@ module CloudPDF
           request = CloudPDF::Internal::JSON::Request.new(
             base_url: request_options[:base_url],
             method: "GET",
-            path: "v1/docs/#{URI.encode_uri_component(params[:doc_id].to_s)}/versions/download/#{URI.encode_uri_component(params[:sha].to_s)}",
+            path: "v1/docs/#{URI.encode_uri_component(params[:doc_id].to_s)}/layers/#{URI.encode_uri_component(params[:layer_name].to_s)}/versions/download/#{URI.encode_uri_component(params[:sha].to_s)}",
             headers: headers,
             request_options: request_options
           )
@@ -163,6 +172,7 @@ module CloudPDF
         # @option request_options [Hash{String => Object}] :additional_body_parameters
         # @option request_options [Integer] :timeout_in_seconds
         # @option params [String] :doc_id
+        # @option params [String] :layer_name
         # @option params [String] :sha
         # @option params [Integer] :index
         # @option params [String, nil] :document_password
@@ -170,6 +180,7 @@ module CloudPDF
         # @example
         #   client.doc.versions.revision(
         #     doc_id: "docId",
+        #     layer_name: "layerName",
         #     sha: "sha",
         #     index: 1
         #   )
@@ -183,7 +194,7 @@ module CloudPDF
           request = CloudPDF::Internal::JSON::Request.new(
             base_url: request_options[:base_url],
             method: "GET",
-            path: "v1/docs/#{URI.encode_uri_component(params[:doc_id].to_s)}/versions/revisions/#{URI.encode_uri_component(params[:sha].to_s)}/#{URI.encode_uri_component(params[:index].to_s)}",
+            path: "v1/docs/#{URI.encode_uri_component(params[:doc_id].to_s)}/layers/#{URI.encode_uri_component(params[:layer_name].to_s)}/versions/revisions/#{URI.encode_uri_component(params[:sha].to_s)}/#{URI.encode_uri_component(params[:index].to_s)}",
             headers: headers,
             request_options: request_options
           )
@@ -207,12 +218,14 @@ module CloudPDF
         # @option request_options [Hash{String => Object}] :additional_body_parameters
         # @option request_options [Integer] :timeout_in_seconds
         # @option params [String] :doc_id
+        # @option params [String] :layer_name
         # @option params [String] :sha
         # @option params [String, nil] :document_password
         #
         # @example
         #   client.doc.versions.signatures(
         #     doc_id: "docId",
+        #     layer_name: "layerName",
         #     sha: "sha"
         #   )
         #
@@ -225,7 +238,7 @@ module CloudPDF
           request = CloudPDF::Internal::JSON::Request.new(
             base_url: request_options[:base_url],
             method: "GET",
-            path: "v1/docs/#{URI.encode_uri_component(params[:doc_id].to_s)}/versions/signatures/#{URI.encode_uri_component(params[:sha].to_s)}",
+            path: "v1/docs/#{URI.encode_uri_component(params[:doc_id].to_s)}/layers/#{URI.encode_uri_component(params[:layer_name].to_s)}/versions/signatures/#{URI.encode_uri_component(params[:sha].to_s)}",
             headers: headers,
             request_options: request_options
           )
@@ -253,6 +266,7 @@ module CloudPDF
         # @option request_options [Hash{String => Object}] :additional_body_parameters
         # @option request_options [Integer] :timeout_in_seconds
         # @option params [String] :doc_id
+        # @option params [String] :layer_name
         # @option params [String] :sha
         # @option params [String] :field_key
         # @option params [String, nil] :document_password
@@ -260,6 +274,7 @@ module CloudPDF
         # @example
         #   client.doc.versions.signature_contents(
         #     doc_id: "docId",
+        #     layer_name: "layerName",
         #     sha: "sha",
         #     field_key: "fieldKey"
         #   )
@@ -273,7 +288,7 @@ module CloudPDF
           request = CloudPDF::Internal::JSON::Request.new(
             base_url: request_options[:base_url],
             method: "GET",
-            path: "v1/docs/#{URI.encode_uri_component(params[:doc_id].to_s)}/versions/signatures/#{URI.encode_uri_component(params[:sha].to_s)}/#{URI.encode_uri_component(params[:field_key].to_s)}/contents",
+            path: "v1/docs/#{URI.encode_uri_component(params[:doc_id].to_s)}/layers/#{URI.encode_uri_component(params[:layer_name].to_s)}/versions/signatures/#{URI.encode_uri_component(params[:sha].to_s)}/#{URI.encode_uri_component(params[:field_key].to_s)}/contents",
             headers: headers,
             request_options: request_options
           )
@@ -299,6 +314,7 @@ module CloudPDF
         # @option request_options [Hash{String => Object}] :additional_body_parameters
         # @option request_options [Integer] :timeout_in_seconds
         # @option params [String] :doc_id
+        # @option params [String] :layer_name
         # @option params [String] :sha
         # @option params [String] :field_key
         # @option params [CloudPDF::Doc::Versions::Types::SignatureDigestVersionsRequestAlgorithm] :algorithm
@@ -307,6 +323,7 @@ module CloudPDF
         # @example
         #   client.doc.versions.signature_digest(
         #     doc_id: "docId",
+        #     layer_name: "layerName",
         #     sha: "sha",
         #     field_key: "fieldKey",
         #     algorithm: "sha1"
@@ -321,7 +338,7 @@ module CloudPDF
           request = CloudPDF::Internal::JSON::Request.new(
             base_url: request_options[:base_url],
             method: "GET",
-            path: "v1/docs/#{URI.encode_uri_component(params[:doc_id].to_s)}/versions/signatures/#{URI.encode_uri_component(params[:sha].to_s)}/#{URI.encode_uri_component(params[:field_key].to_s)}/digest/#{URI.encode_uri_component(params[:algorithm].to_s)}",
+            path: "v1/docs/#{URI.encode_uri_component(params[:doc_id].to_s)}/layers/#{URI.encode_uri_component(params[:layer_name].to_s)}/versions/signatures/#{URI.encode_uri_component(params[:sha].to_s)}/#{URI.encode_uri_component(params[:field_key].to_s)}/digest/#{URI.encode_uri_component(params[:algorithm].to_s)}",
             headers: headers,
             request_options: request_options
           )

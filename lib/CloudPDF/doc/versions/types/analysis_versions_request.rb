@@ -7,6 +7,8 @@ module CloudPDF
         class AnalysisVersionsRequest < Internal::Types::Model
           field :doc_id, -> { String }, optional: false, nullable: false, api_name: "docId"
 
+          field :layer_name, -> { String }, optional: false, nullable: false, api_name: "layerName"
+
           field :sha, -> { String }, optional: false, nullable: false
 
           field :since_signature, -> { Integer }, optional: true, nullable: false, api_name: "since.signature"

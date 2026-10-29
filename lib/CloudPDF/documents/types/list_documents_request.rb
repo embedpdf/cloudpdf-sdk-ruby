@@ -11,6 +11,14 @@ module CloudPDF
         field :cursor, -> { String }, optional: true, nullable: false
 
         field :state, -> { CloudPDF::Documents::Types::ListDocumentsRequestState }, optional: true, nullable: false
+
+        field :q, -> { String }, optional: true, nullable: false
+
+        field :folder_id, -> { String }, optional: true, nullable: false, api_name: "folderId"
+
+        field :sort, -> { CloudPDF::Documents::Types::ListDocumentsRequestSort }, optional: true, nullable: false
+
+        field :order, -> { CloudPDF::Documents::Types::ListDocumentsRequestOrder }, optional: true, nullable: false
       end
     end
   end

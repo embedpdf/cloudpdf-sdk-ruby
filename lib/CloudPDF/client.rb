@@ -43,6 +43,11 @@ module CloudPDF
       @documents ||= CloudPDF::Documents::Client.new(client: @raw_client)
     end
 
+    # @return [CloudPDF::Folders::Client]
+    def folders
+      @folders ||= CloudPDF::Folders::Client.new(client: @raw_client)
+    end
+
     # @return [CloudPDF::Tokens::Client]
     def tokens
       @tokens ||= CloudPDF::Tokens::Client.new(client: @raw_client)

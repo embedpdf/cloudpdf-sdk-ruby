@@ -7,6 +7,10 @@ module CloudPDF
 
       field :tenant_id, -> { String }, optional: false, nullable: false, api_name: "tenantId"
 
+      field :name, -> { String }, optional: false, nullable: false
+
+      field :folder_id, -> { String }, optional: false, nullable: false, api_name: "folderId"
+
       field :state, -> { CloudPDF::Types::DocumentsImportFrom202ResponseDocumentState }, optional: false, nullable: false
 
       field :base_sha, -> { String }, optional: false, nullable: true, api_name: "baseSha"
