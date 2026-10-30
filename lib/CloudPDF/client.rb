@@ -28,9 +28,9 @@ module CloudPDF
       @doc ||= CloudPDF::Doc::Client.new(client: @raw_client)
     end
 
-    # @return [CloudPDF::Shares::Client]
-    def shares
-      @shares ||= CloudPDF::Shares::Client.new(client: @raw_client)
+    # @return [CloudPDF::Grants::Client]
+    def grants
+      @grants ||= CloudPDF::Grants::Client.new(client: @raw_client)
     end
 
     # @return [CloudPDF::Tenants::Client]

@@ -22,7 +22,7 @@ module CloudPDF
         # @option params [String] :id
         # @option params [Integer, nil] :limit
         # @option params [String, nil] :cursor
-        # @option params [String, nil] :share_id
+        # @option params [String, nil] :grant_id
         #
         # @example
         #   client.documents.layers.list(
@@ -36,7 +36,7 @@ module CloudPDF
           query_params = {}
           query_params["limit"] = params[:limit] if params.key?(:limit)
           query_params["cursor"] = params[:cursor] if params.key?(:cursor)
-          query_params["shareId"] = params[:share_id] if params.key?(:share_id)
+          query_params["grantId"] = params[:grant_id] if params.key?(:grant_id)
 
           request = CloudPDF::Internal::JSON::Request.new(
             base_url: request_options[:base_url],
