@@ -13,7 +13,7 @@ module CloudPDF
 
           field :cursor, -> { String }, optional: true, nullable: false
 
-          field :share_id, -> { String }, optional: true, nullable: false, api_name: "shareId"
+          field :grant_id, -> { String }, optional: true, nullable: false, api_name: "grantId"
         end
       end
     end

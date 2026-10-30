@@ -1,0 +1,19 @@
+# frozen_string_literal: true
+
+module CloudPDF
+  module Grants
+    module Types
+      class GrantsExchangeRequestVisitorIdentity < Internal::Types::Model
+        field :display_name, -> { String }, optional: true, nullable: false, api_name: "displayName"
+
+        field :email, -> { String }, optional: true, nullable: false
+
+        field :title, -> { String }, optional: true, nullable: false
+
+        field :organization, -> { String }, optional: true, nullable: false
+
+        field :organizational_unit, -> { String }, optional: true, nullable: false, api_name: "organizationalUnit"
+      end
+    end
+  end
+end

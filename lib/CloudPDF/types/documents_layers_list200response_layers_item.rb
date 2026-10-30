@@ -7,7 +7,7 @@ module CloudPDF
 
       field :layer_name, -> { String }, optional: false, nullable: false, api_name: "layerName"
 
-      field :share_id, -> { String }, optional: false, nullable: true, api_name: "shareId"
+      field :grant_id, -> { String }, optional: false, nullable: true, api_name: "grantId"
 
       field :visitor_id, -> { String }, optional: false, nullable: true, api_name: "visitorId"
 
