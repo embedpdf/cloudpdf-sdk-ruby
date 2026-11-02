@@ -7,6 +7,8 @@ module CloudPDF
 
       field :pages, -> { Internal::Types::Array[CloudPDF::Types::ChangeItemPagesInsertBlankLayoutPagesItem] }, optional: false, nullable: false
 
+      field :labels, -> { Internal::Types::Array[CloudPDF::Types::ChangeItemPagesInsertBlankLayoutLabelsItem] }, optional: false, nullable: false
+
       field :named_pages, -> { Internal::Types::Array[CloudPDF::Types::ChangeItemPagesInsertBlankLayoutNamedPagesItem] }, optional: false, nullable: false, api_name: "namedPages"
     end
   end

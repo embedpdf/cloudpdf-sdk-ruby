@@ -65,6 +65,8 @@ module CloudPDF
 
       member -> { CloudPDF::Types::ChangeOpPagesInsert }, key: "PAGES_INSERT"
 
+      member -> { CloudPDF::Types::ChangeOpPagesCopy }, key: "PAGES_COPY"
+
       member -> { CloudPDF::Types::ChangeOpAttachmentsCreate }, key: "ATTACHMENTS_CREATE"
 
       member -> { CloudPDF::Types::ChangeOpAttachmentsDelete }, key: "ATTACHMENTS_DELETE"

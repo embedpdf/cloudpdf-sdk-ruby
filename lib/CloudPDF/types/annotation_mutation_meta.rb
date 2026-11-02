@@ -11,6 +11,8 @@ module CloudPDF
 
       field :undoable, -> { Internal::Types::Boolean }, optional: false, nullable: false
 
+      field :missing_characters, -> { Internal::Types::Array[String] }, optional: true, nullable: false, api_name: "missingCharacters"
+
       field :changed, -> { Internal::Types::Array[CloudPDF::Types::AnnotationRef] }, optional: false, nullable: false
     end
   end

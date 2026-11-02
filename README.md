@@ -41,7 +41,15 @@ client.doc.changes(
 
 ## Environments
 
-This SDK allows you to configure different custom URLs for API requests. You can specify your own custom URL.
+This SDK allows you to configure different environments or custom URLs for API requests. You can either use the predefined environments or specify your own custom URL.
+### Environments
+```ruby
+require "cloudpdf"
+
+CloudPDF = CloudPDF::Client.new(
+    base_url: CloudPDF::Environment::SAAS
+)
+```
 
 ### Custom URL
 ```ruby

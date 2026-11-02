@@ -19,6 +19,10 @@ module CloudPDF
 
       field :outline_version, -> { Integer }, optional: true, nullable: false, api_name: "outlineVersion"
 
+      field :fonts_version, -> { Integer }, optional: true, nullable: false, api_name: "fontsVersion"
+
+      field :server_fonts, -> { String }, optional: false, nullable: false, api_name: "serverFonts"
+
       field :audit_head, -> { Integer }, optional: false, nullable: false, api_name: "auditHead"
 
       field :base_sha, -> { String }, optional: false, nullable: false, api_name: "baseSha"

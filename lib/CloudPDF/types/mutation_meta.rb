@@ -10,6 +10,8 @@ module CloudPDF
       field :op_id, -> { String }, optional: false, nullable: false, api_name: "opId"
 
       field :undoable, -> { Internal::Types::Boolean }, optional: false, nullable: false
+
+      field :missing_characters, -> { Internal::Types::Array[String] }, optional: true, nullable: false, api_name: "missingCharacters"
     end
   end
 end

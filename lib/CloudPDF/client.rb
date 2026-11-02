@@ -9,7 +9,7 @@ module CloudPDF
     # @return [void]
     def initialize(token:, base_url: nil, max_retries: 2)
       @raw_client = CloudPDF::Internal::Http::RawClient.new(
-        base_url: base_url,
+        base_url: base_url || CloudPDF::Environment::SAAS,
         headers: {
           "X-Fern-Language" => "Ruby",
           Authorization: "Bearer #{token}"
