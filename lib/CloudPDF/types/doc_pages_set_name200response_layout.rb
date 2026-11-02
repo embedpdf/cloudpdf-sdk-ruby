@@ -7,6 +7,8 @@ module CloudPDF
 
       field :pages, -> { Internal::Types::Array[CloudPDF::Types::DocPagesSetName200ResponseLayoutPagesItem] }, optional: false, nullable: false
 
+      field :labels, -> { Internal::Types::Array[CloudPDF::Types::DocPagesSetName200ResponseLayoutLabelsItem] }, optional: false, nullable: false
+
       field :named_pages, -> { Internal::Types::Array[CloudPDF::Types::DocPagesSetName200ResponseLayoutNamedPagesItem] }, optional: false, nullable: false, api_name: "namedPages"
     end
   end

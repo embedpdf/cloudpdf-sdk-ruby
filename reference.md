@@ -765,7 +765,7 @@ client.grants.list(tenant_id: "tenantId")
 <dl>
 <dd>
 
-The returned id is what a link page or an embed opens. Mounted only when the deployment can sign (HS256 mode) — exchange mints session JWTs, so grants exist only where minting does.
+The returned id is what a link page or an embed opens. Its scope gives only document permissions the caller holds itself, as tokens.issue does. Mounted only when the deployment can sign (HS256 mode) — exchange mints session JWTs, so grants exist only where minting does.
 </dd>
 </dl>
 </dd>
@@ -1997,6 +1997,20 @@ client.documents.update(
 <dl>
 <dd>
 
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+An upload token commits only the documents it started; any other document answers 404.
+</dd>
+</dl>
+</dd>
+</dl>
+
 #### 🔌 Usage
 
 <dl>
@@ -2191,7 +2205,7 @@ client.documents.thumbnail(
 <dl>
 <dd>
 
-This bounded origin-mediated fallback must only be used after documents.init returns upload.kind=proxy. Auto mode prefers a presigned object-store PUT whenever available.
+This bounded origin-mediated fallback must only be used after documents.init returns upload.kind=proxy. Auto mode prefers a presigned object-store PUT whenever available. An upload token sends files only to the documents it started.
 </dd>
 </dl>
 </dd>
@@ -2392,6 +2406,20 @@ client.documents.import_from(tenant_id: "tenantId")
 <details><summary><code>client.documents.<a href="/lib/CloudPDF/documents/client.rb">init</a>(tenant_id:, request) -> CloudPDF::Types::DocumentsInit200Response</code></summary>
 <dl>
 <dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+With an upload token, the document goes into the token's folder with the token's metadata, whatever the request says; contentLength must be within the token's maxBytes, and the token makes at most maxFiles documents (403 after). docId, idempotencyKey and dedupMode reuse-existing are refused (400): each could reach a document the token didn't make.
+</dd>
+</dl>
+</dd>
+</dl>
 
 #### 🔌 Usage
 
@@ -2999,7 +3027,7 @@ client.folders.move_into(
 <dl>
 <dd>
 
-kind "tenant" requires the API token — authority mints only downward. Mounted only when the deployment can sign (HS256 mode); asymmetric deployments mint with their own private key.
+Authority mints only downward: kind "doc" gives only document permissions the caller holds itself, kind "tenant" requires the API token, and kind "upload" requires docs.create instead of tokens.issue-doc, since an upload token can do only what docs.create allows. Mounted only when the deployment can sign (HS256 mode); asymmetric deployments mint with their own private key.
 </dd>
 </dl>
 </dd>
@@ -4241,6 +4269,152 @@ client.doc.attachments.list(
 <dd>
 
 **request_options:** `CloudPDF::Doc::Attachments::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Doc Fonts
+<details><summary><code>client.doc.fonts.<a href="/lib/CloudPDF/doc/fonts/client.rb">list</a>(doc_id:, layer_name:) -> CloudPDF::Types::FontList</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.doc.fonts.list(
+  doc_id: "docId",
+  layer_name: "layerName"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**doc_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**layer_name:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**document_password:** `String` — Base64-encoded password for an encrypted document. Valid only with the API token (403 anywhere else). An encrypted document answers 422 DocPasswordRequired when the header is absent. Viewer doc JWTs use the SDK password-session flow instead.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `CloudPDF::Doc::Fonts::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.doc.fonts.<a href="/lib/CloudPDF/doc/fonts/client.rb">resolve</a>(doc_id:, layer_name:, request) -> CloudPDF::Types::FontResolution</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.doc.fonts.resolve(
+  doc_id: "docId",
+  layer_name: "layerName",
+  runs: [{
+    text: "text"
+  }]
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**doc_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**layer_name:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**document_password:** `String` — Base64-encoded password for an encrypted document. Valid only with the API token (403 anywhere else). An encrypted document answers 422 DocPasswordRequired when the header is absent. Viewer doc JWTs use the SDK password-session flow instead.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `CloudPDF::Types::FontResolveRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `CloudPDF::Doc::Fonts::RequestOptions` 
     
 </dd>
 </dl>
@@ -6737,6 +6911,173 @@ client.doc.versions.signature_digest(
 <dd>
 
 **request_options:** `CloudPDF::Doc::Versions::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Doc Fonts Programs
+<details><summary><code>client.doc.fonts.programs.<a href="/lib/CloudPDF/doc/fonts/programs/client.rb">download</a>(doc_id:, layer_name:, display_hash:) -> String</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+A document token needs any one of the listed capabilities: one that may write text in the document. A file the list says can't be downloaded (`canDownload: false`) is not found.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.doc.fonts.programs.download(
+  doc_id: "docId",
+  layer_name: "layerName",
+  display_hash: "displayHash"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**doc_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**layer_name:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**display_hash:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**document_password:** `String` — Base64-encoded password for an encrypted document. Valid only with the API token (403 anywhere else). An encrypted document answers 422 DocPasswordRequired when the header is absent. Viewer doc JWTs use the SDK password-session flow instead.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `CloudPDF::Doc::Fonts::Programs::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.doc.fonts.programs.<a href="/lib/CloudPDF/doc/fonts/programs/client.rb">get</a>(doc_id:, layer_name:, display_hash:) -> CloudPDF::Types::FontProgramInfo</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.doc.fonts.programs.get(
+  doc_id: "docId",
+  layer_name: "layerName",
+  display_hash: "displayHash"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**doc_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**layer_name:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**display_hash:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**document_password:** `String` — Base64-encoded password for an encrypted document. Valid only with the API token (403 anywhere else). An encrypted document answers 422 DocPasswordRequired when the header is absent. Viewer doc JWTs use the SDK password-session flow instead.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `CloudPDF::Doc::Fonts::Programs::RequestOptions` 
     
 </dd>
 </dl>

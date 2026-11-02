@@ -185,6 +185,8 @@ module CloudPDF
         end
       end
 
+      # An upload token commits only the documents it started; any other document answers 404.
+      #
       # @param request_options [Hash]
       # @param params [CloudPDF::Documents::Types::DocumentsCommitRequest]
       # @option request_options [String] :base_url
@@ -305,7 +307,8 @@ module CloudPDF
       end
 
       # This bounded origin-mediated fallback must only be used after documents.init returns upload.kind=proxy. Auto
-      # mode prefers a presigned object-store PUT whenever available.
+      # mode prefers a presigned object-store PUT whenever available. An upload token sends files only to the documents
+      # it started.
       #
       # @param request_options [Hash]
       # @param params [void]
@@ -404,6 +407,11 @@ module CloudPDF
         end
       end
 
+      # With an upload token, the document goes into the token's folder with the token's metadata, whatever the request
+      # says; contentLength must be within the token's maxBytes, and the token makes at most maxFiles documents (403
+      # after). docId, idempotencyKey and dedupMode reuse-existing are refused (400): each could reach a document the
+      # token didn't make.
+      #
       # @param request_options [Hash]
       # @param params [CloudPDF::Documents::Types::DocumentsInitRequest]
       # @option request_options [String] :base_url

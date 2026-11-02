@@ -75,6 +75,8 @@ module CloudPDF
 
       member -> { CloudPDF::Types::ChangeItemPagesInsert }, key: "PAGES_INSERT"
 
+      member -> { CloudPDF::Types::ChangeItemPagesCopy }, key: "PAGES_COPY"
+
       member -> { CloudPDF::Types::ChangeItemPagesRestore }, key: "PAGES_RESTORE"
 
       member -> { CloudPDF::Types::ChangeItemAttachmentsCreate }, key: "ATTACHMENTS_CREATE"

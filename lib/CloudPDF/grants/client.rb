@@ -100,8 +100,9 @@ module CloudPDF
         end
       end
 
-      # The returned id is what a link page or an embed opens. Mounted only when the deployment can sign (HS256 mode) —
-      # exchange mints session JWTs, so grants exist only where minting does.
+      # The returned id is what a link page or an embed opens. Its scope gives only document permissions the caller
+      # holds itself, as tokens.issue does. Mounted only when the deployment can sign (HS256 mode) — exchange mints
+      # session JWTs, so grants exist only where minting does.
       #
       # @param request_options [Hash]
       # @param params [CloudPDF::Grants::Types::GrantsCreateRequest]

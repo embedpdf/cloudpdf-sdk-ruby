@@ -13,6 +13,8 @@ module CloudPDF
 
       field :appearance_state, -> { Object }, optional: true, nullable: false, api_name: "appearanceState"
 
+      field :structure_position, -> { Object }, optional: true, nullable: false, api_name: "structurePosition"
+
       field :nm, -> { String }, optional: true, nullable: false
 
       field :rect, -> { CloudPDF::Types::WidgetPatchRect }, optional: true, nullable: false

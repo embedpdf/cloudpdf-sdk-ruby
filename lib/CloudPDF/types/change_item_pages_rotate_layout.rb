@@ -7,6 +7,8 @@ module CloudPDF
 
       field :pages, -> { Internal::Types::Array[CloudPDF::Types::ChangeItemPagesRotateLayoutPagesItem] }, optional: false, nullable: false
 
+      field :labels, -> { Internal::Types::Array[CloudPDF::Types::ChangeItemPagesRotateLayoutLabelsItem] }, optional: false, nullable: false
+
       field :named_pages, -> { Internal::Types::Array[CloudPDF::Types::ChangeItemPagesRotateLayoutNamedPagesItem] }, optional: false, nullable: false, api_name: "namedPages"
     end
   end

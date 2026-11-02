@@ -34,6 +34,7 @@ module CloudPDF
       PAGES_DELETE = "pages.delete"
       PAGES_INSERT_BLANK = "pages.insertBlank"
       PAGES_INSERT = "pages.insert"
+      PAGES_COPY = "pages.copy"
       ATTACHMENTS_CREATE = "attachments.create"
       ATTACHMENTS_DELETE = "attachments.delete"
       ANNOTATIONS_RESTORE = "annotations.restore"

@@ -11,6 +11,8 @@ module CloudPDF
 
       field :appearance_state, -> { String }, optional: false, nullable: true, api_name: "appearanceState"
 
+      field :structure_position, -> { Internal::Types::Array[Integer] }, optional: false, nullable: true, api_name: "structurePosition"
+
       field :nm, -> { String }, optional: false, nullable: true
 
       field :rect, -> { CloudPDF::Types::AnnotationSquigglyRect }, optional: false, nullable: false

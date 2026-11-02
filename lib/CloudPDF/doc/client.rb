@@ -359,6 +359,11 @@ module CloudPDF
         @attachments ||= CloudPDF::Doc::Attachments::Client.new(client: @client)
       end
 
+      # @return [CloudPDF::Fonts::Client]
+      def fonts
+        @fonts ||= CloudPDF::Doc::Fonts::Client.new(client: @client)
+      end
+
       # @return [CloudPDF::Forms::Client]
       def forms
         @forms ||= CloudPDF::Doc::Forms::Client.new(client: @client)
