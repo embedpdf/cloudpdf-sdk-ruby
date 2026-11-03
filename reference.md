@@ -1500,6 +1500,81 @@ client.tenants.delete(tenant_id: "tenantId")
 </dl>
 </details>
 
+<details><summary><code>client.tenants.<a href="/lib/CloudPDF/tenants/client.rb">update</a>(tenant_id:, request) -> CloudPDF::Types::TenantsUpdate200Response</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+A feature names an installed module; any other id is a 400. A module route answers a tenant without its feature 403 FeatureNotEnabled, and one whose feature is stopped 402 FeatureStopped (details.feature, details.stopped). Other replicas apply a change within 30 seconds.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.tenants.update(
+  tenant_id: "tenantId",
+  features: [{
+    id: "id"
+  }]
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**tenant_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**features:** `Internal::Types::Array[CloudPDF::Types::TenantFeature]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `CloudPDF::Tenants::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.tenants.<a href="/lib/CloudPDF/tenants/client.rb">resume</a>(tenant_id:) -> </code></summary>
 <dl>
 <dd>

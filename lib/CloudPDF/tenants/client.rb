@@ -157,6 +157,55 @@ module CloudPDF
         raise error_class.new(response.body, code: code)
       end
 
+      # A feature names an installed module; any other id is a 400. A module route answers a tenant without its feature
+      # 403 FeatureNotEnabled, and one whose feature is stopped 402 FeatureStopped (details.feature, details.stopped).
+      # Other replicas apply a change within 30 seconds.
+      #
+      # @param request_options [Hash]
+      # @param params [CloudPDF::Tenants::Types::TenantsUpdateRequest]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String] :tenant_id
+      #
+      # @example
+      #   client.tenants.update(
+      #     tenant_id: "tenantId",
+      #     features: [{
+      #       id: "id"
+      #     }]
+      #   )
+      #
+      # @return [CloudPDF::Types::TenantsUpdate200Response]
+      def update(request_options: {}, **params)
+        params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
+        request_data = CloudPDF::Tenants::Types::TenantsUpdateRequest.new(params).to_h
+        non_body_param_names = %w[tenantId]
+        body = request_data.except(*non_body_param_names)
+
+        request = CloudPDF::Internal::JSON::Request.new(
+          base_url: request_options[:base_url],
+          method: "PATCH",
+          path: "v1/tenants/#{URI.encode_uri_component(params[:tenant_id].to_s)}",
+          body: body,
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise CloudPDF::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::TenantsUpdate200Response.load(response.body))
+        else
+          error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+      end
+
       # @param request_options [Hash]
       # @param params [Hash]
       # @option request_options [String] :base_url
