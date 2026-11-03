@@ -11,6 +11,8 @@ module CloudPDF
 
       field :status, -> { CloudPDF::Types::TenantsCreate200ResponseTenantStatus }, optional: true, nullable: false
 
+      field :features, -> { Internal::Types::Array[CloudPDF::Types::TenantFeature] }, optional: true, nullable: false
+
       field :created_at, -> { Integer }, optional: false, nullable: false, api_name: "createdAt"
     end
   end
