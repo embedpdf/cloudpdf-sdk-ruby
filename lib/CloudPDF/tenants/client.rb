@@ -292,6 +292,8 @@ module CloudPDF
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [String] :tenant_id
       # @option params [String, nil] :period
+      # @option params [String, nil] :from
+      # @option params [String, nil] :to
       #
       # @example
       #   client.tenants.usage(tenant_id: "tenantId")
@@ -301,6 +303,8 @@ module CloudPDF
         params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
         query_params = {}
         query_params["period"] = params[:period] if params.key?(:period)
+        query_params["from"] = params[:from] if params.key?(:from)
+        query_params["to"] = params[:to] if params.key?(:to)
 
         request = CloudPDF::Internal::JSON::Request.new(
           base_url: request_options[:base_url],

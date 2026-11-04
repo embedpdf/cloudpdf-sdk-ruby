@@ -40,6 +40,60 @@ client.deployment.license_status
 </dl>
 </details>
 
+<details><summary><code>client.deployment.<a href="/lib/CloudPDF/deployment/client.rb">modules</a>() -> CloudPDF::Types::DeploymentModulesResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+What each module declares, for a dashboard or a script that lists modules, offers their permissions in its dialogs and shows their meters. Which tenants may use one is in their `features` (`tenants.get`); what it costs, if anything, is the operator's.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.deployment.modules
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request_options:** `CloudPDF::Deployment::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Doc
 <details><summary><code>client.doc.<a href="/lib/CloudPDF/doc/client.rb">head</a>(doc_id:) -> CloudPDF::Types::DocHead200Response</code></summary>
 <dl>
@@ -1744,6 +1798,22 @@ client.tenants.usage(tenant_id: "tenantId")
 <dd>
 
 **period:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**from:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**to:** `String` 
     
 </dd>
 </dl>

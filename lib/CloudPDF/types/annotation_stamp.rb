@@ -65,6 +65,8 @@ module CloudPDF
 
       field :actions, -> { CloudPDF::Types::PdfAnnotationActions }, optional: false, nullable: true
 
+      field :rich_text, -> { CloudPDF::Types::RichTextDocument }, optional: false, nullable: true, api_name: "richText"
+
       field :box, -> { CloudPDF::Types::AnnotationStampBox }, optional: false, nullable: false
 
       field :rotation, -> { Integer }, optional: false, nullable: true
