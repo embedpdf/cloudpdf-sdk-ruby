@@ -65,6 +65,8 @@ module CloudPDF
 
       field :actions, -> { Object }, optional: true, nullable: false
 
+      field :rich_text, -> { CloudPDF::Types::RichTextDocumentInput }, optional: true, nullable: false, api_name: "richText"
+
       field :box, -> { CloudPDF::Types::AnnotationDraftStampBox }, optional: true, nullable: false
 
       field :rotation, -> { Integer }, optional: true, nullable: false

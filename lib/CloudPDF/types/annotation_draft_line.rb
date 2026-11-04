@@ -65,6 +65,8 @@ module CloudPDF
 
       field :actions, -> { Object }, optional: true, nullable: false
 
+      field :rich_text, -> { CloudPDF::Types::RichTextDocumentInput }, optional: true, nullable: false, api_name: "richText"
+
       field :color, -> { String }, optional: true, nullable: false
 
       field :opacity, -> { Integer }, optional: true, nullable: false

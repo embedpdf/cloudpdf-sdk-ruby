@@ -65,6 +65,8 @@ module CloudPDF
 
       field :actions, -> { Object }, optional: true, nullable: false
 
+      field :rich_text, -> { CloudPDF::Types::RichTextDocumentInput }, optional: true, nullable: false, api_name: "richText"
+
       field :box, -> { CloudPDF::Types::AnnotationPatchFreeTextBox }, optional: true, nullable: false
 
       field :rotation, -> { Integer }, optional: true, nullable: false
@@ -78,8 +80,6 @@ module CloudPDF
       field :text_align, -> { CloudPDF::Types::AnnotationPatchFreeTextTextAlign }, optional: true, nullable: false, api_name: "textAlign"
 
       field :vertical_align, -> { CloudPDF::Types::AnnotationPatchFreeTextVerticalAlign }, optional: true, nullable: false, api_name: "verticalAlign"
-
-      field :rich_text, -> { CloudPDF::Types::AnnotationPatchFreeTextRichText }, optional: true, nullable: false, api_name: "richText"
 
       field :color, -> { String }, optional: true, nullable: false
 
