@@ -23,7 +23,7 @@ module CloudPDF
       # @example
       #   client.tenants.list
       #
-      # @return [CloudPDF::Types::TenantsList200Response]
+      # @return [CloudPDF::Types::TenantsListResponse]
       def list(request_options: {}, **params)
         params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
         query_params = {}
@@ -44,7 +44,7 @@ module CloudPDF
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          (response.body.to_s.empty? ? nil : CloudPDF::Types::TenantsList200Response.load(response.body))
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::TenantsListResponse.load(response.body))
         else
           error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -62,7 +62,7 @@ module CloudPDF
       # @example
       #   client.tenants.create(id: "id")
       #
-      # @return [CloudPDF::Types::TenantsCreate200Response]
+      # @return [CloudPDF::Types::TenantsCreateResponse]
       def create(request_options: {}, **params)
         params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
         request = CloudPDF::Internal::JSON::Request.new(
@@ -79,7 +79,7 @@ module CloudPDF
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          (response.body.to_s.empty? ? nil : CloudPDF::Types::TenantsCreate200Response.load(response.body))
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::TenantsCreateResponse.load(response.body))
         else
           error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -98,7 +98,7 @@ module CloudPDF
       # @example
       #   client.tenants.get(tenant_id: "tenantId")
       #
-      # @return [CloudPDF::Types::TenantsGet200Response]
+      # @return [CloudPDF::Types::TenantsGetResponse]
       def get(request_options: {}, **params)
         params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
         request = CloudPDF::Internal::JSON::Request.new(
@@ -114,7 +114,7 @@ module CloudPDF
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          (response.body.to_s.empty? ? nil : CloudPDF::Types::TenantsGet200Response.load(response.body))
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::TenantsGetResponse.load(response.body))
         else
           error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -178,7 +178,7 @@ module CloudPDF
       #     }]
       #   )
       #
-      # @return [CloudPDF::Types::TenantsUpdate200Response]
+      # @return [CloudPDF::Types::TenantsUpdateResponse]
       def update(request_options: {}, **params)
         params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
         request_data = CloudPDF::Tenants::Types::TenantsUpdateRequest.new(params).to_h
@@ -199,7 +199,7 @@ module CloudPDF
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          (response.body.to_s.empty? ? nil : CloudPDF::Types::TenantsUpdate200Response.load(response.body))
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::TenantsUpdateResponse.load(response.body))
         else
           error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -298,7 +298,7 @@ module CloudPDF
       # @example
       #   client.tenants.usage(tenant_id: "tenantId")
       #
-      # @return [CloudPDF::Types::TenantsUsage200Response]
+      # @return [CloudPDF::Types::TenantsUsageResponse]
       def usage(request_options: {}, **params)
         params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
         query_params = {}
@@ -320,7 +320,7 @@ module CloudPDF
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          (response.body.to_s.empty? ? nil : CloudPDF::Types::TenantsUsage200Response.load(response.body))
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::TenantsUsageResponse.load(response.body))
         else
           error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)

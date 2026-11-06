@@ -3,9 +3,9 @@
 module CloudPDF
   module Types
     class FontProgramInfo < Internal::Types::Model
-      field :display_hash, -> { String }, optional: false, nullable: true, api_name: "displayHash"
+      field :display_sha256, -> { String }, optional: false, nullable: true, api_name: "displaySha256"
 
-      field :source_hash, -> { String }, optional: false, nullable: true, api_name: "sourceHash"
+      field :source_sha256, -> { String }, optional: false, nullable: true, api_name: "sourceSha256"
 
       field :embedded, -> { CloudPDF::Types::FontProgramInfoEmbedded }, optional: false, nullable: false
 

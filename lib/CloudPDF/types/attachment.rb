@@ -11,9 +11,9 @@ module CloudPDF
 
       field :description, -> { String }, optional: false, nullable: true
 
-      field :size, -> { Integer }, optional: false, nullable: true
+      field :size_bytes, -> { Integer }, optional: false, nullable: true, api_name: "sizeBytes"
 
-      field :checksum, -> { String }, optional: false, nullable: true
+      field :md5, -> { String }, optional: false, nullable: true
 
       field :created_at, -> { String }, optional: false, nullable: true, api_name: "createdAt"
 

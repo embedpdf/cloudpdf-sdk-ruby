@@ -89,7 +89,7 @@ module CloudPDF
 
       field :intent, -> { CloudPDF::Types::AnnotationPolygonIntent }, optional: false, nullable: true
 
-      field :measure, -> { CloudPDF::Types::AnnotationPolygonMeasure }, optional: false, nullable: true
+      field :measure, -> { CloudPDF::Types::PdfMeasurement }, optional: false, nullable: true
 
       field :cloudy_intensity, -> { Integer }, optional: false, nullable: true, api_name: "cloudyIntensity"
     end

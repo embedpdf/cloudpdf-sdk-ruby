@@ -10,7 +10,7 @@ module CloudPDF
 
         field :reason, -> { String }, optional: true, nullable: false
 
-        field :expires_at_seconds, -> { Integer }, optional: true, nullable: false, api_name: "expiresAtSeconds"
+        field :expires_at, -> { String }, optional: true, nullable: false, api_name: "expiresAt"
       end
     end
   end

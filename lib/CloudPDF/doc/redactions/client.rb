@@ -29,7 +29,7 @@ module CloudPDF
         #     layer_name: "layerName"
         #   )
         #
-        # @return [CloudPDF::Types::DocRedactionsApply200Response]
+        # @return [CloudPDF::Types::DocRedactionsApplyResponse]
         def apply(request_options: {}, **params)
           params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
           request_data = CloudPDF::Doc::Redactions::Types::DocRedactionsApplyRequest.new(params).to_h
@@ -55,7 +55,7 @@ module CloudPDF
           end
           code = response.code.to_i
           if code.between?(200, 299)
-            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocRedactionsApply200Response.load(response.body))
+            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocRedactionsApplyResponse.load(response.body))
           else
             error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
             raise error_class.new(response.body, code: code)

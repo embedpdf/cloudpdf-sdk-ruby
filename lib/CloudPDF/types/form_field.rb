@@ -2,10 +2,12 @@
 
 module CloudPDF
   module Types
+    # A form field, by its `family`. A newer server can add families: read one your client doesn't know as `unknown`,
+    # keeping the fields every field has, with `rawValue` an empty string when the body has none.
     class FormField < Internal::Types::Model
       extend CloudPDF::Internal::Types::Union
 
-      discriminant :family
+      discriminant :kind
 
       member -> { CloudPDF::Types::FormFieldText }, key: "TEXT"
 

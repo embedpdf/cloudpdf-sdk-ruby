@@ -31,7 +31,7 @@ module CloudPDF
         #     page_key: "pageKey"
         #   )
         #
-        # @return [CloudPDF::Types::DocPagesSetScale200Response]
+        # @return [CloudPDF::Types::DocPagesSetScaleResponse]
         def set_scale(request_options: {}, **params)
           params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
           request_data = CloudPDF::Doc::Pages::Types::DocPagesSetScaleRequest.new(params).to_h
@@ -57,7 +57,7 @@ module CloudPDF
           end
           code = response.code.to_i
           if code.between?(200, 299)
-            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocPagesSetScale200Response.load(response.body))
+            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocPagesSetScaleResponse.load(response.body))
           else
             error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
             raise error_class.new(response.body, code: code)
@@ -83,7 +83,7 @@ module CloudPDF
         #     page_key: "pageKey"
         #   )
         #
-        # @return [CloudPDF::Types::DocPagesViewports200Response]
+        # @return [CloudPDF::Types::DocPagesViewportsResponse]
         def viewports(request_options: {}, **params)
           params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
           headers = {}
@@ -103,7 +103,7 @@ module CloudPDF
           end
           code = response.code.to_i
           if code.between?(200, 299)
-            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocPagesViewports200Response.load(response.body))
+            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocPagesViewportsResponse.load(response.body))
           else
             error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
             raise error_class.new(response.body, code: code)
@@ -190,7 +190,7 @@ module CloudPDF
         #     }
         #   )
         #
-        # @return [CloudPDF::Types::DocPagesFlatten200Response]
+        # @return [CloudPDF::Types::DocPagesFlattenResponse]
         def flatten(request_options: {}, **params)
           params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
           path_param_names = %i[doc_id layer_name]
@@ -215,7 +215,7 @@ module CloudPDF
           end
           code = response.code.to_i
           if code.between?(200, 299)
-            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocPagesFlatten200Response.load(response.body))
+            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocPagesFlattenResponse.load(response.body))
           else
             error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
             raise error_class.new(response.body, code: code)
@@ -243,7 +243,7 @@ module CloudPDF
         #     }
         #   )
         #
-        # @return [CloudPDF::Types::DocPagesSetName200Response]
+        # @return [CloudPDF::Types::DocPagesSetNameResponse]
         def set_name(request_options: {}, **params)
           params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
           path_param_names = %i[doc_id layer_name]
@@ -268,7 +268,7 @@ module CloudPDF
           end
           code = response.code.to_i
           if code.between?(200, 299)
-            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocPagesSetName200Response.load(response.body))
+            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocPagesSetNameResponse.load(response.body))
           else
             error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
             raise error_class.new(response.body, code: code)
@@ -296,7 +296,7 @@ module CloudPDF
         #     }
         #   )
         #
-        # @return [CloudPDF::Types::DocPagesRemoveName200Response]
+        # @return [CloudPDF::Types::DocPagesRemoveNameResponse]
         def remove_name(request_options: {}, **params)
           params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
           path_param_names = %i[doc_id layer_name]
@@ -321,7 +321,7 @@ module CloudPDF
           end
           code = response.code.to_i
           if code.between?(200, 299)
-            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocPagesRemoveName200Response.load(response.body))
+            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocPagesRemoveNameResponse.load(response.body))
           else
             error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
             raise error_class.new(response.body, code: code)

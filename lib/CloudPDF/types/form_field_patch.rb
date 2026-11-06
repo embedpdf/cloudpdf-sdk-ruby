@@ -19,7 +19,7 @@ module CloudPDF
 
       field :actions, -> { CloudPDF::Types::FieldActionsPatch }, optional: true, nullable: false
 
-      field :family, -> { CloudPDF::Types::FormFieldPatchFamily }, optional: true, nullable: false
+      field :kind, -> { CloudPDF::Types::FormFieldPatchKind }, optional: true, nullable: false
 
       field :default_value, -> { CloudPDF::Types::FormFieldPatchDefaultValue }, optional: true, nullable: false, api_name: "defaultValue"
 

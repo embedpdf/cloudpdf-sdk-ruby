@@ -30,7 +30,7 @@ module CloudPDF
       # @example
       #   client.grants.exchange(grant: "grant")
       #
-      # @return [CloudPDF::Types::GrantsExchange200Response]
+      # @return [CloudPDF::Types::GrantsExchangeResponse]
       def exchange(request_options: {}, **params)
         params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
         request = CloudPDF::Internal::JSON::Request.new(
@@ -47,7 +47,7 @@ module CloudPDF
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          (response.body.to_s.empty? ? nil : CloudPDF::Types::GrantsExchange200Response.load(response.body))
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::GrantsExchangeResponse.load(response.body))
         else
           error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -70,7 +70,7 @@ module CloudPDF
       # @example
       #   client.grants.list(tenant_id: "tenantId")
       #
-      # @return [CloudPDF::Types::GrantsList200Response]
+      # @return [CloudPDF::Types::GrantsListResponse]
       def list(request_options: {}, **params)
         params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
         query_params = {}
@@ -93,7 +93,7 @@ module CloudPDF
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          (response.body.to_s.empty? ? nil : CloudPDF::Types::GrantsList200Response.load(response.body))
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::GrantsListResponse.load(response.body))
         else
           error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -120,7 +120,7 @@ module CloudPDF
       #     scope: ["scope"]
       #   )
       #
-      # @return [CloudPDF::Types::GrantsCreate200Response]
+      # @return [CloudPDF::Types::GrantsCreateResponse]
       def create(request_options: {}, **params)
         params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
         request_data = CloudPDF::Grants::Types::GrantsCreateRequest.new(params).to_h
@@ -141,7 +141,7 @@ module CloudPDF
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          (response.body.to_s.empty? ? nil : CloudPDF::Types::GrantsCreate200Response.load(response.body))
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::GrantsCreateResponse.load(response.body))
         else
           error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -164,7 +164,7 @@ module CloudPDF
       #     grant_id: "grantId"
       #   )
       #
-      # @return [CloudPDF::Types::GrantsGet200Response]
+      # @return [CloudPDF::Types::GrantsGetResponse]
       def get(request_options: {}, **params)
         params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
         request = CloudPDF::Internal::JSON::Request.new(
@@ -180,7 +180,7 @@ module CloudPDF
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          (response.body.to_s.empty? ? nil : CloudPDF::Types::GrantsGet200Response.load(response.body))
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::GrantsGetResponse.load(response.body))
         else
           error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -240,7 +240,7 @@ module CloudPDF
       #     grant_id: "grantId"
       #   )
       #
-      # @return [CloudPDF::Types::GrantsUpdate200Response]
+      # @return [CloudPDF::Types::GrantsUpdateResponse]
       def update(request_options: {}, **params)
         params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
         request_data = CloudPDF::Grants::Types::GrantsUpdateRequest.new(params).to_h
@@ -261,7 +261,7 @@ module CloudPDF
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          (response.body.to_s.empty? ? nil : CloudPDF::Types::GrantsUpdate200Response.load(response.body))
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::GrantsUpdateResponse.load(response.body))
         else
           error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -288,7 +288,7 @@ module CloudPDF
       #     grant_id: "grantId"
       #   )
       #
-      # @return [CloudPDF::Types::GrantsArchive200Response]
+      # @return [CloudPDF::Types::GrantsArchiveResponse]
       def archive(request_options: {}, **params)
         params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
         request = CloudPDF::Internal::JSON::Request.new(
@@ -304,7 +304,7 @@ module CloudPDF
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          (response.body.to_s.empty? ? nil : CloudPDF::Types::GrantsArchive200Response.load(response.body))
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::GrantsArchiveResponse.load(response.body))
         else
           error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)

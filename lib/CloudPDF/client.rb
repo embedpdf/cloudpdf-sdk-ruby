@@ -12,7 +12,8 @@ module CloudPDF
         base_url: base_url || CloudPDF::Environment::SAAS,
         headers: {
           "X-Fern-Language" => "Ruby",
-          Authorization: "Bearer #{token}"
+          Authorization: "Bearer #{token}",
+          "EmbedPDF-Version" => "3.0"
         },
         max_retries: max_retries
       )

@@ -30,7 +30,7 @@ module CloudPDF
 
         field :session_ttl_seconds, -> { Integer }, optional: true, nullable: false, api_name: "sessionTtlSeconds"
 
-        field :expires_at, -> { Integer }, optional: true, nullable: false, api_name: "expiresAt"
+        field :expires_at, -> { String }, optional: true, nullable: false, api_name: "expiresAt"
       end
     end
   end

@@ -32,7 +32,7 @@ module CloudPDF
 
         field :disabled, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
-        field :expires_at, -> { Integer }, optional: true, nullable: false, api_name: "expiresAt"
+        field :expires_at, -> { String }, optional: true, nullable: false, api_name: "expiresAt"
       end
     end
   end

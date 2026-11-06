@@ -29,7 +29,7 @@ module CloudPDF
       # @example
       #   client.documents.list(tenant_id: "tenantId")
       #
-      # @return [CloudPDF::Types::DocumentsList200Response]
+      # @return [CloudPDF::Types::DocumentsListResponse]
       def list(request_options: {}, **params)
         params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
         query_params = {}
@@ -55,7 +55,7 @@ module CloudPDF
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          (response.body.to_s.empty? ? nil : CloudPDF::Types::DocumentsList200Response.load(response.body))
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::DocumentsListResponse.load(response.body))
         else
           error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -70,21 +70,21 @@ module CloudPDF
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [String] :tenant_id
-      # @option params [String] :id
+      # @option params [String] :doc_id
       #
       # @example
       #   client.documents.get(
       #     tenant_id: "tenantId",
-      #     id: "id"
+      #     doc_id: "docId"
       #   )
       #
-      # @return [CloudPDF::Types::DocumentsGet200Response]
+      # @return [CloudPDF::Types::DocumentsGetResponse]
       def get(request_options: {}, **params)
         params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
         request = CloudPDF::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "GET",
-          path: "v1/tenants/#{URI.encode_uri_component(params[:tenant_id].to_s)}/documents/#{URI.encode_uri_component(params[:id].to_s)}",
+          path: "v1/tenants/#{URI.encode_uri_component(params[:tenant_id].to_s)}/documents/#{URI.encode_uri_component(params[:doc_id].to_s)}",
           request_options: request_options
         )
         begin
@@ -94,7 +94,7 @@ module CloudPDF
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          (response.body.to_s.empty? ? nil : CloudPDF::Types::DocumentsGet200Response.load(response.body))
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::DocumentsGetResponse.load(response.body))
         else
           error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -109,12 +109,12 @@ module CloudPDF
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [String] :tenant_id
-      # @option params [String] :id
+      # @option params [String] :doc_id
       #
       # @example
       #   client.documents.delete(
       #     tenant_id: "tenantId",
-      #     id: "id"
+      #     doc_id: "docId"
       #   )
       #
       # @return [untyped]
@@ -123,7 +123,7 @@ module CloudPDF
         request = CloudPDF::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "DELETE",
-          path: "v1/tenants/#{URI.encode_uri_component(params[:tenant_id].to_s)}/documents/#{URI.encode_uri_component(params[:id].to_s)}",
+          path: "v1/tenants/#{URI.encode_uri_component(params[:tenant_id].to_s)}/documents/#{URI.encode_uri_component(params[:doc_id].to_s)}",
           request_options: request_options
         )
         begin
@@ -148,26 +148,26 @@ module CloudPDF
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [String] :tenant_id
-      # @option params [String] :id
+      # @option params [String] :doc_id
       #
       # @example
       #   client.documents.update(
       #     tenant_id: "tenantId",
-      #     id: "id",
+      #     doc_id: "docId",
       #     name: "name"
       #   )
       #
-      # @return [CloudPDF::Types::DocumentsUpdate200Response]
+      # @return [CloudPDF::Types::DocumentsUpdateResponse]
       def update(request_options: {}, **params)
         params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
         request_data = CloudPDF::Documents::Types::DocumentsUpdateRequest.new(params).to_h
-        non_body_param_names = %w[tenantId id]
+        non_body_param_names = %w[tenantId docId]
         body = request_data.except(*non_body_param_names)
 
         request = CloudPDF::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "PATCH",
-          path: "v1/tenants/#{URI.encode_uri_component(params[:tenant_id].to_s)}/documents/#{URI.encode_uri_component(params[:id].to_s)}",
+          path: "v1/tenants/#{URI.encode_uri_component(params[:tenant_id].to_s)}/documents/#{URI.encode_uri_component(params[:doc_id].to_s)}",
           body: body,
           request_options: request_options
         )
@@ -178,7 +178,7 @@ module CloudPDF
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          (response.body.to_s.empty? ? nil : CloudPDF::Types::DocumentsUpdate200Response.load(response.body))
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::DocumentsUpdateResponse.load(response.body))
         else
           error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -195,26 +195,26 @@ module CloudPDF
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [String] :tenant_id
-      # @option params [String] :id
+      # @option params [String] :doc_id
       #
       # @example
       #   client.documents.commit(
       #     tenant_id: "tenantId",
-      #     id: "id",
+      #     doc_id: "docId",
       #     sha256: "sha256"
       #   )
       #
-      # @return [CloudPDF::Types::DocumentsCommit200Response]
+      # @return [CloudPDF::Types::DocumentsCommitResponse]
       def commit(request_options: {}, **params)
         params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
         request_data = CloudPDF::Documents::Types::DocumentsCommitRequest.new(params).to_h
-        non_body_param_names = %w[tenantId id]
+        non_body_param_names = %w[tenantId docId]
         body = request_data.except(*non_body_param_names)
 
         request = CloudPDF::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "POST",
-          path: "v1/tenants/#{URI.encode_uri_component(params[:tenant_id].to_s)}/documents/#{URI.encode_uri_component(params[:id].to_s)}/commit",
+          path: "v1/tenants/#{URI.encode_uri_component(params[:tenant_id].to_s)}/documents/#{URI.encode_uri_component(params[:doc_id].to_s)}/commit",
           body: body,
           request_options: request_options
         )
@@ -225,7 +225,7 @@ module CloudPDF
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          (response.body.to_s.empty? ? nil : CloudPDF::Types::DocumentsCommit200Response.load(response.body))
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::DocumentsCommitResponse.load(response.body))
         else
           error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -240,12 +240,12 @@ module CloudPDF
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [String] :tenant_id
-      # @option params [String] :id
+      # @option params [String] :doc_id
       #
       # @example
       #   client.documents.download(
       #     tenant_id: "tenantId",
-      #     id: "id"
+      #     doc_id: "docId"
       #   )
       #
       # @return [untyped]
@@ -254,7 +254,7 @@ module CloudPDF
         request = CloudPDF::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "GET",
-          path: "v1/tenants/#{URI.encode_uri_component(params[:tenant_id].to_s)}/documents/#{URI.encode_uri_component(params[:id].to_s)}/download",
+          path: "v1/tenants/#{URI.encode_uri_component(params[:tenant_id].to_s)}/documents/#{URI.encode_uri_component(params[:doc_id].to_s)}/download",
           request_options: request_options
         )
         begin
@@ -277,12 +277,12 @@ module CloudPDF
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [String] :tenant_id
-      # @option params [String] :id
+      # @option params [String] :doc_id
       #
       # @example
       #   client.documents.thumbnail(
       #     tenant_id: "tenantId",
-      #     id: "id"
+      #     doc_id: "docId"
       #   )
       #
       # @return [untyped]
@@ -291,7 +291,7 @@ module CloudPDF
         request = CloudPDF::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "GET",
-          path: "v1/tenants/#{URI.encode_uri_component(params[:tenant_id].to_s)}/documents/#{URI.encode_uri_component(params[:id].to_s)}/thumbnail",
+          path: "v1/tenants/#{URI.encode_uri_component(params[:tenant_id].to_s)}/documents/#{URI.encode_uri_component(params[:doc_id].to_s)}/thumbnail",
           request_options: request_options
         )
         begin
@@ -318,17 +318,17 @@ module CloudPDF
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
       # @option params [String] :tenant_id
-      # @option params [String] :id
+      # @option params [String] :doc_id
       # @option params [#read] :file
       #
       # @example
       #   client.documents.upload_proxy(
       #     tenant_id: "tenantId",
-      #     id: "id",
+      #     doc_id: "docId",
       #     file: File.open("document.pdf", "rb")
       #   )
       #
-      # @return [CloudPDF::Types::DocumentsUploadProxy200Response]
+      # @return [CloudPDF::Types::DocumentsUploadProxyResponse]
       def upload_proxy(request_options: {}, **params)
         params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
         body = Internal::Multipart::FormData.new
@@ -340,7 +340,7 @@ module CloudPDF
         request = CloudPDF::Internal::Multipart::Request.new(
           base_url: request_options[:base_url],
           method: "POST",
-          path: "v1/tenants/#{URI.encode_uri_component(params[:tenant_id].to_s)}/documents/#{URI.encode_uri_component(params[:id].to_s)}/upload-proxy",
+          path: "v1/tenants/#{URI.encode_uri_component(params[:tenant_id].to_s)}/documents/#{URI.encode_uri_component(params[:doc_id].to_s)}/upload-proxy",
           body: body,
           request_options: request_options
         )
@@ -351,7 +351,7 @@ module CloudPDF
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          (response.body.to_s.empty? ? nil : CloudPDF::Types::DocumentsUploadProxy200Response.load(response.body))
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::DocumentsUploadProxyResponse.load(response.body))
         else
           error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -408,9 +408,9 @@ module CloudPDF
       end
 
       # With an upload token, the document goes into the token's folder with the token's metadata, whatever the request
-      # says; contentLength must be within the token's maxBytes, and the token makes at most maxFiles documents (403
-      # after). docId, idempotencyKey and dedupMode reuse-existing are refused (400): each could reach a document the
-      # token didn't make.
+      # says; sizeBytes must be within the token's maxBytes, and the token makes at most maxFiles documents (403 after).
+      # docId, idempotencyKey and dedupMode reuse-existing are refused (400): each could reach a document the token
+      # didn't make.
       #
       # @param request_options [Hash]
       # @param params [CloudPDF::Documents::Types::DocumentsInitRequest]
@@ -424,11 +424,11 @@ module CloudPDF
       # @example
       #   client.documents.init(
       #     tenant_id: "tenantId",
-      #     content_length: 1.1,
+      #     size_bytes: 1,
       #     content_sha256: "contentSha256"
       #   )
       #
-      # @return [CloudPDF::Types::DocumentsInit200Response]
+      # @return [CloudPDF::Types::DocumentsInitResponse]
       def init(request_options: {}, **params)
         params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
         request_data = CloudPDF::Documents::Types::DocumentsInitRequest.new(params).to_h
@@ -449,7 +449,7 @@ module CloudPDF
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          (response.body.to_s.empty? ? nil : CloudPDF::Types::DocumentsInit200Response.load(response.body))
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::DocumentsInitResponse.load(response.body))
         else
           error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)

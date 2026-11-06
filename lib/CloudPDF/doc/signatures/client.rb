@@ -31,7 +31,7 @@ module CloudPDF
         #     layer_name: "layerName"
         #   )
         #
-        # @return [CloudPDF::Types::DocSignaturesList200Response]
+        # @return [CloudPDF::Types::DocSignaturesListResponse]
         def list(request_options: {}, **params)
           params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
           headers = {}
@@ -51,7 +51,7 @@ module CloudPDF
           end
           code = response.code.to_i
           if code.between?(200, 299)
-            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocSignaturesList200Response.load(response.body))
+            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocSignaturesListResponse.load(response.body))
           else
             error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
             raise error_class.new(response.body, code: code)
@@ -77,7 +77,7 @@ module CloudPDF
         #     signing_id: "signingId"
         #   )
         #
-        # @return [CloudPDF::Types::DocSignaturesCancel200Response]
+        # @return [CloudPDF::Types::DocSignaturesCancelResponse]
         def cancel(request_options: {}, **params)
           params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
           headers = {}
@@ -97,7 +97,7 @@ module CloudPDF
           end
           code = response.code.to_i
           if code.between?(200, 299)
-            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocSignaturesCancel200Response.load(response.body))
+            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocSignaturesCancelResponse.load(response.body))
           else
             error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
             raise error_class.new(response.body, code: code)
@@ -133,7 +133,7 @@ module CloudPDF
         #     }
         #   )
         #
-        # @return [CloudPDF::Types::DocSignaturesComplete200Response]
+        # @return [CloudPDF::Types::DocSignaturesCompleteResponse]
         def complete(request_options: {}, **params)
           params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
           request_data = CloudPDF::Doc::Signatures::Types::DocSignaturesCompleteRequest.new(params).to_h
@@ -158,7 +158,7 @@ module CloudPDF
           end
           code = response.code.to_i
           if code.between?(200, 299)
-            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocSignaturesComplete200Response.load(response.body))
+            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocSignaturesCompleteResponse.load(response.body))
           else
             error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
             raise error_class.new(response.body, code: code)
@@ -189,7 +189,7 @@ module CloudPDF
         #     layer_name: "layerName"
         #   )
         #
-        # @return [CloudPDF::Types::DocSignaturesAnalysis200Response]
+        # @return [CloudPDF::Types::DocSignaturesAnalysisResponse]
         def analysis(request_options: {}, **params)
           params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
           query_params = {}
@@ -215,7 +215,7 @@ module CloudPDF
           end
           code = response.code.to_i
           if code.between?(200, 299)
-            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocSignaturesAnalysis200Response.load(response.body))
+            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocSignaturesAnalysisResponse.load(response.body))
           else
             error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
             raise error_class.new(response.body, code: code)
@@ -245,7 +245,7 @@ module CloudPDF
         #     layer_name: "layerName"
         #   )
         #
-        # @return [CloudPDF::Types::DocSignaturesPrepare200Response]
+        # @return [CloudPDF::Types::DocSignaturesPrepareResponse]
         def prepare(request_options: {}, **params)
           params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
           body = Internal::Multipart::FormData.new
@@ -271,7 +271,7 @@ module CloudPDF
           end
           code = response.code.to_i
           if code.between?(200, 299)
-            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocSignaturesPrepare200Response.load(response.body))
+            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocSignaturesPrepareResponse.load(response.body))
           else
             error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
             raise error_class.new(response.body, code: code)

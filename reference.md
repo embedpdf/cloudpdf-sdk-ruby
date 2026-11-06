@@ -95,7 +95,7 @@ client.deployment.modules
 </details>
 
 ## Doc
-<details><summary><code>client.doc.<a href="/lib/CloudPDF/doc/client.rb">head</a>(doc_id:) -> CloudPDF::Types::DocHead200Response</code></summary>
+<details><summary><code>client.doc.<a href="/lib/CloudPDF/doc/client.rb">head</a>(doc_id:) -> CloudPDF::Types::DocHeadResponse</code></summary>
 <dl>
 <dd>
 
@@ -151,7 +151,7 @@ client.doc.head(doc_id: "docId")
 </dl>
 </details>
 
-<details><summary><code>client.doc.<a href="/lib/CloudPDF/doc/client.rb">changes</a>(doc_id:, layer_name:, request) -> CloudPDF::Types::DocChanges200Response</code></summary>
+<details><summary><code>client.doc.<a href="/lib/CloudPDF/doc/client.rb">changes</a>(doc_id:, layer_name:, request) -> CloudPDF::Types::DocChangesResponse</code></summary>
 <dl>
 <dd>
 
@@ -310,7 +310,7 @@ client.doc.download(
 </dl>
 </details>
 
-<details><summary><code>client.doc.<a href="/lib/CloudPDF/doc/client.rb">download_link</a>(doc_id:, layer_name:, request) -> CloudPDF::Types::DocDownloadLink200Response</code></summary>
+<details><summary><code>client.doc.<a href="/lib/CloudPDF/doc/client.rb">download_link</a>(doc_id:, layer_name:, request) -> CloudPDF::Types::DocDownloadLinkResponse</code></summary>
 <dl>
 <dd>
 
@@ -379,7 +379,7 @@ client.doc.download_link(
 <dl>
 <dd>
 
-**expires_in:** `Integer` 
+**expires_in_seconds:** `Integer` 
     
 </dd>
 </dl>
@@ -399,7 +399,7 @@ client.doc.download_link(
 </dl>
 </details>
 
-<details><summary><code>client.doc.<a href="/lib/CloudPDF/doc/client.rb">manifest</a>(doc_id:, layer_name:) -> CloudPDF::Types::DocManifest200Response</code></summary>
+<details><summary><code>client.doc.<a href="/lib/CloudPDF/doc/client.rb">manifest</a>(doc_id:, layer_name:) -> CloudPDF::Types::DocManifestResponse</code></summary>
 <dl>
 <dd>
 
@@ -528,7 +528,7 @@ client.doc.render(
 <dl>
 <dd>
 
-**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotKey` and `fieldKey`.
+**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotationKey` and `fieldKey`.
     
 </dd>
 </dl>
@@ -556,7 +556,7 @@ client.doc.render(
 </dl>
 </details>
 
-<details><summary><code>client.doc.<a href="/lib/CloudPDF/doc/client.rb">text</a>(doc_id:, layer_name:, page_key:) -> CloudPDF::Types::DocText200Response</code></summary>
+<details><summary><code>client.doc.<a href="/lib/CloudPDF/doc/client.rb">text</a>(doc_id:, layer_name:, page_key:) -> CloudPDF::Types::DocTextResponse</code></summary>
 <dl>
 <dd>
 
@@ -604,7 +604,7 @@ client.doc.text(
 <dl>
 <dd>
 
-**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotKey` and `fieldKey`.
+**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotationKey` and `fieldKey`.
     
 </dd>
 </dl>
@@ -633,7 +633,7 @@ client.doc.text(
 </details>
 
 ## Grants
-<details><summary><code>client.grants.<a href="/lib/CloudPDF/grants/client.rb">exchange</a>(request) -> CloudPDF::Types::GrantsExchange200Response</code></summary>
+<details><summary><code>client.grants.<a href="/lib/CloudPDF/grants/client.rb">exchange</a>(request) -> CloudPDF::Types::GrantsExchangeResponse</code></summary>
 <dl>
 <dd>
 
@@ -727,7 +727,7 @@ client.grants.exchange(grant: "grant")
 </dl>
 </details>
 
-<details><summary><code>client.grants.<a href="/lib/CloudPDF/grants/client.rb">list</a>(tenant_id:) -> CloudPDF::Types::GrantsList200Response</code></summary>
+<details><summary><code>client.grants.<a href="/lib/CloudPDF/grants/client.rb">list</a>(tenant_id:) -> CloudPDF::Types::GrantsListResponse</code></summary>
 <dl>
 <dd>
 
@@ -807,7 +807,7 @@ client.grants.list(tenant_id: "tenantId")
 </dl>
 </details>
 
-<details><summary><code>client.grants.<a href="/lib/CloudPDF/grants/client.rb">create</a>(tenant_id:, request) -> CloudPDF::Types::GrantsCreate200Response</code></summary>
+<details><summary><code>client.grants.<a href="/lib/CloudPDF/grants/client.rb">create</a>(tenant_id:, request) -> CloudPDF::Types::GrantsCreateResponse</code></summary>
 <dl>
 <dd>
 
@@ -957,7 +957,7 @@ client.grants.create(
 <dl>
 <dd>
 
-**expires_at:** `Integer` 
+**expires_at:** `String` 
     
 </dd>
 </dl>
@@ -977,7 +977,7 @@ client.grants.create(
 </dl>
 </details>
 
-<details><summary><code>client.grants.<a href="/lib/CloudPDF/grants/client.rb">get</a>(tenant_id:, grant_id:) -> CloudPDF::Types::GrantsGet200Response</code></summary>
+<details><summary><code>client.grants.<a href="/lib/CloudPDF/grants/client.rb">get</a>(tenant_id:, grant_id:) -> CloudPDF::Types::GrantsGetResponse</code></summary>
 <dl>
 <dd>
 
@@ -1095,7 +1095,7 @@ client.grants.delete(
 </dl>
 </details>
 
-<details><summary><code>client.grants.<a href="/lib/CloudPDF/grants/client.rb">update</a>(tenant_id:, grant_id:, request) -> CloudPDF::Types::GrantsUpdate200Response</code></summary>
+<details><summary><code>client.grants.<a href="/lib/CloudPDF/grants/client.rb">update</a>(tenant_id:, grant_id:, request) -> CloudPDF::Types::GrantsUpdateResponse</code></summary>
 <dl>
 <dd>
 
@@ -1238,7 +1238,7 @@ client.grants.update(
 <dl>
 <dd>
 
-**expires_at:** `Integer` 
+**expires_at:** `String` 
     
 </dd>
 </dl>
@@ -1258,7 +1258,7 @@ client.grants.update(
 </dl>
 </details>
 
-<details><summary><code>client.grants.<a href="/lib/CloudPDF/grants/client.rb">archive</a>(tenant_id:, grant_id:) -> CloudPDF::Types::GrantsArchive200Response</code></summary>
+<details><summary><code>client.grants.<a href="/lib/CloudPDF/grants/client.rb">archive</a>(tenant_id:, grant_id:) -> CloudPDF::Types::GrantsArchiveResponse</code></summary>
 <dl>
 <dd>
 
@@ -1332,7 +1332,7 @@ client.grants.archive(
 </details>
 
 ## Tenants
-<details><summary><code>client.tenants.<a href="/lib/CloudPDF/tenants/client.rb">list</a>() -> CloudPDF::Types::TenantsList200Response</code></summary>
+<details><summary><code>client.tenants.<a href="/lib/CloudPDF/tenants/client.rb">list</a>() -> CloudPDF::Types::TenantsListResponse</code></summary>
 <dl>
 <dd>
 
@@ -1388,7 +1388,7 @@ client.tenants.list
 </dl>
 </details>
 
-<details><summary><code>client.tenants.<a href="/lib/CloudPDF/tenants/client.rb">create</a>(request) -> CloudPDF::Types::TenantsCreate200Response</code></summary>
+<details><summary><code>client.tenants.<a href="/lib/CloudPDF/tenants/client.rb">create</a>(request) -> CloudPDF::Types::TenantsCreateResponse</code></summary>
 <dl>
 <dd>
 
@@ -1444,7 +1444,7 @@ client.tenants.create(id: "id")
 </dl>
 </details>
 
-<details><summary><code>client.tenants.<a href="/lib/CloudPDF/tenants/client.rb">get</a>(tenant_id:) -> CloudPDF::Types::TenantsGet200Response</code></summary>
+<details><summary><code>client.tenants.<a href="/lib/CloudPDF/tenants/client.rb">get</a>(tenant_id:) -> CloudPDF::Types::TenantsGetResponse</code></summary>
 <dl>
 <dd>
 
@@ -1554,7 +1554,7 @@ client.tenants.delete(tenant_id: "tenantId")
 </dl>
 </details>
 
-<details><summary><code>client.tenants.<a href="/lib/CloudPDF/tenants/client.rb">update</a>(tenant_id:, request) -> CloudPDF::Types::TenantsUpdate200Response</code></summary>
+<details><summary><code>client.tenants.<a href="/lib/CloudPDF/tenants/client.rb">update</a>(tenant_id:, request) -> CloudPDF::Types::TenantsUpdateResponse</code></summary>
 <dl>
 <dd>
 
@@ -1747,7 +1747,7 @@ client.tenants.suspend(tenant_id: "tenantId")
 </dl>
 </details>
 
-<details><summary><code>client.tenants.<a href="/lib/CloudPDF/tenants/client.rb">usage</a>(tenant_id:) -> CloudPDF::Types::TenantsUsage200Response</code></summary>
+<details><summary><code>client.tenants.<a href="/lib/CloudPDF/tenants/client.rb">usage</a>(tenant_id:) -> CloudPDF::Types::TenantsUsageResponse</code></summary>
 <dl>
 <dd>
 
@@ -1834,7 +1834,7 @@ client.tenants.usage(tenant_id: "tenantId")
 </details>
 
 ## Documents
-<details><summary><code>client.documents.<a href="/lib/CloudPDF/documents/client.rb">list</a>(tenant_id:) -> CloudPDF::Types::DocumentsList200Response</code></summary>
+<details><summary><code>client.documents.<a href="/lib/CloudPDF/documents/client.rb">list</a>(tenant_id:) -> CloudPDF::Types::DocumentsListResponse</code></summary>
 <dl>
 <dd>
 
@@ -1938,7 +1938,7 @@ client.documents.list(tenant_id: "tenantId")
 </dl>
 </details>
 
-<details><summary><code>client.documents.<a href="/lib/CloudPDF/documents/client.rb">get</a>(tenant_id:, id:) -> CloudPDF::Types::DocumentsGet200Response</code></summary>
+<details><summary><code>client.documents.<a href="/lib/CloudPDF/documents/client.rb">get</a>(tenant_id:, doc_id:) -> CloudPDF::Types::DocumentsGetResponse</code></summary>
 <dl>
 <dd>
 
@@ -1953,7 +1953,7 @@ client.documents.list(tenant_id: "tenantId")
 ```ruby
 client.documents.get(
   tenant_id: "tenantId",
-  id: "id"
+  doc_id: "docId"
 )
 ```
 </dd>
@@ -1977,7 +1977,7 @@ client.documents.get(
 <dl>
 <dd>
 
-**id:** `String` 
+**doc_id:** `String` 
     
 </dd>
 </dl>
@@ -1997,7 +1997,7 @@ client.documents.get(
 </dl>
 </details>
 
-<details><summary><code>client.documents.<a href="/lib/CloudPDF/documents/client.rb">delete</a>(tenant_id:, id:) -> </code></summary>
+<details><summary><code>client.documents.<a href="/lib/CloudPDF/documents/client.rb">delete</a>(tenant_id:, doc_id:) -> </code></summary>
 <dl>
 <dd>
 
@@ -2012,7 +2012,7 @@ client.documents.get(
 ```ruby
 client.documents.delete(
   tenant_id: "tenantId",
-  id: "id"
+  doc_id: "docId"
 )
 ```
 </dd>
@@ -2036,7 +2036,7 @@ client.documents.delete(
 <dl>
 <dd>
 
-**id:** `String` 
+**doc_id:** `String` 
     
 </dd>
 </dl>
@@ -2056,7 +2056,7 @@ client.documents.delete(
 </dl>
 </details>
 
-<details><summary><code>client.documents.<a href="/lib/CloudPDF/documents/client.rb">update</a>(tenant_id:, id:, request) -> CloudPDF::Types::DocumentsUpdate200Response</code></summary>
+<details><summary><code>client.documents.<a href="/lib/CloudPDF/documents/client.rb">update</a>(tenant_id:, doc_id:, request) -> CloudPDF::Types::DocumentsUpdateResponse</code></summary>
 <dl>
 <dd>
 
@@ -2085,7 +2085,7 @@ A document that is being deleted answers 404.
 ```ruby
 client.documents.update(
   tenant_id: "tenantId",
-  id: "id",
+  doc_id: "docId",
   name: "name"
 )
 ```
@@ -2110,7 +2110,7 @@ client.documents.update(
 <dl>
 <dd>
 
-**id:** `String` 
+**doc_id:** `String` 
     
 </dd>
 </dl>
@@ -2138,7 +2138,7 @@ client.documents.update(
 </dl>
 </details>
 
-<details><summary><code>client.documents.<a href="/lib/CloudPDF/documents/client.rb">commit</a>(tenant_id:, id:, request) -> CloudPDF::Types::DocumentsCommit200Response</code></summary>
+<details><summary><code>client.documents.<a href="/lib/CloudPDF/documents/client.rb">commit</a>(tenant_id:, doc_id:, request) -> CloudPDF::Types::DocumentsCommitResponse</code></summary>
 <dl>
 <dd>
 
@@ -2167,7 +2167,7 @@ An upload token commits only the documents it started; any other document answer
 ```ruby
 client.documents.commit(
   tenant_id: "tenantId",
-  id: "id",
+  doc_id: "docId",
   sha256: "sha256"
 )
 ```
@@ -2192,7 +2192,7 @@ client.documents.commit(
 <dl>
 <dd>
 
-**id:** `String` 
+**doc_id:** `String` 
     
 </dd>
 </dl>
@@ -2220,7 +2220,7 @@ client.documents.commit(
 </dl>
 </details>
 
-<details><summary><code>client.documents.<a href="/lib/CloudPDF/documents/client.rb">download</a>(tenant_id:, id:) -> String</code></summary>
+<details><summary><code>client.documents.<a href="/lib/CloudPDF/documents/client.rb">download</a>(tenant_id:, doc_id:) -> String</code></summary>
 <dl>
 <dd>
 
@@ -2235,7 +2235,7 @@ client.documents.commit(
 ```ruby
 client.documents.download(
   tenant_id: "tenantId",
-  id: "id"
+  doc_id: "docId"
 )
 ```
 </dd>
@@ -2259,7 +2259,7 @@ client.documents.download(
 <dl>
 <dd>
 
-**id:** `String` 
+**doc_id:** `String` 
     
 </dd>
 </dl>
@@ -2279,7 +2279,7 @@ client.documents.download(
 </dl>
 </details>
 
-<details><summary><code>client.documents.<a href="/lib/CloudPDF/documents/client.rb">thumbnail</a>(tenant_id:, id:) -> String</code></summary>
+<details><summary><code>client.documents.<a href="/lib/CloudPDF/documents/client.rb">thumbnail</a>(tenant_id:, doc_id:) -> String</code></summary>
 <dl>
 <dd>
 
@@ -2294,7 +2294,7 @@ client.documents.download(
 ```ruby
 client.documents.thumbnail(
   tenant_id: "tenantId",
-  id: "id"
+  doc_id: "docId"
 )
 ```
 </dd>
@@ -2318,7 +2318,7 @@ client.documents.thumbnail(
 <dl>
 <dd>
 
-**id:** `String` 
+**doc_id:** `String` 
     
 </dd>
 </dl>
@@ -2338,7 +2338,7 @@ client.documents.thumbnail(
 </dl>
 </details>
 
-<details><summary><code>client.documents.<a href="/lib/CloudPDF/documents/client.rb">upload_proxy</a>(tenant_id:, id:, request) -> CloudPDF::Types::DocumentsUploadProxy200Response</code></summary>
+<details><summary><code>client.documents.<a href="/lib/CloudPDF/documents/client.rb">upload_proxy</a>(tenant_id:, doc_id:, request) -> CloudPDF::Types::DocumentsUploadProxyResponse</code></summary>
 <dl>
 <dd>
 
@@ -2368,7 +2368,7 @@ This bounded origin-mediated fallback must only be used after documents.init ret
 File.open("document.pdf", "rb") do |file|
   client.documents.upload_proxy(
     tenant_id: "tenantId",
-    id: "id",
+    doc_id: "docId",
     file: file
   )
 end
@@ -2394,7 +2394,7 @@ end
 <dl>
 <dd>
 
-**id:** `String` 
+**doc_id:** `String` 
     
 </dd>
 </dl>
@@ -2548,7 +2548,7 @@ client.documents.import_from(tenant_id: "tenantId")
 </dl>
 </details>
 
-<details><summary><code>client.documents.<a href="/lib/CloudPDF/documents/client.rb">init</a>(tenant_id:, request) -> CloudPDF::Types::DocumentsInit200Response</code></summary>
+<details><summary><code>client.documents.<a href="/lib/CloudPDF/documents/client.rb">init</a>(tenant_id:, request) -> CloudPDF::Types::DocumentsInitResponse</code></summary>
 <dl>
 <dd>
 
@@ -2560,7 +2560,7 @@ client.documents.import_from(tenant_id: "tenantId")
 <dl>
 <dd>
 
-With an upload token, the document goes into the token's folder with the token's metadata, whatever the request says; contentLength must be within the token's maxBytes, and the token makes at most maxFiles documents (403 after). docId, idempotencyKey and dedupMode reuse-existing are refused (400): each could reach a document the token didn't make.
+With an upload token, the document goes into the token's folder with the token's metadata, whatever the request says; sizeBytes must be within the token's maxBytes, and the token makes at most maxFiles documents (403 after). docId, idempotencyKey and dedupMode reuse-existing are refused (400): each could reach a document the token didn't make.
 </dd>
 </dl>
 </dd>
@@ -2577,7 +2577,7 @@ With an upload token, the document goes into the token's folder with the token's
 ```ruby
 client.documents.init(
   tenant_id: "tenantId",
-  content_length: 1.1,
+  size_bytes: 1,
   content_sha256: "contentSha256"
 )
 ```
@@ -2602,7 +2602,7 @@ client.documents.init(
 <dl>
 <dd>
 
-**content_length:** `Integer` 
+**size_bytes:** `Integer` 
     
 </dd>
 </dl>
@@ -2666,7 +2666,7 @@ client.documents.init(
 <dl>
 <dd>
 
-**upload_ttl_sec:** `Integer` 
+**upload_ttl_seconds:** `Integer` 
     
 </dd>
 </dl>
@@ -2695,7 +2695,7 @@ client.documents.init(
 </details>
 
 ## Folders
-<details><summary><code>client.folders.<a href="/lib/CloudPDF/folders/client.rb">list</a>(tenant_id:) -> CloudPDF::Types::FoldersList200Response</code></summary>
+<details><summary><code>client.folders.<a href="/lib/CloudPDF/folders/client.rb">list</a>(tenant_id:) -> CloudPDF::Types::FoldersListResponse</code></summary>
 <dl>
 <dd>
 
@@ -2767,7 +2767,7 @@ client.folders.list(tenant_id: "tenantId")
 </dl>
 </details>
 
-<details><summary><code>client.folders.<a href="/lib/CloudPDF/folders/client.rb">create</a>(tenant_id:, request) -> CloudPDF::Types::FoldersCreate200Response</code></summary>
+<details><summary><code>client.folders.<a href="/lib/CloudPDF/folders/client.rb">create</a>(tenant_id:, request) -> CloudPDF::Types::FoldersCreateResponse</code></summary>
 <dl>
 <dd>
 
@@ -2848,7 +2848,7 @@ client.folders.create(
 </dl>
 </details>
 
-<details><summary><code>client.folders.<a href="/lib/CloudPDF/folders/client.rb">get</a>(tenant_id:, folder_id:) -> CloudPDF::Types::FoldersGet200Response</code></summary>
+<details><summary><code>client.folders.<a href="/lib/CloudPDF/folders/client.rb">get</a>(tenant_id:, folder_id:) -> CloudPDF::Types::FoldersGetResponse</code></summary>
 <dl>
 <dd>
 
@@ -2988,7 +2988,7 @@ client.folders.delete(
 </dl>
 </details>
 
-<details><summary><code>client.folders.<a href="/lib/CloudPDF/folders/client.rb">update</a>(tenant_id:, folder_id:, request) -> CloudPDF::Types::FoldersUpdate200Response</code></summary>
+<details><summary><code>client.folders.<a href="/lib/CloudPDF/folders/client.rb">update</a>(tenant_id:, folder_id:, request) -> CloudPDF::Types::FoldersUpdateResponse</code></summary>
 <dl>
 <dd>
 
@@ -3082,7 +3082,7 @@ client.folders.update(
 <dl>
 <dd>
 
-Up to 1,000 ids in total. A folder moves with everything in it. 404 NotFound names the ids that do not exist or are being deleted in `details.documentIds` and `details.folderIds`. 409 Conflict carries `details.reason`: `cycle` (the destination is a moved folder or inside one; `details.folderId`), `too-deep` (the move would nest folders deeper than 100 levels; `details.maxDepth`) or `name-taken` (a moved folder's name is taken in the destination, ignoring case; `details.name`).
+Up to 1,000 ids in total. A folder moves with everything in it. 404 NotFound names the ids that do not exist or are being deleted in `details.docIds` and `details.folderIds`. 409 Conflict carries `details.reason`: `cycle` (the destination is a moved folder or inside one; `details.folderId`), `too-deep` (the move would nest folders deeper than 100 levels; `details.maxDepth`) or `name-taken` (a moved folder's name is taken in the destination, ignoring case; `details.name`).
 </dd>
 </dl>
 </dd>
@@ -3131,7 +3131,7 @@ client.folders.move_into(
 <dl>
 <dd>
 
-**document_ids:** `Internal::Types::Array[String]` 
+**doc_ids:** `Internal::Types::Array[String]` 
     
 </dd>
 </dl>
@@ -3160,7 +3160,7 @@ client.folders.move_into(
 </details>
 
 ## Tokens
-<details><summary><code>client.tokens.<a href="/lib/CloudPDF/tokens/client.rb">issue</a>(tenant_id:, request) -> CloudPDF::Types::TokensIssue200Response</code></summary>
+<details><summary><code>client.tokens.<a href="/lib/CloudPDF/tokens/client.rb">issue</a>(tenant_id:, request) -> CloudPDF::Types::TokensIssueResponse</code></summary>
 <dl>
 <dd>
 
@@ -3299,7 +3299,7 @@ client.tokens.revoke(
 <dl>
 <dd>
 
-**expires_at_seconds:** `Integer` 
+**expires_at:** `String` 
     
 </dd>
 </dl>
@@ -3449,7 +3449,7 @@ client.doc.annotations.list(
 <dl>
 <dd>
 
-**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotKey` and `fieldKey`.
+**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotationKey` and `fieldKey`.
     
 </dd>
 </dl>
@@ -3477,7 +3477,7 @@ client.doc.annotations.list(
 </dl>
 </details>
 
-<details><summary><code>client.doc.annotations.<a href="/lib/CloudPDF/doc/annotations/client.rb">create</a>(doc_id:, layer_name:, page_key:, request) -> CloudPDF::Types::DocAnnotationsCreate200Response</code></summary>
+<details><summary><code>client.doc.annotations.<a href="/lib/CloudPDF/doc/annotations/client.rb">create</a>(doc_id:, layer_name:, page_key:, request) -> CloudPDF::Types::DocAnnotationsCreateResponse</code></summary>
 <dl>
 <dd>
 
@@ -3542,7 +3542,7 @@ client.doc.annotations.create(
 <dl>
 <dd>
 
-**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotKey` and `fieldKey`.
+**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotationKey` and `fieldKey`.
     
 </dd>
 </dl>
@@ -3586,7 +3586,7 @@ client.doc.annotations.create(
 </dl>
 </details>
 
-<details><summary><code>client.doc.annotations.<a href="/lib/CloudPDF/doc/annotations/client.rb">delete</a>(doc_id:, layer_name:, page_key:, annot_key:) -> CloudPDF::Types::DocAnnotationsDelete200Response</code></summary>
+<details><summary><code>client.doc.annotations.<a href="/lib/CloudPDF/doc/annotations/client.rb">delete</a>(doc_id:, layer_name:, page_key:, annotation_key:) -> CloudPDF::Types::DocAnnotationsDeleteResponse</code></summary>
 <dl>
 <dd>
 
@@ -3603,7 +3603,7 @@ client.doc.annotations.delete(
   doc_id: "docId",
   layer_name: "layerName",
   page_key: "pageKey",
-  annot_key: "annotKey"
+  annotation_key: "annotationKey"
 )
 ```
 </dd>
@@ -3635,7 +3635,7 @@ client.doc.annotations.delete(
 <dl>
 <dd>
 
-**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotKey` and `fieldKey`.
+**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotationKey` and `fieldKey`.
     
 </dd>
 </dl>
@@ -3643,7 +3643,7 @@ client.doc.annotations.delete(
 <dl>
 <dd>
 
-**annot_key:** `String` — The annotation's address on the page: `obj:N`, its indirect object number, or `base:N` for an annotation the uploaded file stored inline (without an object number of its own), the position it was born at in the page's /Annots. The name the annotation's `ref` carries for life.
+**annotation_key:** `String` — The annotation's address on the page: `obj:N`, its indirect object number, or `base:N` for an annotation the uploaded file stored inline (without an object number of its own), the position it was born at in the page's /Annots. The name the annotation's `ref` carries for life.
     
 </dd>
 </dl>
@@ -3679,7 +3679,7 @@ client.doc.annotations.delete(
 </dl>
 </details>
 
-<details><summary><code>client.doc.annotations.<a href="/lib/CloudPDF/doc/annotations/client.rb">update</a>(doc_id:, layer_name:, page_key:, annot_key:, request) -> CloudPDF::Types::DocAnnotationsUpdate200Response</code></summary>
+<details><summary><code>client.doc.annotations.<a href="/lib/CloudPDF/doc/annotations/client.rb">update</a>(doc_id:, layer_name:, page_key:, annotation_key:, request) -> CloudPDF::Types::DocAnnotationsUpdateResponse</code></summary>
 <dl>
 <dd>
 
@@ -3696,7 +3696,7 @@ client.doc.annotations.update(
   doc_id: "docId",
   layer_name: "layerName",
   page_key: "pageKey",
-  annot_key: "annotKey",
+  annotation_key: "annotationKey",
   request: {
     key: "value"
   }
@@ -3731,7 +3731,7 @@ client.doc.annotations.update(
 <dl>
 <dd>
 
-**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotKey` and `fieldKey`.
+**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotationKey` and `fieldKey`.
     
 </dd>
 </dl>
@@ -3739,7 +3739,7 @@ client.doc.annotations.update(
 <dl>
 <dd>
 
-**annot_key:** `String` — The annotation's address on the page: `obj:N`, its indirect object number, or `base:N` for an annotation the uploaded file stored inline (without an object number of its own), the position it was born at in the page's /Annots. The name the annotation's `ref` carries for life.
+**annotation_key:** `String` — The annotation's address on the page: `obj:N`, its indirect object number, or `base:N` for an annotation the uploaded file stored inline (without an object number of its own), the position it was born at in the page's /Annots. The name the annotation's `ref` carries for life.
     
 </dd>
 </dl>
@@ -3783,7 +3783,7 @@ client.doc.annotations.update(
 </dl>
 </details>
 
-<details><summary><code>client.doc.annotations.<a href="/lib/CloudPDF/doc/annotations/client.rb">read_appearance</a>(doc_id:, layer_name:, page_key:, annot_key:) -> String</code></summary>
+<details><summary><code>client.doc.annotations.<a href="/lib/CloudPDF/doc/annotations/client.rb">read_appearance</a>(doc_id:, layer_name:, page_key:, annotation_key:) -> String</code></summary>
 <dl>
 <dd>
 
@@ -3800,7 +3800,7 @@ client.doc.annotations.read_appearance(
   doc_id: "docId",
   layer_name: "layerName",
   page_key: "pageKey",
-  annot_key: "annotKey"
+  annotation_key: "annotationKey"
 )
 ```
 </dd>
@@ -3832,7 +3832,7 @@ client.doc.annotations.read_appearance(
 <dl>
 <dd>
 
-**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotKey` and `fieldKey`.
+**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotationKey` and `fieldKey`.
     
 </dd>
 </dl>
@@ -3840,7 +3840,7 @@ client.doc.annotations.read_appearance(
 <dl>
 <dd>
 
-**annot_key:** `String` — The annotation's address on the page: `obj:N`, its indirect object number, or `base:N` for an annotation the uploaded file stored inline (without an object number of its own), the position it was born at in the page's /Annots. The name the annotation's `ref` carries for life.
+**annotation_key:** `String` — The annotation's address on the page: `obj:N`, its indirect object number, or `base:N` for an annotation the uploaded file stored inline (without an object number of its own), the position it was born at in the page's /Annots. The name the annotation's `ref` carries for life.
     
 </dd>
 </dl>
@@ -3868,7 +3868,7 @@ client.doc.annotations.read_appearance(
 </dl>
 </details>
 
-<details><summary><code>client.doc.annotations.<a href="/lib/CloudPDF/doc/annotations/client.rb">read_file</a>(doc_id:, layer_name:, page_key:, annot_key:) -> String</code></summary>
+<details><summary><code>client.doc.annotations.<a href="/lib/CloudPDF/doc/annotations/client.rb">read_file</a>(doc_id:, layer_name:, page_key:, annotation_key:) -> String</code></summary>
 <dl>
 <dd>
 
@@ -3899,7 +3899,7 @@ client.doc.annotations.read_file(
   doc_id: "docId",
   layer_name: "layerName",
   page_key: "pageKey",
-  annot_key: "annotKey"
+  annotation_key: "annotationKey"
 )
 ```
 </dd>
@@ -3931,7 +3931,7 @@ client.doc.annotations.read_file(
 <dl>
 <dd>
 
-**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotKey` and `fieldKey`.
+**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotationKey` and `fieldKey`.
     
 </dd>
 </dl>
@@ -3939,7 +3939,7 @@ client.doc.annotations.read_file(
 <dl>
 <dd>
 
-**annot_key:** `String` — The annotation's address on the page: `obj:N`, its indirect object number, or `base:N` for an annotation the uploaded file stored inline (without an object number of its own), the position it was born at in the page's /Annots. The name the annotation's `ref` carries for life.
+**annotation_key:** `String` — The annotation's address on the page: `obj:N`, its indirect object number, or `base:N` for an annotation the uploaded file stored inline (without an object number of its own), the position it was born at in the page's /Annots. The name the annotation's `ref` carries for life.
     
 </dd>
 </dl>
@@ -4020,7 +4020,7 @@ client.doc.annotations.export_appearance(
 <dl>
 <dd>
 
-**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotKey` and `fieldKey`.
+**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotationKey` and `fieldKey`.
     
 </dd>
 </dl>
@@ -4056,7 +4056,7 @@ client.doc.annotations.export_appearance(
 </dl>
 </details>
 
-<details><summary><code>client.doc.annotations.<a href="/lib/CloudPDF/doc/annotations/client.rb">flatten</a>(doc_id:, layer_name:, page_key:, request) -> CloudPDF::Types::DocAnnotationsFlatten200Response</code></summary>
+<details><summary><code>client.doc.annotations.<a href="/lib/CloudPDF/doc/annotations/client.rb">flatten</a>(doc_id:, layer_name:, page_key:, request) -> CloudPDF::Types::DocAnnotationsFlattenResponse</code></summary>
 <dl>
 <dd>
 
@@ -4107,7 +4107,7 @@ client.doc.annotations.flatten(
 <dl>
 <dd>
 
-**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotKey` and `fieldKey`.
+**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotationKey` and `fieldKey`.
     
 </dd>
 </dl>
@@ -4151,7 +4151,7 @@ client.doc.annotations.flatten(
 </dl>
 </details>
 
-<details><summary><code>client.doc.annotations.<a href="/lib/CloudPDF/doc/annotations/client.rb">reorder</a>(doc_id:, layer_name:, page_key:, request) -> CloudPDF::Types::DocAnnotationsReorder200Response</code></summary>
+<details><summary><code>client.doc.annotations.<a href="/lib/CloudPDF/doc/annotations/client.rb">reorder</a>(doc_id:, layer_name:, page_key:, request) -> CloudPDF::Types::DocAnnotationsReorderResponse</code></summary>
 <dl>
 <dd>
 
@@ -4201,7 +4201,7 @@ client.doc.annotations.reorder(
 <dl>
 <dd>
 
-**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotKey` and `fieldKey`.
+**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotationKey` and `fieldKey`.
     
 </dd>
 </dl>
@@ -4572,7 +4572,7 @@ client.doc.fonts.resolve(
 </details>
 
 ## Doc Forms
-<details><summary><code>client.doc.forms.<a href="/lib/CloudPDF/doc/forms/client.rb">list</a>(doc_id:, layer_name:) -> CloudPDF::Types::DocFormsList200Response</code></summary>
+<details><summary><code>client.doc.forms.<a href="/lib/CloudPDF/doc/forms/client.rb">list</a>(doc_id:, layer_name:) -> CloudPDF::Types::DocFormsListResponse</code></summary>
 <dl>
 <dd>
 
@@ -4639,7 +4639,7 @@ client.doc.forms.list(
 </dl>
 </details>
 
-<details><summary><code>client.doc.forms.<a href="/lib/CloudPDF/doc/forms/client.rb">reorder_calculations</a>(doc_id:, layer_name:, request) -> CloudPDF::Types::DocFormsReorderCalculations200Response</code></summary>
+<details><summary><code>client.doc.forms.<a href="/lib/CloudPDF/doc/forms/client.rb">reorder_calculations</a>(doc_id:, layer_name:, request) -> CloudPDF::Types::DocFormsReorderCalculationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -4732,7 +4732,7 @@ client.doc.forms.reorder_calculations(
 </dl>
 </details>
 
-<details><summary><code>client.doc.forms.<a href="/lib/CloudPDF/doc/forms/client.rb">set_value</a>(doc_id:, layer_name:, field_key:, request) -> CloudPDF::Types::DocFormsSetValue200Response</code></summary>
+<details><summary><code>client.doc.forms.<a href="/lib/CloudPDF/doc/forms/client.rb">set_value</a>(doc_id:, layer_name:, field_key:, request) -> CloudPDF::Types::DocFormsSetValueResponse</code></summary>
 <dl>
 <dd>
 
@@ -4827,7 +4827,7 @@ client.doc.forms.set_value(
 </dl>
 </details>
 
-<details><summary><code>client.doc.forms.<a href="/lib/CloudPDF/doc/forms/client.rb">reset</a>(doc_id:, layer_name:, request) -> CloudPDF::Types::DocFormsReset200Response</code></summary>
+<details><summary><code>client.doc.forms.<a href="/lib/CloudPDF/doc/forms/client.rb">reset</a>(doc_id:, layer_name:, request) -> CloudPDF::Types::DocFormsResetResponse</code></summary>
 <dl>
 <dd>
 
@@ -4910,7 +4910,7 @@ client.doc.forms.reset(
 </dl>
 </details>
 
-<details><summary><code>client.doc.forms.<a href="/lib/CloudPDF/doc/forms/client.rb">delete_widget</a>(doc_id:, layer_name:, page_key:, annot_key:) -> CloudPDF::Types::DocFormsDeleteWidget200Response</code></summary>
+<details><summary><code>client.doc.forms.<a href="/lib/CloudPDF/doc/forms/client.rb">delete_widget</a>(doc_id:, layer_name:, page_key:, annotation_key:) -> CloudPDF::Types::DocFormsDeleteWidgetResponse</code></summary>
 <dl>
 <dd>
 
@@ -4927,7 +4927,7 @@ client.doc.forms.delete_widget(
   doc_id: "docId",
   layer_name: "layerName",
   page_key: "pageKey",
-  annot_key: "annotKey"
+  annotation_key: "annotationKey"
 )
 ```
 </dd>
@@ -4959,7 +4959,7 @@ client.doc.forms.delete_widget(
 <dl>
 <dd>
 
-**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotKey` and `fieldKey`.
+**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotationKey` and `fieldKey`.
     
 </dd>
 </dl>
@@ -4967,7 +4967,7 @@ client.doc.forms.delete_widget(
 <dl>
 <dd>
 
-**annot_key:** `String` — The annotation's address on the page: `obj:N`, its indirect object number, or `base:N` for an annotation the uploaded file stored inline (without an object number of its own), the position it was born at in the page's /Annots. The name the annotation's `ref` carries for life.
+**annotation_key:** `String` — The annotation's address on the page: `obj:N`, its indirect object number, or `base:N` for an annotation the uploaded file stored inline (without an object number of its own), the position it was born at in the page's /Annots. The name the annotation's `ref` carries for life.
     
 </dd>
 </dl>
@@ -5003,7 +5003,7 @@ client.doc.forms.delete_widget(
 </dl>
 </details>
 
-<details><summary><code>client.doc.forms.<a href="/lib/CloudPDF/doc/forms/client.rb">update_widget</a>(doc_id:, layer_name:, page_key:, annot_key:, request) -> CloudPDF::Types::DocFormsUpdateWidget200Response</code></summary>
+<details><summary><code>client.doc.forms.<a href="/lib/CloudPDF/doc/forms/client.rb">update_widget</a>(doc_id:, layer_name:, page_key:, annotation_key:, request) -> CloudPDF::Types::DocFormsUpdateWidgetResponse</code></summary>
 <dl>
 <dd>
 
@@ -5020,7 +5020,7 @@ client.doc.forms.update_widget(
   doc_id: "docId",
   layer_name: "layerName",
   page_key: "pageKey",
-  annot_key: "annotKey",
+  annotation_key: "annotationKey",
   patch: {}
 )
 ```
@@ -5053,7 +5053,7 @@ client.doc.forms.update_widget(
 <dl>
 <dd>
 
-**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotKey` and `fieldKey`.
+**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotationKey` and `fieldKey`.
     
 </dd>
 </dl>
@@ -5061,7 +5061,7 @@ client.doc.forms.update_widget(
 <dl>
 <dd>
 
-**annot_key:** `String` — The annotation's address on the page: `obj:N`, its indirect object number, or `base:N` for an annotation the uploaded file stored inline (without an object number of its own), the position it was born at in the page's /Annots. The name the annotation's `ref` carries for life.
+**annotation_key:** `String` — The annotation's address on the page: `obj:N`, its indirect object number, or `base:N` for an annotation the uploaded file stored inline (without an object number of its own), the position it was born at in the page's /Annots. The name the annotation's `ref` carries for life.
     
 </dd>
 </dl>
@@ -5105,7 +5105,7 @@ client.doc.forms.update_widget(
 </dl>
 </details>
 
-<details><summary><code>client.doc.forms.<a href="/lib/CloudPDF/doc/forms/client.rb">reorder_widgets</a>(doc_id:, layer_name:, page_key:, request) -> CloudPDF::Types::DocFormsReorderWidgets200Response</code></summary>
+<details><summary><code>client.doc.forms.<a href="/lib/CloudPDF/doc/forms/client.rb">reorder_widgets</a>(doc_id:, layer_name:, page_key:, request) -> CloudPDF::Types::DocFormsReorderWidgetsResponse</code></summary>
 <dl>
 <dd>
 
@@ -5155,7 +5155,7 @@ client.doc.forms.reorder_widgets(
 <dl>
 <dd>
 
-**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotKey` and `fieldKey`.
+**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotationKey` and `fieldKey`.
     
 </dd>
 </dl>
@@ -5344,7 +5344,7 @@ client.doc.outline.get(
 </details>
 
 ## Doc Pages
-<details><summary><code>client.doc.pages.<a href="/lib/CloudPDF/doc/pages/client.rb">set_scale</a>(doc_id:, layer_name:, page_key:, request) -> CloudPDF::Types::DocPagesSetScale200Response</code></summary>
+<details><summary><code>client.doc.pages.<a href="/lib/CloudPDF/doc/pages/client.rb">set_scale</a>(doc_id:, layer_name:, page_key:, request) -> CloudPDF::Types::DocPagesSetScaleResponse</code></summary>
 <dl>
 <dd>
 
@@ -5392,7 +5392,7 @@ client.doc.pages.set_scale(
 <dl>
 <dd>
 
-**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotKey` and `fieldKey`.
+**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotationKey` and `fieldKey`.
     
 </dd>
 </dl>
@@ -5436,7 +5436,7 @@ client.doc.pages.set_scale(
 </dl>
 </details>
 
-<details><summary><code>client.doc.pages.<a href="/lib/CloudPDF/doc/pages/client.rb">viewports</a>(doc_id:, layer_name:, page_key:) -> CloudPDF::Types::DocPagesViewports200Response</code></summary>
+<details><summary><code>client.doc.pages.<a href="/lib/CloudPDF/doc/pages/client.rb">viewports</a>(doc_id:, layer_name:, page_key:) -> CloudPDF::Types::DocPagesViewportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -5484,7 +5484,7 @@ client.doc.pages.viewports(
 <dl>
 <dd>
 
-**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotKey` and `fieldKey`.
+**page_key:** `String` — The page's address, `obj:N`: the page's indirect object number, the durable identity every `PageLayout.ref` carries. Mirrors `annotationKey` and `fieldKey`.
     
 </dd>
 </dl>
@@ -5606,7 +5606,7 @@ client.doc.pages.extract(
 </dl>
 </details>
 
-<details><summary><code>client.doc.pages.<a href="/lib/CloudPDF/doc/pages/client.rb">flatten</a>(doc_id:, layer_name:, request) -> CloudPDF::Types::DocPagesFlatten200Response</code></summary>
+<details><summary><code>client.doc.pages.<a href="/lib/CloudPDF/doc/pages/client.rb">flatten</a>(doc_id:, layer_name:, request) -> CloudPDF::Types::DocPagesFlattenResponse</code></summary>
 <dl>
 <dd>
 
@@ -5692,7 +5692,7 @@ client.doc.pages.flatten(
 </dl>
 </details>
 
-<details><summary><code>client.doc.pages.<a href="/lib/CloudPDF/doc/pages/client.rb">set_name</a>(doc_id:, layer_name:, request) -> CloudPDF::Types::DocPagesSetName200Response</code></summary>
+<details><summary><code>client.doc.pages.<a href="/lib/CloudPDF/doc/pages/client.rb">set_name</a>(doc_id:, layer_name:, request) -> CloudPDF::Types::DocPagesSetNameResponse</code></summary>
 <dl>
 <dd>
 
@@ -5778,7 +5778,7 @@ client.doc.pages.set_name(
 </dl>
 </details>
 
-<details><summary><code>client.doc.pages.<a href="/lib/CloudPDF/doc/pages/client.rb">remove_name</a>(doc_id:, layer_name:, request) -> CloudPDF::Types::DocPagesRemoveName200Response</code></summary>
+<details><summary><code>client.doc.pages.<a href="/lib/CloudPDF/doc/pages/client.rb">remove_name</a>(doc_id:, layer_name:, request) -> CloudPDF::Types::DocPagesRemoveNameResponse</code></summary>
 <dl>
 <dd>
 
@@ -5865,7 +5865,7 @@ client.doc.pages.remove_name(
 </details>
 
 ## Doc Redactions
-<details><summary><code>client.doc.redactions.<a href="/lib/CloudPDF/doc/redactions/client.rb">apply</a>(doc_id:, layer_name:, request) -> CloudPDF::Types::DocRedactionsApply200Response</code></summary>
+<details><summary><code>client.doc.redactions.<a href="/lib/CloudPDF/doc/redactions/client.rb">apply</a>(doc_id:, layer_name:, request) -> CloudPDF::Types::DocRedactionsApplyResponse</code></summary>
 <dl>
 <dd>
 
@@ -5957,7 +5957,7 @@ client.doc.redactions.apply(
 </details>
 
 ## Doc Signatures
-<details><summary><code>client.doc.signatures.<a href="/lib/CloudPDF/doc/signatures/client.rb">list</a>(doc_id:, layer_name:) -> CloudPDF::Types::DocSignaturesList200Response</code></summary>
+<details><summary><code>client.doc.signatures.<a href="/lib/CloudPDF/doc/signatures/client.rb">list</a>(doc_id:, layer_name:) -> CloudPDF::Types::DocSignaturesListResponse</code></summary>
 <dl>
 <dd>
 
@@ -6038,7 +6038,7 @@ client.doc.signatures.list(
 </dl>
 </details>
 
-<details><summary><code>client.doc.signatures.<a href="/lib/CloudPDF/doc/signatures/client.rb">cancel</a>(doc_id:, layer_name:, signing_id:) -> CloudPDF::Types::DocSignaturesCancel200Response</code></summary>
+<details><summary><code>client.doc.signatures.<a href="/lib/CloudPDF/doc/signatures/client.rb">cancel</a>(doc_id:, layer_name:, signing_id:) -> CloudPDF::Types::DocSignaturesCancelResponse</code></summary>
 <dl>
 <dd>
 
@@ -6114,7 +6114,7 @@ client.doc.signatures.cancel(
 </dl>
 </details>
 
-<details><summary><code>client.doc.signatures.<a href="/lib/CloudPDF/doc/signatures/client.rb">complete</a>(doc_id:, layer_name:, signing_id:, request) -> CloudPDF::Types::DocSignaturesComplete200Response</code></summary>
+<details><summary><code>client.doc.signatures.<a href="/lib/CloudPDF/doc/signatures/client.rb">complete</a>(doc_id:, layer_name:, signing_id:, request) -> CloudPDF::Types::DocSignaturesCompleteResponse</code></summary>
 <dl>
 <dd>
 
@@ -6225,7 +6225,7 @@ client.doc.signatures.complete(
 </dl>
 </details>
 
-<details><summary><code>client.doc.signatures.<a href="/lib/CloudPDF/doc/signatures/client.rb">analysis</a>(doc_id:, layer_name:) -> CloudPDF::Types::DocSignaturesAnalysis200Response</code></summary>
+<details><summary><code>client.doc.signatures.<a href="/lib/CloudPDF/doc/signatures/client.rb">analysis</a>(doc_id:, layer_name:) -> CloudPDF::Types::DocSignaturesAnalysisResponse</code></summary>
 <dl>
 <dd>
 
@@ -6330,7 +6330,7 @@ client.doc.signatures.analysis(
 </dl>
 </details>
 
-<details><summary><code>client.doc.signatures.<a href="/lib/CloudPDF/doc/signatures/client.rb">prepare</a>(doc_id:, layer_name:, request) -> CloudPDF::Types::DocSignaturesPrepare200Response</code></summary>
+<details><summary><code>client.doc.signatures.<a href="/lib/CloudPDF/doc/signatures/client.rb">prepare</a>(doc_id:, layer_name:, request) -> CloudPDF::Types::DocSignaturesPrepareResponse</code></summary>
 <dl>
 <dd>
 
@@ -6412,7 +6412,7 @@ client.doc.signatures.prepare(
 </details>
 
 ## Doc Versions
-<details><summary><code>client.doc.versions.<a href="/lib/CloudPDF/doc/versions/client.rb">list</a>(doc_id:, layer_name:) -> CloudPDF::Types::DocVersionsList200Response</code></summary>
+<details><summary><code>client.doc.versions.<a href="/lib/CloudPDF/doc/versions/client.rb">list</a>(doc_id:, layer_name:) -> CloudPDF::Types::DocVersionsListResponse</code></summary>
 <dl>
 <dd>
 
@@ -6493,7 +6493,7 @@ client.doc.versions.list(
 </dl>
 </details>
 
-<details><summary><code>client.doc.versions.<a href="/lib/CloudPDF/doc/versions/client.rb">analysis</a>(doc_id:, layer_name:, sha:) -> CloudPDF::Types::DocVersionsAnalysis200Response</code></summary>
+<details><summary><code>client.doc.versions.<a href="/lib/CloudPDF/doc/versions/client.rb">analysis</a>(doc_id:, layer_name:, sha256:) -> CloudPDF::Types::DocVersionsAnalysisResponse</code></summary>
 <dl>
 <dd>
 
@@ -6523,7 +6523,7 @@ Exactly one of `since.signature` / `since.revision`; `until=<revision>` defaults
 client.doc.versions.analysis(
   doc_id: "docId",
   layer_name: "layerName",
-  sha: "sha"
+  sha256: "sha256"
 )
 ```
 </dd>
@@ -6555,7 +6555,7 @@ client.doc.versions.analysis(
 <dl>
 <dd>
 
-**sha:** `String` 
+**sha256:** `String` 
     
 </dd>
 </dl>
@@ -6623,7 +6623,7 @@ client.doc.versions.analysis(
 </dl>
 </details>
 
-<details><summary><code>client.doc.versions.<a href="/lib/CloudPDF/doc/versions/client.rb">download</a>(doc_id:, layer_name:, sha:) -> String</code></summary>
+<details><summary><code>client.doc.versions.<a href="/lib/CloudPDF/doc/versions/client.rb">download</a>(doc_id:, layer_name:, sha256:) -> String</code></summary>
 <dl>
 <dd>
 
@@ -6639,7 +6639,7 @@ client.doc.versions.analysis(
 client.doc.versions.download(
   doc_id: "docId",
   layer_name: "layerName",
-  sha: "sha"
+  sha256: "sha256"
 )
 ```
 </dd>
@@ -6671,7 +6671,7 @@ client.doc.versions.download(
 <dl>
 <dd>
 
-**sha:** `String` 
+**sha256:** `String` 
     
 </dd>
 </dl>
@@ -6699,7 +6699,7 @@ client.doc.versions.download(
 </dl>
 </details>
 
-<details><summary><code>client.doc.versions.<a href="/lib/CloudPDF/doc/versions/client.rb">revision</a>(doc_id:, layer_name:, sha:, index:) -> String</code></summary>
+<details><summary><code>client.doc.versions.<a href="/lib/CloudPDF/doc/versions/client.rb">revision</a>(doc_id:, layer_name:, sha256:, index:) -> String</code></summary>
 <dl>
 <dd>
 
@@ -6715,7 +6715,7 @@ client.doc.versions.download(
 client.doc.versions.revision(
   doc_id: "docId",
   layer_name: "layerName",
-  sha: "sha",
+  sha256: "sha256",
   index: 1
 )
 ```
@@ -6748,7 +6748,7 @@ client.doc.versions.revision(
 <dl>
 <dd>
 
-**sha:** `String` 
+**sha256:** `String` 
     
 </dd>
 </dl>
@@ -6784,7 +6784,7 @@ client.doc.versions.revision(
 </dl>
 </details>
 
-<details><summary><code>client.doc.versions.<a href="/lib/CloudPDF/doc/versions/client.rb">signatures</a>(doc_id:, layer_name:, sha:) -> CloudPDF::Types::DocVersionsSignatures200Response</code></summary>
+<details><summary><code>client.doc.versions.<a href="/lib/CloudPDF/doc/versions/client.rb">signatures</a>(doc_id:, layer_name:, sha256:) -> CloudPDF::Types::DocVersionsSignaturesResponse</code></summary>
 <dl>
 <dd>
 
@@ -6800,7 +6800,7 @@ client.doc.versions.revision(
 client.doc.versions.signatures(
   doc_id: "docId",
   layer_name: "layerName",
-  sha: "sha"
+  sha256: "sha256"
 )
 ```
 </dd>
@@ -6832,7 +6832,7 @@ client.doc.versions.signatures(
 <dl>
 <dd>
 
-**sha:** `String` 
+**sha256:** `String` 
     
 </dd>
 </dl>
@@ -6860,7 +6860,7 @@ client.doc.versions.signatures(
 </dl>
 </details>
 
-<details><summary><code>client.doc.versions.<a href="/lib/CloudPDF/doc/versions/client.rb">signature_contents</a>(doc_id:, layer_name:, sha:, field_key:) -> String</code></summary>
+<details><summary><code>client.doc.versions.<a href="/lib/CloudPDF/doc/versions/client.rb">signature_contents</a>(doc_id:, layer_name:, sha256:, field_key:) -> String</code></summary>
 <dl>
 <dd>
 
@@ -6890,7 +6890,7 @@ client.doc.versions.signatures(
 client.doc.versions.signature_contents(
   doc_id: "docId",
   layer_name: "layerName",
-  sha: "sha",
+  sha256: "sha256",
   field_key: "fieldKey"
 )
 ```
@@ -6923,7 +6923,7 @@ client.doc.versions.signature_contents(
 <dl>
 <dd>
 
-**sha:** `String` 
+**sha256:** `String` 
     
 </dd>
 </dl>
@@ -6959,7 +6959,7 @@ client.doc.versions.signature_contents(
 </dl>
 </details>
 
-<details><summary><code>client.doc.versions.<a href="/lib/CloudPDF/doc/versions/client.rb">signature_digest</a>(doc_id:, layer_name:, sha:, field_key:, algorithm:) -> String</code></summary>
+<details><summary><code>client.doc.versions.<a href="/lib/CloudPDF/doc/versions/client.rb">signature_digest</a>(doc_id:, layer_name:, sha256:, field_key:, algorithm:) -> String</code></summary>
 <dl>
 <dd>
 
@@ -6989,7 +6989,7 @@ What a CMS verifier compares its message digest to.
 client.doc.versions.signature_digest(
   doc_id: "docId",
   layer_name: "layerName",
-  sha: "sha",
+  sha256: "sha256",
   field_key: "fieldKey",
   algorithm: "sha1"
 )
@@ -7023,7 +7023,7 @@ client.doc.versions.signature_digest(
 <dl>
 <dd>
 
-**sha:** `String` 
+**sha256:** `String` 
     
 </dd>
 </dl>
@@ -7068,7 +7068,7 @@ client.doc.versions.signature_digest(
 </details>
 
 ## Doc Fonts Programs
-<details><summary><code>client.doc.fonts.programs.<a href="/lib/CloudPDF/doc/fonts/programs/client.rb">download</a>(doc_id:, layer_name:, display_hash:) -> String</code></summary>
+<details><summary><code>client.doc.fonts.programs.<a href="/lib/CloudPDF/doc/fonts/programs/client.rb">download</a>(doc_id:, layer_name:, display_sha256:) -> String</code></summary>
 <dl>
 <dd>
 
@@ -7098,7 +7098,7 @@ A document token needs any one of the listed capabilities: one that may write te
 client.doc.fonts.programs.download(
   doc_id: "docId",
   layer_name: "layerName",
-  display_hash: "displayHash"
+  display_sha256: "displaySha256"
 )
 ```
 </dd>
@@ -7130,7 +7130,7 @@ client.doc.fonts.programs.download(
 <dl>
 <dd>
 
-**display_hash:** `String` 
+**display_sha256:** `String` 
     
 </dd>
 </dl>
@@ -7158,7 +7158,7 @@ client.doc.fonts.programs.download(
 </dl>
 </details>
 
-<details><summary><code>client.doc.fonts.programs.<a href="/lib/CloudPDF/doc/fonts/programs/client.rb">get</a>(doc_id:, layer_name:, display_hash:) -> CloudPDF::Types::FontProgramInfo</code></summary>
+<details><summary><code>client.doc.fonts.programs.<a href="/lib/CloudPDF/doc/fonts/programs/client.rb">get</a>(doc_id:, layer_name:, display_sha256:) -> CloudPDF::Types::FontProgramInfo</code></summary>
 <dl>
 <dd>
 
@@ -7174,7 +7174,7 @@ client.doc.fonts.programs.download(
 client.doc.fonts.programs.get(
   doc_id: "docId",
   layer_name: "layerName",
-  display_hash: "displayHash"
+  display_sha256: "displaySha256"
 )
 ```
 </dd>
@@ -7206,7 +7206,7 @@ client.doc.fonts.programs.get(
 <dl>
 <dd>
 
-**display_hash:** `String` 
+**display_sha256:** `String` 
     
 </dd>
 </dl>
@@ -7303,7 +7303,7 @@ client.doc.metadata.custom.get(
 </details>
 
 ## Documents Layers
-<details><summary><code>client.documents.layers.<a href="/lib/CloudPDF/documents/layers/client.rb">list</a>(tenant_id:, id:) -> CloudPDF::Types::DocumentsLayersList200Response</code></summary>
+<details><summary><code>client.documents.layers.<a href="/lib/CloudPDF/documents/layers/client.rb">list</a>(tenant_id:, doc_id:) -> CloudPDF::Types::DocumentsLayersListResponse</code></summary>
 <dl>
 <dd>
 
@@ -7318,7 +7318,7 @@ client.doc.metadata.custom.get(
 ```ruby
 client.documents.layers.list(
   tenant_id: "tenantId",
-  id: "id"
+  doc_id: "docId"
 )
 ```
 </dd>
@@ -7342,7 +7342,7 @@ client.documents.layers.list(
 <dl>
 <dd>
 
-**id:** `String` 
+**doc_id:** `String` 
     
 </dd>
 </dl>
@@ -7386,7 +7386,7 @@ client.documents.layers.list(
 </dl>
 </details>
 
-<details><summary><code>client.documents.layers.<a href="/lib/CloudPDF/documents/layers/client.rb">delete</a>(tenant_id:, id:, layer_name:) -> </code></summary>
+<details><summary><code>client.documents.layers.<a href="/lib/CloudPDF/documents/layers/client.rb">delete</a>(tenant_id:, doc_id:, layer_name:) -> </code></summary>
 <dl>
 <dd>
 
@@ -7401,7 +7401,7 @@ client.documents.layers.list(
 ```ruby
 client.documents.layers.delete(
   tenant_id: "tenantId",
-  id: "id",
+  doc_id: "docId",
   layer_name: "layerName"
 )
 ```
@@ -7426,7 +7426,7 @@ client.documents.layers.delete(
 <dl>
 <dd>
 
-**id:** `String` 
+**doc_id:** `String` 
     
 </dd>
 </dl>
@@ -7455,7 +7455,7 @@ client.documents.layers.delete(
 </details>
 
 ## Grants Visitors
-<details><summary><code>client.grants.visitors.<a href="/lib/CloudPDF/grants/visitors/client.rb">list</a>(tenant_id:, grant_id:) -> CloudPDF::Types::GrantsVisitorsList200Response</code></summary>
+<details><summary><code>client.grants.visitors.<a href="/lib/CloudPDF/grants/visitors/client.rb">list</a>(tenant_id:, grant_id:) -> CloudPDF::Types::GrantsVisitorsListResponse</code></summary>
 <dl>
 <dd>
 

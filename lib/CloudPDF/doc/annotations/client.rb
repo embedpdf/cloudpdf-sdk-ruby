@@ -51,7 +51,7 @@ module CloudPDF
           end
           code = response.code.to_i
           if code.between?(200, 299)
-            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocAnnotationsListAll200Response.load(response.body))
+            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocAnnotationsListAllResponse.load(response.body))
           else
             error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
             raise error_class.new(response.body, code: code)
@@ -97,7 +97,7 @@ module CloudPDF
           end
           code = response.code.to_i
           if code.between?(200, 299)
-            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocAnnotationsList200Response.load(response.body))
+            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocAnnotationsListResponse.load(response.body))
           else
             error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
             raise error_class.new(response.body, code: code)
@@ -130,7 +130,7 @@ module CloudPDF
         #     }
         #   )
         #
-        # @return [CloudPDF::Types::DocAnnotationsCreate200Response]
+        # @return [CloudPDF::Types::DocAnnotationsCreateResponse]
         def create(request_options: {}, **params)
           params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
           path_param_names = %i[doc_id layer_name page_key]
@@ -155,7 +155,7 @@ module CloudPDF
           end
           code = response.code.to_i
           if code.between?(200, 299)
-            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocAnnotationsCreate200Response.load(response.body))
+            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocAnnotationsCreateResponse.load(response.body))
           else
             error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
             raise error_class.new(response.body, code: code)
@@ -172,7 +172,7 @@ module CloudPDF
         # @option params [String] :doc_id
         # @option params [String] :layer_name
         # @option params [String] :page_key
-        # @option params [String] :annot_key
+        # @option params [String] :annotation_key
         # @option params [String, nil] :document_password
         # @option params [String, nil] :idempotency_key
         #
@@ -181,10 +181,10 @@ module CloudPDF
         #     doc_id: "docId",
         #     layer_name: "layerName",
         #     page_key: "pageKey",
-        #     annot_key: "annotKey"
+        #     annotation_key: "annotationKey"
         #   )
         #
-        # @return [CloudPDF::Types::DocAnnotationsDelete200Response]
+        # @return [CloudPDF::Types::DocAnnotationsDeleteResponse]
         def delete(request_options: {}, **params)
           params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
           headers = {}
@@ -194,7 +194,7 @@ module CloudPDF
           request = CloudPDF::Internal::JSON::Request.new(
             base_url: request_options[:base_url],
             method: "DELETE",
-            path: "v1/docs/#{URI.encode_uri_component(params[:doc_id].to_s)}/layers/#{URI.encode_uri_component(params[:layer_name].to_s)}/annotations/pages/#{URI.encode_uri_component(params[:page_key].to_s)}/items/#{URI.encode_uri_component(params[:annot_key].to_s)}",
+            path: "v1/docs/#{URI.encode_uri_component(params[:doc_id].to_s)}/layers/#{URI.encode_uri_component(params[:layer_name].to_s)}/annotations/pages/#{URI.encode_uri_component(params[:page_key].to_s)}/items/#{URI.encode_uri_component(params[:annotation_key].to_s)}",
             headers: headers,
             request_options: request_options
           )
@@ -205,7 +205,7 @@ module CloudPDF
           end
           code = response.code.to_i
           if code.between?(200, 299)
-            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocAnnotationsDelete200Response.load(response.body))
+            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocAnnotationsDeleteResponse.load(response.body))
           else
             error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
             raise error_class.new(response.body, code: code)
@@ -222,7 +222,7 @@ module CloudPDF
         # @option params [String] :doc_id
         # @option params [String] :layer_name
         # @option params [String] :page_key
-        # @option params [String] :annot_key
+        # @option params [String] :annotation_key
         # @option params [String, nil] :document_password
         # @option params [String, nil] :idempotency_key
         #
@@ -231,16 +231,16 @@ module CloudPDF
         #     doc_id: "docId",
         #     layer_name: "layerName",
         #     page_key: "pageKey",
-        #     annot_key: "annotKey",
+        #     annotation_key: "annotationKey",
         #     request: {
         #       key: "value"
         #     }
         #   )
         #
-        # @return [CloudPDF::Types::DocAnnotationsUpdate200Response]
+        # @return [CloudPDF::Types::DocAnnotationsUpdateResponse]
         def update(request_options: {}, **params)
           params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
-          path_param_names = %i[doc_id layer_name page_key annot_key]
+          path_param_names = %i[doc_id layer_name page_key annotation_key]
           body_params = params.except(*path_param_names)
 
           headers = {}
@@ -250,7 +250,7 @@ module CloudPDF
           request = CloudPDF::Internal::JSON::Request.new(
             base_url: request_options[:base_url],
             method: "PATCH",
-            path: "v1/docs/#{URI.encode_uri_component(params[:doc_id].to_s)}/layers/#{URI.encode_uri_component(params[:layer_name].to_s)}/annotations/pages/#{URI.encode_uri_component(params[:page_key].to_s)}/items/#{URI.encode_uri_component(params[:annot_key].to_s)}",
+            path: "v1/docs/#{URI.encode_uri_component(params[:doc_id].to_s)}/layers/#{URI.encode_uri_component(params[:layer_name].to_s)}/annotations/pages/#{URI.encode_uri_component(params[:page_key].to_s)}/items/#{URI.encode_uri_component(params[:annotation_key].to_s)}",
             headers: headers,
             body: body_params,
             request_options: request_options
@@ -262,7 +262,7 @@ module CloudPDF
           end
           code = response.code.to_i
           if code.between?(200, 299)
-            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocAnnotationsUpdate200Response.load(response.body))
+            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocAnnotationsUpdateResponse.load(response.body))
           else
             error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
             raise error_class.new(response.body, code: code)
@@ -279,7 +279,7 @@ module CloudPDF
         # @option params [String] :doc_id
         # @option params [String] :layer_name
         # @option params [String] :page_key
-        # @option params [String] :annot_key
+        # @option params [String] :annotation_key
         # @option params [String, nil] :document_password
         #
         # @example
@@ -287,7 +287,7 @@ module CloudPDF
         #     doc_id: "docId",
         #     layer_name: "layerName",
         #     page_key: "pageKey",
-        #     annot_key: "annotKey"
+        #     annotation_key: "annotationKey"
         #   )
         #
         # @return [untyped]
@@ -299,7 +299,7 @@ module CloudPDF
           request = CloudPDF::Internal::JSON::Request.new(
             base_url: request_options[:base_url],
             method: "GET",
-            path: "v1/docs/#{URI.encode_uri_component(params[:doc_id].to_s)}/layers/#{URI.encode_uri_component(params[:layer_name].to_s)}/annotations/pages/#{URI.encode_uri_component(params[:page_key].to_s)}/items/#{URI.encode_uri_component(params[:annot_key].to_s)}/resources/appearance",
+            path: "v1/docs/#{URI.encode_uri_component(params[:doc_id].to_s)}/layers/#{URI.encode_uri_component(params[:layer_name].to_s)}/annotations/pages/#{URI.encode_uri_component(params[:page_key].to_s)}/items/#{URI.encode_uri_component(params[:annotation_key].to_s)}/resources/appearance",
             headers: headers,
             request_options: request_options
           )
@@ -327,7 +327,7 @@ module CloudPDF
         # @option params [String] :doc_id
         # @option params [String] :layer_name
         # @option params [String] :page_key
-        # @option params [String] :annot_key
+        # @option params [String] :annotation_key
         # @option params [String, nil] :document_password
         #
         # @example
@@ -335,7 +335,7 @@ module CloudPDF
         #     doc_id: "docId",
         #     layer_name: "layerName",
         #     page_key: "pageKey",
-        #     annot_key: "annotKey"
+        #     annotation_key: "annotationKey"
         #   )
         #
         # @return [untyped]
@@ -347,7 +347,7 @@ module CloudPDF
           request = CloudPDF::Internal::JSON::Request.new(
             base_url: request_options[:base_url],
             method: "GET",
-            path: "v1/docs/#{URI.encode_uri_component(params[:doc_id].to_s)}/layers/#{URI.encode_uri_component(params[:layer_name].to_s)}/annotations/pages/#{URI.encode_uri_component(params[:page_key].to_s)}/items/#{URI.encode_uri_component(params[:annot_key].to_s)}/resources/file",
+            path: "v1/docs/#{URI.encode_uri_component(params[:doc_id].to_s)}/layers/#{URI.encode_uri_component(params[:layer_name].to_s)}/annotations/pages/#{URI.encode_uri_component(params[:page_key].to_s)}/items/#{URI.encode_uri_component(params[:annotation_key].to_s)}/resources/file",
             headers: headers,
             request_options: request_options
           )
@@ -439,7 +439,7 @@ module CloudPDF
         #     }
         #   )
         #
-        # @return [CloudPDF::Types::DocAnnotationsFlatten200Response]
+        # @return [CloudPDF::Types::DocAnnotationsFlattenResponse]
         def flatten(request_options: {}, **params)
           params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
           path_param_names = %i[doc_id layer_name page_key]
@@ -464,7 +464,7 @@ module CloudPDF
           end
           code = response.code.to_i
           if code.between?(200, 299)
-            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocAnnotationsFlatten200Response.load(response.body))
+            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocAnnotationsFlattenResponse.load(response.body))
           else
             error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
             raise error_class.new(response.body, code: code)
@@ -493,7 +493,7 @@ module CloudPDF
         #     position: "start"
         #   )
         #
-        # @return [CloudPDF::Types::DocAnnotationsReorder200Response]
+        # @return [CloudPDF::Types::DocAnnotationsReorderResponse]
         def reorder(request_options: {}, **params)
           params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
           request_data = CloudPDF::Doc::Annotations::Types::DocAnnotationsReorderRequest.new(params).to_h
@@ -519,7 +519,7 @@ module CloudPDF
           end
           code = response.code.to_i
           if code.between?(200, 299)
-            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocAnnotationsReorder200Response.load(response.body))
+            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocAnnotationsReorderResponse.load(response.body))
           else
             error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
             raise error_class.new(response.body, code: code)

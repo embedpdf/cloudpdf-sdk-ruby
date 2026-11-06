@@ -3,11 +3,11 @@
 module CloudPDF
   module Types
     class DeploymentLicenseStatusResponse < Internal::Types::Model
-      field :license, -> { Object }, optional: true, nullable: false
+      field :license, -> { Internal::Types::Hash[String, Object] }, optional: false, nullable: false
 
-      field :reporting, -> { Object }, optional: true, nullable: false
+      field :reporting, -> { Internal::Types::Hash[String, Object] }, optional: false, nullable: true
 
-      field :usage, -> { Object }, optional: true, nullable: false
+      field :usage, -> { Internal::Types::Hash[String, Object] }, optional: false, nullable: true
     end
   end
 end

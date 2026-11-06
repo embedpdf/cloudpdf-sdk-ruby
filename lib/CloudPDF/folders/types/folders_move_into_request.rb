@@ -8,7 +8,7 @@ module CloudPDF
 
         field :folder_id, -> { String }, optional: false, nullable: false, api_name: "folderId"
 
-        field :document_ids, -> { Internal::Types::Array[String] }, optional: true, nullable: false, api_name: "documentIds"
+        field :doc_ids, -> { Internal::Types::Array[String] }, optional: true, nullable: false, api_name: "docIds"
 
         field :folder_ids, -> { Internal::Types::Array[String] }, optional: true, nullable: false, api_name: "folderIds"
       end

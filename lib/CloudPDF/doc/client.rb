@@ -23,7 +23,7 @@ module CloudPDF
       # @example
       #   client.doc.head(doc_id: "docId")
       #
-      # @return [CloudPDF::Types::DocHead200Response]
+      # @return [CloudPDF::Types::DocHeadResponse]
       def head(request_options: {}, **params)
         params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
         headers = {}
@@ -43,7 +43,7 @@ module CloudPDF
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          (response.body.to_s.empty? ? nil : CloudPDF::Types::DocHead200Response.load(response.body))
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::DocHeadResponse.load(response.body))
         else
           error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -83,7 +83,7 @@ module CloudPDF
       #     }]
       #   )
       #
-      # @return [CloudPDF::Types::DocChanges200Response]
+      # @return [CloudPDF::Types::DocChangesResponse]
       def changes(request_options: {}, **params)
         params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
         request_data = CloudPDF::Doc::Types::DocChangesRequest.new(params).to_h
@@ -108,7 +108,7 @@ module CloudPDF
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          (response.body.to_s.empty? ? nil : CloudPDF::Types::DocChanges200Response.load(response.body))
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::DocChangesResponse.load(response.body))
         else
           error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -180,7 +180,7 @@ module CloudPDF
       #     layer_name: "layerName"
       #   )
       #
-      # @return [CloudPDF::Types::DocDownloadLink200Response]
+      # @return [CloudPDF::Types::DocDownloadLinkResponse]
       def download_link(request_options: {}, **params)
         params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
         request_data = CloudPDF::Doc::Types::DocDownloadLinkRequest.new(params).to_h
@@ -205,7 +205,7 @@ module CloudPDF
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          (response.body.to_s.empty? ? nil : CloudPDF::Types::DocDownloadLink200Response.load(response.body))
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::DocDownloadLinkResponse.load(response.body))
         else
           error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -229,7 +229,7 @@ module CloudPDF
       #     layer_name: "layerName"
       #   )
       #
-      # @return [CloudPDF::Types::DocManifest200Response]
+      # @return [CloudPDF::Types::DocManifestResponse]
       def manifest(request_options: {}, **params)
         params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
         headers = {}
@@ -249,7 +249,7 @@ module CloudPDF
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          (response.body.to_s.empty? ? nil : CloudPDF::Types::DocManifest200Response.load(response.body))
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::DocManifestResponse.load(response.body))
         else
           error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -322,7 +322,7 @@ module CloudPDF
       #     page_key: "pageKey"
       #   )
       #
-      # @return [CloudPDF::Types::DocText200Response]
+      # @return [CloudPDF::Types::DocTextResponse]
       def text(request_options: {}, **params)
         params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
         headers = {}
@@ -342,7 +342,7 @@ module CloudPDF
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          (response.body.to_s.empty? ? nil : CloudPDF::Types::DocText200Response.load(response.body))
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::DocTextResponse.load(response.body))
         else
           error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)

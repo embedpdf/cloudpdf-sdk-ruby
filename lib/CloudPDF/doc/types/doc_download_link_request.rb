@@ -10,7 +10,7 @@ module CloudPDF
 
         field :document_password, -> { String }, optional: true, nullable: false, api_name: "X-Document-Password"
 
-        field :expires_in, -> { Integer }, optional: true, nullable: false, api_name: "expiresIn"
+        field :expires_in_seconds, -> { Integer }, optional: true, nullable: false, api_name: "expiresInSeconds"
       end
     end
   end

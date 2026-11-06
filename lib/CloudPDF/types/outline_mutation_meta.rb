@@ -13,7 +13,7 @@ module CloudPDF
 
       field :missing_characters, -> { Internal::Types::Array[String] }, optional: true, nullable: false, api_name: "missingCharacters"
 
-      field :changed, -> { Internal::Types::Array[CloudPDF::Types::OutlineItemRef] }, optional: false, nullable: false
+      field :changed_refs, -> { Internal::Types::Array[CloudPDF::Types::OutlineItemRef] }, optional: false, nullable: false, api_name: "changedRefs"
     end
   end
 end

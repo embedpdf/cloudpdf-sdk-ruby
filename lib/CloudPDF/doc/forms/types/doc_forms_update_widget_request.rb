@@ -11,7 +11,7 @@ module CloudPDF
 
           field :page_key, -> { String }, optional: false, nullable: false, api_name: "pageKey"
 
-          field :annot_key, -> { String }, optional: false, nullable: false, api_name: "annotKey"
+          field :annotation_key, -> { String }, optional: false, nullable: false, api_name: "annotationKey"
 
           field :document_password, -> { String }, optional: true, nullable: false, api_name: "X-Document-Password"
 
