@@ -87,9 +87,9 @@ module CloudPDF
 
       field :intent, -> { CloudPDF::Types::AnnotationLineIntent }, optional: false, nullable: true
 
-      field :measure, -> { CloudPDF::Types::AnnotationLineMeasure }, optional: false, nullable: true
+      field :measure, -> { CloudPDF::Types::PdfMeasurement }, optional: false, nullable: true
 
-      field :caption_enabled, -> { Internal::Types::Boolean }, optional: false, nullable: true, api_name: "captionEnabled"
+      field :caption_enabled, -> { Internal::Types::Boolean }, optional: false, nullable: false, api_name: "captionEnabled"
 
       field :caption_position, -> { CloudPDF::Types::AnnotationLineCaptionPosition }, optional: false, nullable: false, api_name: "captionPosition"
 

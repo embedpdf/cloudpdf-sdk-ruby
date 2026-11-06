@@ -6,7 +6,7 @@ module CloudPDF
       class UploadProxyDocumentsRequest < Internal::Types::Model
         field :tenant_id, -> { String }, optional: false, nullable: false, api_name: "tenantId"
 
-        field :id, -> { String }, optional: false, nullable: false
+        field :doc_id, -> { String }, optional: false, nullable: false, api_name: "docId"
 
         field :file, -> { Object }, optional: false, nullable: false
       end

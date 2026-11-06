@@ -19,9 +19,9 @@ module CloudPDF
 
       field :mapping_name, -> { String }, optional: false, nullable: true, api_name: "mappingName"
 
-      field :value_entry, -> { CloudPDF::Types::FormFieldComboboxValueEntry }, optional: false, nullable: false, api_name: "valueEntry"
+      field :value_entry, -> { CloudPDF::Types::FormValueEntry }, optional: false, nullable: false, api_name: "valueEntry"
 
-      field :default_value_entry, -> { CloudPDF::Types::FormFieldComboboxDefaultValueEntry }, optional: false, nullable: false, api_name: "defaultValueEntry"
+      field :default_value_entry, -> { CloudPDF::Types::FormValueEntry }, optional: false, nullable: false, api_name: "defaultValueEntry"
 
       field :actions, -> { CloudPDF::Types::PdfFieldActions }, optional: true, nullable: false
 

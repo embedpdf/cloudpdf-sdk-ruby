@@ -27,7 +27,7 @@ module CloudPDF
       # @example
       #   client.tokens.issue(tenant_id: "tenantId")
       #
-      # @return [CloudPDF::Types::TokensIssue200Response]
+      # @return [CloudPDF::Types::TokensIssueResponse]
       def issue(request_options: {}, **params)
         params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
         path_param_names = %i[tenant_id]
@@ -47,7 +47,7 @@ module CloudPDF
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          (response.body.to_s.empty? ? nil : CloudPDF::Types::TokensIssue200Response.load(response.body))
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::TokensIssueResponse.load(response.body))
         else
           error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)

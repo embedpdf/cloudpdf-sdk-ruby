@@ -28,7 +28,7 @@ module CloudPDF
         #     layer_name: "layerName"
         #   )
         #
-        # @return [CloudPDF::Types::DocFormsList200Response]
+        # @return [CloudPDF::Types::DocFormsListResponse]
         def list(request_options: {}, **params)
           params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
           headers = {}
@@ -48,7 +48,7 @@ module CloudPDF
           end
           code = response.code.to_i
           if code.between?(200, 299)
-            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocFormsList200Response.load(response.body))
+            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocFormsListResponse.load(response.body))
           else
             error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
             raise error_class.new(response.body, code: code)
@@ -75,7 +75,7 @@ module CloudPDF
         #     position: "start"
         #   )
         #
-        # @return [CloudPDF::Types::DocFormsReorderCalculations200Response]
+        # @return [CloudPDF::Types::DocFormsReorderCalculationsResponse]
         def reorder_calculations(request_options: {}, **params)
           params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
           request_data = CloudPDF::Doc::Forms::Types::DocFormsReorderCalculationsRequest.new(params).to_h
@@ -101,7 +101,7 @@ module CloudPDF
           end
           code = response.code.to_i
           if code.between?(200, 299)
-            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocFormsReorderCalculations200Response.load(response.body))
+            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocFormsReorderCalculationsResponse.load(response.body))
           else
             error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
             raise error_class.new(response.body, code: code)
@@ -131,7 +131,7 @@ module CloudPDF
         #     }
         #   )
         #
-        # @return [CloudPDF::Types::DocFormsSetValue200Response]
+        # @return [CloudPDF::Types::DocFormsSetValueResponse]
         def set_value(request_options: {}, **params)
           params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
           path_param_names = %i[doc_id layer_name field_key]
@@ -156,7 +156,7 @@ module CloudPDF
           end
           code = response.code.to_i
           if code.between?(200, 299)
-            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocFormsSetValue200Response.load(response.body))
+            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocFormsSetValueResponse.load(response.body))
           else
             error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
             raise error_class.new(response.body, code: code)
@@ -181,7 +181,7 @@ module CloudPDF
         #     layer_name: "layerName"
         #   )
         #
-        # @return [CloudPDF::Types::DocFormsReset200Response]
+        # @return [CloudPDF::Types::DocFormsResetResponse]
         def reset(request_options: {}, **params)
           params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
           request_data = CloudPDF::Doc::Forms::Types::DocFormsResetRequest.new(params).to_h
@@ -207,7 +207,7 @@ module CloudPDF
           end
           code = response.code.to_i
           if code.between?(200, 299)
-            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocFormsReset200Response.load(response.body))
+            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocFormsResetResponse.load(response.body))
           else
             error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
             raise error_class.new(response.body, code: code)
@@ -224,7 +224,7 @@ module CloudPDF
         # @option params [String] :doc_id
         # @option params [String] :layer_name
         # @option params [String] :page_key
-        # @option params [String] :annot_key
+        # @option params [String] :annotation_key
         # @option params [String, nil] :document_password
         # @option params [String, nil] :idempotency_key
         #
@@ -233,10 +233,10 @@ module CloudPDF
         #     doc_id: "docId",
         #     layer_name: "layerName",
         #     page_key: "pageKey",
-        #     annot_key: "annotKey"
+        #     annotation_key: "annotationKey"
         #   )
         #
-        # @return [CloudPDF::Types::DocFormsDeleteWidget200Response]
+        # @return [CloudPDF::Types::DocFormsDeleteWidgetResponse]
         def delete_widget(request_options: {}, **params)
           params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
           headers = {}
@@ -246,7 +246,7 @@ module CloudPDF
           request = CloudPDF::Internal::JSON::Request.new(
             base_url: request_options[:base_url],
             method: "DELETE",
-            path: "v1/docs/#{URI.encode_uri_component(params[:doc_id].to_s)}/layers/#{URI.encode_uri_component(params[:layer_name].to_s)}/form/widgets/#{URI.encode_uri_component(params[:page_key].to_s)}/#{URI.encode_uri_component(params[:annot_key].to_s)}",
+            path: "v1/docs/#{URI.encode_uri_component(params[:doc_id].to_s)}/layers/#{URI.encode_uri_component(params[:layer_name].to_s)}/form/widgets/#{URI.encode_uri_component(params[:page_key].to_s)}/#{URI.encode_uri_component(params[:annotation_key].to_s)}",
             headers: headers,
             request_options: request_options
           )
@@ -257,7 +257,7 @@ module CloudPDF
           end
           code = response.code.to_i
           if code.between?(200, 299)
-            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocFormsDeleteWidget200Response.load(response.body))
+            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocFormsDeleteWidgetResponse.load(response.body))
           else
             error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
             raise error_class.new(response.body, code: code)
@@ -274,7 +274,7 @@ module CloudPDF
         # @option params [String] :doc_id
         # @option params [String] :layer_name
         # @option params [String] :page_key
-        # @option params [String] :annot_key
+        # @option params [String] :annotation_key
         # @option params [String, nil] :document_password
         # @option params [String, nil] :idempotency_key
         #
@@ -283,15 +283,15 @@ module CloudPDF
         #     doc_id: "docId",
         #     layer_name: "layerName",
         #     page_key: "pageKey",
-        #     annot_key: "annotKey",
+        #     annotation_key: "annotationKey",
         #     patch: {}
         #   )
         #
-        # @return [CloudPDF::Types::DocFormsUpdateWidget200Response]
+        # @return [CloudPDF::Types::DocFormsUpdateWidgetResponse]
         def update_widget(request_options: {}, **params)
           params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
           request_data = CloudPDF::Doc::Forms::Types::DocFormsUpdateWidgetRequest.new(params).to_h
-          non_body_param_names = %w[docId layerName pageKey annotKey X-Document-Password Idempotency-Key]
+          non_body_param_names = %w[docId layerName pageKey annotationKey X-Document-Password Idempotency-Key]
           body = request_data.except(*non_body_param_names)
 
           headers = {}
@@ -301,7 +301,7 @@ module CloudPDF
           request = CloudPDF::Internal::JSON::Request.new(
             base_url: request_options[:base_url],
             method: "PATCH",
-            path: "v1/docs/#{URI.encode_uri_component(params[:doc_id].to_s)}/layers/#{URI.encode_uri_component(params[:layer_name].to_s)}/form/widgets/#{URI.encode_uri_component(params[:page_key].to_s)}/#{URI.encode_uri_component(params[:annot_key].to_s)}",
+            path: "v1/docs/#{URI.encode_uri_component(params[:doc_id].to_s)}/layers/#{URI.encode_uri_component(params[:layer_name].to_s)}/form/widgets/#{URI.encode_uri_component(params[:page_key].to_s)}/#{URI.encode_uri_component(params[:annotation_key].to_s)}",
             headers: headers,
             body: body,
             request_options: request_options
@@ -313,7 +313,7 @@ module CloudPDF
           end
           code = response.code.to_i
           if code.between?(200, 299)
-            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocFormsUpdateWidget200Response.load(response.body))
+            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocFormsUpdateWidgetResponse.load(response.body))
           else
             error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
             raise error_class.new(response.body, code: code)
@@ -342,7 +342,7 @@ module CloudPDF
         #     position: "start"
         #   )
         #
-        # @return [CloudPDF::Types::DocFormsReorderWidgets200Response]
+        # @return [CloudPDF::Types::DocFormsReorderWidgetsResponse]
         def reorder_widgets(request_options: {}, **params)
           params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
           request_data = CloudPDF::Doc::Forms::Types::DocFormsReorderWidgetsRequest.new(params).to_h
@@ -368,7 +368,7 @@ module CloudPDF
           end
           code = response.code.to_i
           if code.between?(200, 299)
-            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocFormsReorderWidgets200Response.load(response.body))
+            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocFormsReorderWidgetsResponse.load(response.body))
           else
             error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
             raise error_class.new(response.body, code: code)

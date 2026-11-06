@@ -89,7 +89,7 @@ module CloudPDF
 
       field :intent, -> { CloudPDF::Types::AnnotationPolylineIntent }, optional: false, nullable: true
 
-      field :measure, -> { CloudPDF::Types::AnnotationPolylineMeasure }, optional: false, nullable: true
+      field :measure, -> { CloudPDF::Types::PdfMeasurement }, optional: false, nullable: true
 
       field :line_endings, -> { CloudPDF::Types::AnnotationPolylineLineEndings }, optional: false, nullable: false, api_name: "lineEndings"
     end

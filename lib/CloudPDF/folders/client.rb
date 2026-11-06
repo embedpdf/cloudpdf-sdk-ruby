@@ -25,7 +25,7 @@ module CloudPDF
       # @example
       #   client.folders.list(tenant_id: "tenantId")
       #
-      # @return [CloudPDF::Types::FoldersList200Response]
+      # @return [CloudPDF::Types::FoldersListResponse]
       def list(request_options: {}, **params)
         params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
         query_params = {}
@@ -47,7 +47,7 @@ module CloudPDF
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          (response.body.to_s.empty? ? nil : CloudPDF::Types::FoldersList200Response.load(response.body))
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::FoldersListResponse.load(response.body))
         else
           error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -72,7 +72,7 @@ module CloudPDF
       #     name: "name"
       #   )
       #
-      # @return [CloudPDF::Types::FoldersCreate200Response]
+      # @return [CloudPDF::Types::FoldersCreateResponse]
       def create(request_options: {}, **params)
         params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
         request_data = CloudPDF::Folders::Types::FoldersCreateRequest.new(params).to_h
@@ -93,7 +93,7 @@ module CloudPDF
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          (response.body.to_s.empty? ? nil : CloudPDF::Types::FoldersCreate200Response.load(response.body))
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::FoldersCreateResponse.load(response.body))
         else
           error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -116,7 +116,7 @@ module CloudPDF
       #     folder_id: "folderId"
       #   )
       #
-      # @return [CloudPDF::Types::FoldersGet200Response]
+      # @return [CloudPDF::Types::FoldersGetResponse]
       def get(request_options: {}, **params)
         params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
         request = CloudPDF::Internal::JSON::Request.new(
@@ -132,7 +132,7 @@ module CloudPDF
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          (response.body.to_s.empty? ? nil : CloudPDF::Types::FoldersGet200Response.load(response.body))
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::FoldersGetResponse.load(response.body))
         else
           error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -206,7 +206,7 @@ module CloudPDF
       #     name: "name"
       #   )
       #
-      # @return [CloudPDF::Types::FoldersUpdate200Response]
+      # @return [CloudPDF::Types::FoldersUpdateResponse]
       def update(request_options: {}, **params)
         params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
         request_data = CloudPDF::Folders::Types::FoldersUpdateRequest.new(params).to_h
@@ -227,7 +227,7 @@ module CloudPDF
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          (response.body.to_s.empty? ? nil : CloudPDF::Types::FoldersUpdate200Response.load(response.body))
+          (response.body.to_s.empty? ? nil : CloudPDF::Types::FoldersUpdateResponse.load(response.body))
         else
           error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)
@@ -235,10 +235,10 @@ module CloudPDF
       end
 
       # Up to 1,000 ids in total. A folder moves with everything in it. 404 NotFound names the ids that do not exist or
-      # are being deleted in `details.documentIds` and `details.folderIds`. 409 Conflict carries `details.reason`:
-      # `cycle` (the destination is a moved folder or inside one; `details.folderId`), `too-deep` (the move would nest
-      # folders deeper than 100 levels; `details.maxDepth`) or `name-taken` (a moved folder's name is taken in the
-      # destination, ignoring case; `details.name`).
+      # are being deleted in `details.docIds` and `details.folderIds`. 409 Conflict carries `details.reason`: `cycle`
+      # (the destination is a moved folder or inside one; `details.folderId`), `too-deep` (the move would nest folders
+      # deeper than 100 levels; `details.maxDepth`) or `name-taken` (a moved folder's name is taken in the destination,
+      # ignoring case; `details.name`).
       #
       # @param request_options [Hash]
       # @param params [CloudPDF::Folders::Types::FoldersMoveIntoRequest]

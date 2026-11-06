@@ -2,6 +2,8 @@
 
 module CloudPDF
   module Types
+    # Where a link goes, by its `kind`. A newer server can add kinds: read one your client doesn't know as
+    # `unsupported`.
     class PdfLinkTarget < Internal::Types::Model
       extend CloudPDF::Internal::Types::Union
 

@@ -5,11 +5,11 @@ module CloudPDF
     class PageDestinationXyz < Internal::Types::Model
       field :page, -> { CloudPDF::Types::PageRef }, optional: false, nullable: false
 
-      field :x, -> { Integer }, optional: true, nullable: false
+      field :x, -> { Integer }, optional: false, nullable: true
 
-      field :y, -> { Integer }, optional: true, nullable: false
+      field :y, -> { Integer }, optional: false, nullable: true
 
-      field :zoom, -> { Integer }, optional: true, nullable: false
+      field :zoom, -> { Integer }, optional: false, nullable: true
     end
   end
 end

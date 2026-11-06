@@ -15,7 +15,7 @@ module CloudPDF
 
       field :origins, -> { Internal::Types::Array[String] }, optional: true, nullable: false
 
-      field :expires_in, -> { Integer }, optional: false, nullable: false, api_name: "expiresIn"
+      field :expires_in_seconds, -> { Integer }, optional: false, nullable: false, api_name: "expiresInSeconds"
     end
   end
 end

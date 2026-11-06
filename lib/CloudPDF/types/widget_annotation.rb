@@ -95,7 +95,9 @@ module CloudPDF
 
       field :field, -> { CloudPDF::Types::FormFieldRef }, optional: false, nullable: true
 
-      field :field_family, -> { CloudPDF::Types::WidgetAnnotationFieldFamily }, optional: false, nullable: false, api_name: "fieldFamily"
+      field :field_kind, -> { CloudPDF::Types::WidgetAnnotationFieldKind }, optional: false, nullable: false, api_name: "fieldKind"
+
+      field :has_mark, -> { Internal::Types::Boolean }, optional: false, nullable: false, api_name: "hasMark"
     end
   end
 end

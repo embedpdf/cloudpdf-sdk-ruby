@@ -9,7 +9,7 @@ module CloudPDF
 
           field :layer_name, -> { String }, optional: false, nullable: false, api_name: "layerName"
 
-          field :sha, -> { String }, optional: false, nullable: false
+          field :sha256, -> { String }, optional: false, nullable: false
 
           field :field_key, -> { String }, optional: false, nullable: false, api_name: "fieldKey"
 

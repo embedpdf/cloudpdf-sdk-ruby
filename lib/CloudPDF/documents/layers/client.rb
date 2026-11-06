@@ -19,7 +19,7 @@ module CloudPDF
         # @option request_options [Hash{String => Object}] :additional_body_parameters
         # @option request_options [Integer] :timeout_in_seconds
         # @option params [String] :tenant_id
-        # @option params [String] :id
+        # @option params [String] :doc_id
         # @option params [Integer, nil] :limit
         # @option params [String, nil] :cursor
         # @option params [String, nil] :grant_id
@@ -27,10 +27,10 @@ module CloudPDF
         # @example
         #   client.documents.layers.list(
         #     tenant_id: "tenantId",
-        #     id: "id"
+        #     doc_id: "docId"
         #   )
         #
-        # @return [CloudPDF::Types::DocumentsLayersList200Response]
+        # @return [CloudPDF::Types::DocumentsLayersListResponse]
         def list(request_options: {}, **params)
           params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
           query_params = {}
@@ -41,7 +41,7 @@ module CloudPDF
           request = CloudPDF::Internal::JSON::Request.new(
             base_url: request_options[:base_url],
             method: "GET",
-            path: "v1/tenants/#{URI.encode_uri_component(params[:tenant_id].to_s)}/documents/#{URI.encode_uri_component(params[:id].to_s)}/layers",
+            path: "v1/tenants/#{URI.encode_uri_component(params[:tenant_id].to_s)}/documents/#{URI.encode_uri_component(params[:doc_id].to_s)}/layers",
             query: query_params,
             request_options: request_options
           )
@@ -52,7 +52,7 @@ module CloudPDF
           end
           code = response.code.to_i
           if code.between?(200, 299)
-            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocumentsLayersList200Response.load(response.body))
+            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocumentsLayersListResponse.load(response.body))
           else
             error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
             raise error_class.new(response.body, code: code)
@@ -67,13 +67,13 @@ module CloudPDF
         # @option request_options [Hash{String => Object}] :additional_body_parameters
         # @option request_options [Integer] :timeout_in_seconds
         # @option params [String] :tenant_id
-        # @option params [String] :id
+        # @option params [String] :doc_id
         # @option params [String] :layer_name
         #
         # @example
         #   client.documents.layers.delete(
         #     tenant_id: "tenantId",
-        #     id: "id",
+        #     doc_id: "docId",
         #     layer_name: "layerName"
         #   )
         #
@@ -83,7 +83,7 @@ module CloudPDF
           request = CloudPDF::Internal::JSON::Request.new(
             base_url: request_options[:base_url],
             method: "DELETE",
-            path: "v1/tenants/#{URI.encode_uri_component(params[:tenant_id].to_s)}/documents/#{URI.encode_uri_component(params[:id].to_s)}/layers/#{URI.encode_uri_component(params[:layer_name].to_s)}",
+            path: "v1/tenants/#{URI.encode_uri_component(params[:tenant_id].to_s)}/documents/#{URI.encode_uri_component(params[:doc_id].to_s)}/layers/#{URI.encode_uri_component(params[:layer_name].to_s)}",
             request_options: request_options
           )
           begin

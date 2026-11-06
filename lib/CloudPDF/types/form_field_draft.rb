@@ -5,7 +5,7 @@ module CloudPDF
     class FormFieldDraft < Internal::Types::Model
       extend CloudPDF::Internal::Types::Union
 
-      discriminant :family
+      discriminant :kind
 
       member -> { CloudPDF::Types::FormFieldDraftText }, key: "TEXT"
 

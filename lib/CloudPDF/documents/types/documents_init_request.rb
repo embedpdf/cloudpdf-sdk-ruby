@@ -6,7 +6,7 @@ module CloudPDF
       class DocumentsInitRequest < Internal::Types::Model
         field :tenant_id, -> { String }, optional: false, nullable: false, api_name: "tenantId"
 
-        field :content_length, -> { Integer }, optional: false, nullable: false, api_name: "contentLength"
+        field :size_bytes, -> { Integer }, optional: false, nullable: false, api_name: "sizeBytes"
 
         field :content_sha256, -> { String }, optional: false, nullable: false, api_name: "contentSha256"
 
@@ -22,7 +22,7 @@ module CloudPDF
 
         field :doc_id, -> { String }, optional: true, nullable: false, api_name: "docId"
 
-        field :upload_ttl_sec, -> { Integer }, optional: true, nullable: false, api_name: "uploadTtlSec"
+        field :upload_ttl_seconds, -> { Integer }, optional: true, nullable: false, api_name: "uploadTtlSeconds"
 
         field :upload_preference, -> { CloudPDF::Documents::Types::DocumentsInitRequestUploadPreference }, optional: true, nullable: false, api_name: "uploadPreference"
       end

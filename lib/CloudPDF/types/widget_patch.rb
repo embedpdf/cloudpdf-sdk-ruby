@@ -95,7 +95,9 @@ module CloudPDF
 
       field :field, -> { Object }, optional: true, nullable: false
 
-      field :field_family, -> { Object }, optional: true, nullable: false, api_name: "fieldFamily"
+      field :field_kind, -> { Object }, optional: true, nullable: false, api_name: "fieldKind"
+
+      field :has_mark, -> { Object }, optional: true, nullable: false, api_name: "hasMark"
     end
   end
 end
