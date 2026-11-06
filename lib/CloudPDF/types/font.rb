@@ -7,6 +7,8 @@ module CloudPDF
 
       field :source, -> { CloudPDF::Types::FontSource }, optional: false, nullable: false
 
+      field :built_in, -> { Internal::Types::Boolean }, optional: false, nullable: false, api_name: "builtIn"
+
       field :family_name, -> { String }, optional: false, nullable: false, api_name: "familyName"
 
       field :weight, -> { Integer }, optional: false, nullable: false
