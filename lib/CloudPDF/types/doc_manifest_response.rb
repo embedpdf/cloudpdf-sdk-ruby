@@ -19,6 +19,8 @@ module CloudPDF
 
       field :outline_version, -> { Integer }, optional: true, nullable: false, api_name: "outlineVersion"
 
+      field :viewports_version, -> { Integer }, optional: true, nullable: false, api_name: "viewportsVersion"
+
       field :fonts_version, -> { Integer }, optional: true, nullable: false, api_name: "fontsVersion"
 
       field :contents_version, -> { Integer }, optional: true, nullable: false, api_name: "contentsVersion"
