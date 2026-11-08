@@ -57,6 +57,8 @@ module CloudPDF
 
       member -> { CloudPDF::Types::ChangeOpPagesRotate }, key: "PAGES_ROTATE"
 
+      member -> { CloudPDF::Types::ChangeOpPagesSetScale }, key: "PAGES_SET_SCALE"
+
       member -> { CloudPDF::Types::ChangeOpPagesReorder }, key: "PAGES_REORDER"
 
       member -> { CloudPDF::Types::ChangeOpPagesDelete }, key: "PAGES_DELETE"

@@ -30,6 +30,7 @@ module CloudPDF
       OUTLINE_MOVE = "outline.move"
       OUTLINE_DELETE = "outline.delete"
       PAGES_ROTATE = "pages.rotate"
+      PAGES_SET_SCALE = "pages.setScale"
       PAGES_REORDER = "pages.reorder"
       PAGES_DELETE = "pages.delete"
       PAGES_INSERT_BLANK = "pages.insertBlank"
