@@ -17,6 +17,8 @@ module CloudPDF
 
       member -> { CloudPDF::Types::ChangeItemAnnotationsReorder }, key: "ANNOTATIONS_REORDER"
 
+      member -> { CloudPDF::Types::ChangeItemAnnotationsCopy }, key: "ANNOTATIONS_COPY"
+
       member -> { CloudPDF::Types::ChangeItemAnnotationsRestore }, key: "ANNOTATIONS_RESTORE"
 
       member -> { CloudPDF::Types::ChangeItemFormsSetValue }, key: "FORMS_SET_VALUE"
@@ -28,6 +30,8 @@ module CloudPDF
       member -> { CloudPDF::Types::ChangeItemFormsReset }, key: "FORMS_RESET"
 
       member -> { CloudPDF::Types::ChangeItemFormsCreate }, key: "FORMS_CREATE"
+
+      member -> { CloudPDF::Types::ChangeItemFormsCopy }, key: "FORMS_COPY"
 
       member -> { CloudPDF::Types::ChangeItemFormsUpdate }, key: "FORMS_UPDATE"
 
