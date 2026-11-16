@@ -18,6 +18,8 @@ module CloudPDF
       field :expected_version, -> { CloudPDF::Types::DocSignaturesPrepareResponseExpectedVersion }, optional: false, nullable: false, api_name: "expectedVersion"
 
       field :expires_at, -> { String }, optional: false, nullable: true, api_name: "expiresAt"
+
+      field :field, -> { CloudPDF::Types::FormFieldRef }, optional: true, nullable: false
     end
   end
 end

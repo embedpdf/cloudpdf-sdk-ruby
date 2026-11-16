@@ -225,8 +225,10 @@ module CloudPDF
         # Multipart: a JSON `body` part (field, subFilter, digest, contentsSize, signer, certify, lock), naming the
         # appearance PDF it may carry as `resources: { appearance: '<key>' }`, and that PDF as the part
         # `resource:<key>`. A certification (`certify.permission`) additionally requires `doc.sign.certify`. The layer
-        # is read-only until the signing completes, is cancelled, or expires (15 minutes). The signature is made over
-        # the layer's own base: the upload, or the version its last signature made.
+        # is read-only until the signing completes, is cancelled, or expires (15 minutes). A document timestamp (`kind:
+        # 'timestamp'`) may leave `field` out, since 3.3: the engine then makes a field of no size for it, under a name
+        # no other field has, and the answer names it in `field`. That needs `doc.sign` for the document. The signature
+        # is made over the layer's own base: the upload, or the version its last signature made.
         #
         # @param request_options [Hash]
         # @param params [void]
@@ -272,6 +274,111 @@ module CloudPDF
           code = response.code.to_i
           if code.between?(200, 299)
             (response.body.to_s.empty? ? nil : CloudPDF::Types::DocSignaturesPrepareResponse.load(response.body))
+          else
+            error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
+            raise error_class.new(response.body, code: code)
+          end
+        end
+
+        # Each entry is one DER object, base64. It reads the layer as it is now, so entries stored and not yet sealed by
+        # a signature are among them. Arrived in 3.3.
+        #
+        # @param request_options [Hash]
+        # @param params [Hash]
+        # @option request_options [String] :base_url
+        # @option request_options [Hash{String => Object}] :additional_headers
+        # @option request_options [Hash{String => Object}] :additional_query_parameters
+        # @option request_options [Hash{String => Object}] :additional_body_parameters
+        # @option request_options [Integer] :timeout_in_seconds
+        # @option params [String] :doc_id
+        # @option params [String] :layer_name
+        # @option params [String, nil] :document_password
+        #
+        # @example
+        #   client.doc.signatures.validation_info(
+        #     doc_id: "docId",
+        #     layer_name: "layerName"
+        #   )
+        #
+        # @return [CloudPDF::Types::DocSignaturesValidationInfoResponse]
+        def validation_info(request_options: {}, **params)
+          params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
+          headers = {}
+          headers["X-Document-Password"] = params[:document_password] if params[:document_password]
+
+          request = CloudPDF::Internal::JSON::Request.new(
+            base_url: request_options[:base_url],
+            method: "GET",
+            path: "v1/docs/#{URI.encode_uri_component(params[:doc_id].to_s)}/layers/#{URI.encode_uri_component(params[:layer_name].to_s)}/signatures/validation-info",
+            headers: headers,
+            request_options: request_options
+          )
+          begin
+            response = @client.send(request)
+          rescue Net::HTTPRequestTimeout
+            raise CloudPDF::Errors::TimeoutError
+          end
+          code = response.code.to_i
+          if code.between?(200, 299)
+            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocSignaturesValidationInfoResponse.load(response.body))
+          else
+            error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
+            raise error_class.new(response.body, code: code)
+          end
+        end
+
+        # Each entry is one DER object of at most 16 MiB, base64. An entry the file already holds, byte for byte, is not
+        # stored again: `added` counts the new ones. An entry that is not one DER object fails the request and nothing
+        # is stored; the error names it, as in `certificates[1]`. The server stores what it is given and asks no
+        # certificate authority: collect the answers first. It needs `doc.sign` for the document, not for a group of
+        # fields, and is refused after a certification that allows no changes. It cannot be undone, and it leaves undo
+        # for earlier changes as it was. Arrived in 3.3.
+        #
+        # @param request_options [Hash]
+        # @param params [CloudPDF::Doc::Signatures::Types::DocSignaturesAddValidationInfoRequest]
+        # @option request_options [String] :base_url
+        # @option request_options [Hash{String => Object}] :additional_headers
+        # @option request_options [Hash{String => Object}] :additional_query_parameters
+        # @option request_options [Hash{String => Object}] :additional_body_parameters
+        # @option request_options [Integer] :timeout_in_seconds
+        # @option params [String] :doc_id
+        # @option params [String] :layer_name
+        # @option params [String, nil] :document_password
+        # @option params [String, nil] :idempotency_key
+        #
+        # @example
+        #   client.doc.signatures.add_validation_info(
+        #     doc_id: "docId",
+        #     layer_name: "layerName"
+        #   )
+        #
+        # @return [CloudPDF::Types::DocSignaturesAddValidationInfoResponse]
+        def add_validation_info(request_options: {}, **params)
+          params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
+          request_data = CloudPDF::Doc::Signatures::Types::DocSignaturesAddValidationInfoRequest.new(params).to_h
+          non_body_param_names = %w[docId layerName X-Document-Password Idempotency-Key]
+          body = request_data.except(*non_body_param_names)
+
+          headers = {}
+          headers["X-Document-Password"] = params[:document_password] if params[:document_password]
+          headers["Idempotency-Key"] = params[:idempotency_key] if params[:idempotency_key]
+
+          request = CloudPDF::Internal::JSON::Request.new(
+            base_url: request_options[:base_url],
+            method: "POST",
+            path: "v1/docs/#{URI.encode_uri_component(params[:doc_id].to_s)}/layers/#{URI.encode_uri_component(params[:layer_name].to_s)}/signatures/validation-info",
+            headers: headers,
+            body: body,
+            request_options: request_options
+          )
+          begin
+            response = @client.send(request)
+          rescue Net::HTTPRequestTimeout
+            raise CloudPDF::Errors::TimeoutError
+          end
+          code = response.code.to_i
+          if code.between?(200, 299)
+            (response.body.to_s.empty? ? nil : CloudPDF::Types::DocSignaturesAddValidationInfoResponse.load(response.body))
           else
             error_class = CloudPDF::Errors::ResponseError.subclass_for_code(code)
             raise error_class.new(response.body, code: code)

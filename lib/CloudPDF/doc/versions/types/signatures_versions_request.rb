@@ -11,6 +11,8 @@ module CloudPDF
 
           field :sha256, -> { String }, optional: false, nullable: false
 
+          field :engine, -> { String }, optional: true, nullable: false
+
           field :document_password, -> { String }, optional: true, nullable: false, api_name: "X-Document-Password"
         end
       end

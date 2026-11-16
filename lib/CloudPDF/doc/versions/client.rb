@@ -59,7 +59,9 @@ module CloudPDF
         end
 
         # Exactly one of `since.signature` / `since.revision`; `until=<revision>` defaults to the last. The same answer
-        # for every caller.
+        # for every caller. A version never changes, but the rules that judge it can: with `engine`, the `analysis`
+        # value of the layer's head, a settled answer is `immutable`. Without it, or with another value, the answer is
+        # this server's own, with `no-store` and the current value in `EmbedPDF-Engine`.
         #
         # @param request_options [Hash]
         # @param params [Hash]
@@ -75,7 +77,7 @@ module CloudPDF
         # @option params [Integer, nil] :since_revision
         # @option params [CloudPDF::Doc::Versions::Types::AnalysisVersionsRequestLevel, nil] :level
         # @option params [Integer, nil] :until_
-        # @option params [Integer, nil] :policy
+        # @option params [String, nil] :engine
         # @option params [String, nil] :document_password
         #
         # @example
@@ -93,7 +95,7 @@ module CloudPDF
           query_params["since.revision"] = params[:since_revision] if params.key?(:since_revision)
           query_params["level"] = params[:level] if params.key?(:level)
           query_params["until"] = params[:until_] if params.key?(:until_)
-          query_params["policy"] = params[:policy] if params.key?(:policy)
+          query_params["engine"] = params[:engine] if params.key?(:engine)
 
           headers = {}
           headers["X-Document-Password"] = params[:document_password] if params[:document_password]
@@ -210,6 +212,10 @@ module CloudPDF
           raise error_class.new(response.body, code: code)
         end
 
+        # A version never changes, but what the server reads from it can: with `engine`, the `signatures` value of the
+        # layer's head, the answer is `immutable`. Without it, or with another value, the answer is this server's own,
+        # with `no-store` and the current value in `EmbedPDF-Engine`.
+        #
         # @param request_options [Hash]
         # @param params [Hash]
         # @option request_options [String] :base_url
@@ -220,6 +226,7 @@ module CloudPDF
         # @option params [String] :doc_id
         # @option params [String] :layer_name
         # @option params [String] :sha256
+        # @option params [String, nil] :engine
         # @option params [String, nil] :document_password
         #
         # @example
@@ -232,6 +239,9 @@ module CloudPDF
         # @return [CloudPDF::Types::DocVersionsSignaturesResponse]
         def signatures(request_options: {}, **params)
           params = CloudPDF::Internal::Types::Utils.normalize_keys(params)
+          query_params = {}
+          query_params["engine"] = params[:engine] if params.key?(:engine)
+
           headers = {}
           headers["X-Document-Password"] = params[:document_password] if params[:document_password]
 
@@ -240,6 +250,7 @@ module CloudPDF
             method: "GET",
             path: "v1/docs/#{URI.encode_uri_component(params[:doc_id].to_s)}/layers/#{URI.encode_uri_component(params[:layer_name].to_s)}/versions/signatures/#{URI.encode_uri_component(params[:sha256].to_s)}",
             headers: headers,
+            query: query_params,
             request_options: request_options
           )
           begin

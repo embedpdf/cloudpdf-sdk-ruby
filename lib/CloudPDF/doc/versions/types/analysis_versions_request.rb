@@ -19,7 +19,7 @@ module CloudPDF
 
           field :until_, -> { Integer }, optional: true, nullable: false, api_name: "until"
 
-          field :policy, -> { Integer }, optional: true, nullable: false
+          field :engine, -> { String }, optional: true, nullable: false
 
           field :document_password, -> { String }, optional: true, nullable: false, api_name: "X-Document-Password"
         end
