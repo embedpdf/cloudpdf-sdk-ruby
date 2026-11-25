@@ -17,6 +17,8 @@ module CloudPDF
 
       field :group_id, -> { String }, optional: true, nullable: false, api_name: "groupId"
 
+      field :purpose, -> { String }, optional: true, nullable: false
+
       field :actions, -> { CloudPDF::Types::FieldActionsPatch }, optional: true, nullable: false
 
       field :widgets, -> { Internal::Types::Array[CloudPDF::Types::WidgetPlacement] }, optional: true, nullable: false

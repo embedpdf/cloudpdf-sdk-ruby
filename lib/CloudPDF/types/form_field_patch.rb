@@ -17,6 +17,8 @@ module CloudPDF
 
       field :group_id, -> { String }, optional: true, nullable: false, api_name: "groupId"
 
+      field :purpose, -> { String }, optional: true, nullable: false
+
       field :actions, -> { CloudPDF::Types::FieldActionsPatch }, optional: true, nullable: false
 
       field :kind, -> { CloudPDF::Types::FormFieldPatchKind }, optional: true, nullable: false
@@ -40,6 +42,8 @@ module CloudPDF
       field :multi_select, -> { Internal::Types::Boolean }, optional: true, nullable: false, api_name: "multiSelect"
 
       field :options, -> { Internal::Types::Array[CloudPDF::Types::FormFieldPatchOptionsItem] }, optional: true, nullable: false
+
+      field :format, -> { CloudPDF::Types::FormFieldFormatWritable }, optional: true, nullable: false
     end
   end
 end
