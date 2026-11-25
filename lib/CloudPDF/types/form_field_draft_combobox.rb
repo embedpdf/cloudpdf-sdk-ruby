@@ -17,6 +17,8 @@ module CloudPDF
 
       field :group_id, -> { String }, optional: true, nullable: false, api_name: "groupId"
 
+      field :purpose, -> { String }, optional: true, nullable: false
+
       field :actions, -> { CloudPDF::Types::FieldActionsPatch }, optional: true, nullable: false
 
       field :widgets, -> { Internal::Types::Array[CloudPDF::Types::WidgetPlacement] }, optional: true, nullable: false
@@ -26,6 +28,8 @@ module CloudPDF
       field :options, -> { Internal::Types::Array[CloudPDF::Types::FormFieldDraftComboboxOptionsItem] }, optional: true, nullable: false
 
       field :default_value, -> { String }, optional: true, nullable: false, api_name: "defaultValue"
+
+      field :format, -> { CloudPDF::Types::FormFieldFormatWritable }, optional: true, nullable: false
     end
   end
 end

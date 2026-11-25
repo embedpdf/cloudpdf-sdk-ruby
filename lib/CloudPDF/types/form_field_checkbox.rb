@@ -27,6 +27,8 @@ module CloudPDF
 
       field :group_id, -> { String }, optional: false, nullable: true, api_name: "groupId"
 
+      field :purpose, -> { String }, optional: false, nullable: true
+
       field :created_by, -> { String }, optional: false, nullable: true, api_name: "createdBy"
 
       field :created_at, -> { String }, optional: false, nullable: true, api_name: "createdAt"

@@ -13,7 +13,7 @@ module CloudPDF
         headers: {
           "X-Fern-Language" => "Ruby",
           Authorization: "Bearer #{token}",
-          "EmbedPDF-Version" => "3.3"
+          "EmbedPDF-Version" => "3.4"
         },
         max_retries: max_retries
       )

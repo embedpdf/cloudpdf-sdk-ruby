@@ -3,7 +3,7 @@
 module CloudPDF
   module Types
     class ChangeOpFormsSetSignatureAppearanceResources < Internal::Types::Model
-      field :appearance, -> { String }, optional: false, nullable: false
+      field :appearance, -> { String }, optional: false, nullable: true
     end
   end
 end
